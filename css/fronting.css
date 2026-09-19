@@ -1,1 +1,408 @@
-blank
+/* ================================
+   FRONT LOGS PAGE
+================================ */
+
+.fronting-page {
+    color: var(--text);
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.fronting-header {
+    padding: 70px 0 90px;
+    border-bottom: 1px solid var(--border);
+}
+
+.fronting-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 70px;
+
+    color: var(--muted);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.fronting-back-link:hover {
+    color: var(--cherry);
+    transform: translateX(-3px);
+}
+
+.fronting-eyebrow {
+    margin-bottom: 16px;
+
+    color: var(--cherry);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+}
+
+.fronting-header h1 {
+    color: var(--cherry);
+}
+
+.fronting-intro {
+    max-width: 680px;
+
+    margin-top: 22px;
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+
+/* ================================
+   MAIN CONTENT
+================================ */
+
+.fronting-content {
+    padding: 90px 0;
+}
+
+.fronting-section-intro {
+    max-width: 750px;
+    margin-bottom: 45px;
+}
+
+.fronting-section-intro .eyebrow {
+    color: var(--cherry);
+}
+
+.fronting-section-intro h2 {
+    color: var(--text);
+}
+
+.fronting-section-intro > p:last-child {
+    margin-top: 20px;
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+
+/* ================================
+   CURRENT FRONT
+================================ */
+
+.current-front-card {
+    padding: 45px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    background: var(--cherry);
+    color: var(--white);
+}
+
+.current-front-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 28px;
+
+    color: #f2dadd;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #f7d7dc;
+}
+
+.current-front-name {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.current-front-time {
+    margin-top: 12px;
+
+    color: #f2dadd;
+
+    font-size: 0.95rem;
+}
+
+
+/* ================================
+   RECENT LOGS
+================================ */
+
+.logs-intro {
+    margin-top: 90px;
+}
+
+.front-log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.front-log-card {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 25px;
+
+    padding: 30px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    background: var(--white);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.front-log-card:hover {
+    transform: translateY(-3px);
+
+    border-color: var(--cherry-light);
+
+    box-shadow: 0 12px 30px rgba(60, 30, 30, 0.07);
+}
+
+.front-log-number {
+    color: var(--cherry-light);
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+}
+
+.front-log-main {
+    min-width: 0;
+}
+
+.front-log-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.front-log-top h3 {
+    color: var(--cherry);
+
+    font-size: 1.35rem;
+}
+
+.front-log-date {
+    color: var(--muted);
+
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.front-log-time {
+    margin-top: 12px;
+
+    color: var(--text);
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.front-log-duration {
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 0.9rem;
+}
+
+
+/* ================================
+   STATISTICS
+================================ */
+
+.stats-intro {
+    margin-top: 100px;
+}
+
+.front-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.front-stat-card {
+    min-height: 180px;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    background: var(--ivory-dark);
+}
+
+.front-stat-number {
+    color: var(--cherry);
+
+    font-size: 2.2rem;
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+}
+
+.front-stat-label {
+    color: var(--muted);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+
+/* ================================
+   NOTE
+================================ */
+
+.fronting-note {
+    max-width: 750px;
+
+    margin-top: 75px;
+
+    padding: 32px 35px;
+
+    border-left: 3px solid var(--cherry);
+
+    background: var(--ivory-dark);
+}
+
+.fronting-note .eyebrow {
+    margin-bottom: 15px;
+
+    color: var(--cherry);
+}
+
+.fronting-note p:last-child {
+    color: var(--muted);
+
+    line-height: 1.8;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 750px) {
+
+    .fronting-header {
+        padding: 50px 0 65px;
+    }
+
+    .fronting-back-link {
+        margin-bottom: 45px;
+    }
+
+    .fronting-content {
+        padding: 65px 0;
+    }
+
+    .current-front-card {
+        padding: 35px;
+    }
+
+    .current-front-name {
+        font-size: 2.5rem;
+    }
+
+    .front-log-card {
+        grid-template-columns: 45px 1fr;
+        gap: 15px;
+        padding: 25px;
+    }
+
+    .front-log-top {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .front-stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fronting-note {
+        margin-top: 55px;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .fronting-header {
+        padding: 40px 0 55px;
+    }
+
+    .fronting-header h1 {
+        font-size: 3.2rem;
+    }
+
+    .fronting-intro {
+        font-size: 1rem;
+    }
+
+    .fronting-content {
+        padding: 50px 0;
+    }
+
+    .current-front-card {
+        padding: 28px;
+    }
+
+    .current-front-name {
+        font-size: 2.2rem;
+    }
+
+    .front-log-card {
+        padding: 22px;
+    }
+
+    .front-log-top h3 {
+        font-size: 1.2rem;
+    }
+
+    .front-log-time {
+        font-size: 0.95rem;
+    }
+
+    .fronting-note {
+        padding: 25px;
+    }
+}
