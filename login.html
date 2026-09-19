@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Log In | Our System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <a href="index.html" class="nav-logo">
+            Our System
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="members.html">
+                Members
+            </a>
+
+            <a href="experience.html">
+                Experience
+            </a>
+
+            <a href="triggers.html">
+                Triggers
+            </a>
+
+            <a href="boundaries.html">
+                Boundaries
+            </a>
+
+            <a href="fronting.html">
+                Front Logs
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="login-section">
+
+            <p class="eyebrow">PRIVATE ACCESS</p>
+
+            <h1>Log in</h1>
+
+            <p>
+                Log in to manage fronting information.
+            </p>
+
+
+            <form id="login-form">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    required
+                >
+
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    required
+                >
+
+
+                <button type="submit">
+                    Log in
+                </button>
+
+                <p id="login-message"></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/login.js"></script>
+
+</body>
+</html>
