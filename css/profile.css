@@ -1,0 +1,326 @@
+/* ================================
+   MEMBER PROFILE PAGE
+================================ */
+
+
+/* ================================
+   PROFILE HEADER
+================================ */
+
+.profile-header {
+    padding: 70px 0 90px;
+}
+
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 70px;
+
+    color: var(--muted);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.back-link:hover {
+    color: var(--cherry);
+    transform: translateX(-3px);
+}
+
+
+.profile-eyebrow {
+    margin-bottom: 16px;
+
+    color: var(--cherry);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+}
+
+
+.profile-header h1 {
+    color: var(--cherry);
+}
+
+
+.profile-role {
+    margin-top: 18px;
+
+    font-size: 1.1rem;
+}
+
+
+/* ================================
+   PROFILE CONTENT
+================================ */
+
+.profile-content {
+    border-top: 1px solid var(--border);
+}
+
+
+.profile-section {
+    padding: 80px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.profile-section:last-child {
+    border-bottom: none;
+}
+
+
+.profile-section-heading {
+    margin-bottom: 35px;
+}
+
+
+.profile-section-heading h2 {
+    color: var(--text);
+}
+
+
+/* ================================
+   ABOUT
+================================ */
+
+.profile-about {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+}
+
+
+.profile-about-text {
+    max-width: 600px;
+}
+
+
+.profile-about-text p {
+    margin-bottom: 18px;
+
+    font-size: 1.05rem;
+}
+
+
+/* ================================
+   QUICK INFORMATION
+================================ */
+
+.profile-facts {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+}
+
+
+.profile-fact {
+    padding: 24px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    background: var(--white);
+}
+
+
+.profile-fact-label {
+    margin-bottom: 7px;
+
+    color: var(--cherry);
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+}
+
+
+.profile-fact-value {
+    color: var(--text);
+
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+
+/* ================================
+   TAGS
+================================ */
+
+.profile-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+.profile-tag {
+    padding: 10px 15px;
+
+    border-radius: 999px;
+
+    background: var(--ivory-dark);
+    color: var(--cherry);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+
+/* ================================
+   TEXT BLOCKS
+================================ */
+
+.profile-text {
+    max-width: 750px;
+}
+
+
+.profile-text p {
+    margin-bottom: 18px;
+
+    font-size: 1.05rem;
+}
+
+
+/* ================================
+   TWO COLUMN LISTS
+================================ */
+
+.profile-columns {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+
+.profile-list-card {
+    min-height: 220px;
+
+    padding: 30px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    background: var(--white);
+}
+
+
+.profile-list-card h3 {
+    margin-bottom: 18px;
+
+    color: var(--text);
+}
+
+
+.profile-list-card ul {
+    padding-left: 20px;
+
+    color: var(--muted);
+}
+
+
+.profile-list-card li {
+    margin-bottom: 8px;
+}
+
+
+/* ================================
+   RELATIONSHIPS
+================================ */
+
+.relationship-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+}
+
+
+.relationship-card {
+    padding: 24px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    background: var(--white);
+}
+
+
+.relationship-card h3 {
+    color: var(--cherry);
+
+    font-size: 1.1rem;
+}
+
+
+.relationship-card p {
+    margin-top: 6px;
+
+    font-size: 0.9rem;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 750px) {
+
+    .profile-header {
+        padding: 50px 0 70px;
+    }
+
+
+    .back-link {
+        margin-bottom: 50px;
+    }
+
+
+    .profile-about {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+
+    .profile-columns {
+        grid-template-columns: 1fr;
+    }
+
+
+    .relationship-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .profile-facts {
+        grid-template-columns: 1fr;
+    }
+
+}
