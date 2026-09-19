@@ -397,3 +397,154 @@
     }
 
 }
+
+/* ================================
+   TRIGGER PAGE OVERRIDES
+   These override global style.css rules
+================================ */
+
+main.triggers-page {
+    width: min(1180px, 90%);
+    margin: 0 auto;
+    padding: 0;
+}
+
+
+/* Header */
+
+main.triggers-page .triggers-header {
+    width: 100%;
+    padding: 70px 0 90px;
+    margin: 0;
+}
+
+
+/* Main trigger content */
+
+main.triggers-page .trigger-content {
+    width: 100%;
+    padding: 90px 0;
+    margin: 0;
+}
+
+
+/* Intro */
+
+main.triggers-page .trigger-section-intro {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 0 55px;
+    padding: 0;
+}
+
+
+/* Cards container */
+
+main.triggers-page .trigger-grid {
+    width: 100%;
+    max-width: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Individual cards */
+
+main.triggers-page .trigger-card {
+    width: 100%;
+    max-width: none;
+
+    display: block;
+
+    margin: 0;
+    padding: 38px 40px;
+
+    border: 1px solid #d8cfca;
+    border-radius: 22px;
+
+    background: #f5f1ee;
+}
+
+
+/* Card text */
+
+main.triggers-page .trigger-card h3 {
+    margin: 0 0 18px;
+}
+
+
+main.triggers-page .trigger-card p {
+    margin: 0 0 18px;
+}
+
+
+main.triggers-page .trigger-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Note */
+
+main.triggers-page .trigger-note {
+    width: 100%;
+    max-width: 750px;
+
+    margin: 75px 0 0;
+    padding: 32px 35px;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 750px) {
+
+    main.triggers-page {
+        width: 90%;
+    }
+
+    main.triggers-page .triggers-header {
+        padding: 50px 0 65px;
+    }
+
+    main.triggers-page .trigger-content {
+        padding: 65px 0;
+    }
+
+    main.triggers-page .trigger-card {
+        padding: 30px;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    main.triggers-page {
+        width: 88%;
+    }
+
+    main.triggers-page .triggers-header {
+        padding: 40px 0 55px;
+    }
+
+    main.triggers-page .trigger-content {
+        padding: 50px 0;
+    }
+
+    main.triggers-page .trigger-card {
+        padding: 25px;
+    }
+
+    main.triggers-page .trigger-note {
+        padding: 25px;
+    }
+
+}
