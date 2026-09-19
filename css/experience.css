@@ -1,0 +1,290 @@
+/* ================================
+   EXPERIENCE PAGE
+================================ */
+
+.experience-page {
+    color: var(--text);
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.experience-header {
+    padding: 70px 0 90px;
+    border-bottom: 1px solid var(--border);
+}
+
+
+.experience-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 70px;
+
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.experience-back-link:hover {
+    color: var(--cherry);
+    transform: translateX(-3px);
+}
+
+
+.experience-eyebrow {
+    margin-bottom: 16px;
+
+    color: var(--cherry);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+
+.experience-header h1 {
+    color: var(--cherry);
+}
+
+
+.experience-intro {
+    max-width: 700px;
+    margin-top: 22px;
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+
+/* ================================
+   PAGE NAVIGATION
+================================ */
+
+.experience-navigation {
+    padding: 55px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.experience-navigation > .eyebrow {
+    margin-bottom: 20px;
+}
+
+
+.experience-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 30px;
+
+    max-width: 850px;
+}
+
+
+.experience-nav-grid a {
+    padding: 13px 16px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+
+    background: var(--white);
+
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.experience-nav-grid a:hover {
+    color: var(--cherry);
+
+    border-color: var(--cherry-light);
+
+    transform: translateX(4px);
+}
+
+
+/* ================================
+   EXPERIENCE SECTIONS
+================================ */
+
+.experience-section {
+    padding: 90px 0;
+
+    display: grid;
+    grid-template-columns: 0.8fr 1.4fr;
+    gap: 80px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.experience-section-heading {
+    max-width: 350px;
+}
+
+
+.experience-section-heading .eyebrow {
+    margin-bottom: 15px;
+}
+
+
+.experience-section-heading h2 {
+    color: var(--text);
+}
+
+
+.experience-section-content {
+    max-width: 700px;
+}
+
+
+.experience-section-content p {
+    margin-bottom: 22px;
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+
+.experience-section-content p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ================================
+   INTRODUCTION
+================================ */
+
+.experience-introduction {
+    padding-top: 100px;
+}
+
+
+/* ================================
+   CLOSING NOTE
+================================ */
+
+.experience-note {
+    max-width: 850px;
+
+    margin: 80px auto;
+    padding: 35px 40px;
+
+    border-left: 3px solid var(--cherry);
+
+    background: var(--ivory-dark);
+}
+
+
+.experience-note .eyebrow {
+    margin-bottom: 15px;
+}
+
+
+.experience-note p:last-child {
+    color: var(--muted);
+
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 750px) {
+
+    .experience-header {
+        padding: 50px 0 65px;
+    }
+
+
+    .experience-back-link {
+        margin-bottom: 45px;
+    }
+
+
+    .experience-navigation {
+        padding: 45px 0;
+    }
+
+
+    .experience-nav-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .experience-section {
+        padding: 65px 0;
+
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+
+    .experience-section-heading {
+        max-width: 600px;
+    }
+
+
+    .experience-note {
+        margin: 60px auto;
+        padding: 30px;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .experience-header {
+        padding: 40px 0 55px;
+    }
+
+
+    .experience-header h1 {
+        font-size: 3.2rem;
+    }
+
+
+    .experience-intro {
+        font-size: 1rem;
+    }
+
+
+    .experience-section {
+        padding: 55px 0;
+    }
+
+
+    .experience-section-content p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+    }
+
+
+    .experience-note {
+        padding: 25px;
+    }
+
+}
