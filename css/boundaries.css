@@ -1,0 +1,259 @@
+/* ================================
+   BOUNDARIES PAGE
+================================ */
+
+.boundaries-page {
+    color: var(--text);
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.boundaries-header {
+    padding: 70px 0 90px;
+    border-bottom: 1px solid var(--border);
+}
+
+
+.boundaries-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 70px;
+
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.boundaries-back-link:hover {
+    color: var(--cherry);
+    transform: translateX(-3px);
+}
+
+
+.boundaries-eyebrow {
+    margin-bottom: 16px;
+
+    color: var(--cherry);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+
+.boundaries-header h1 {
+    color: var(--cherry);
+}
+
+
+.boundaries-intro {
+    max-width: 700px;
+    margin-top: 22px;
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+
+/* ================================
+   BOUNDARY SECTIONS
+================================ */
+
+.boundary-section {
+    padding: 80px 0;
+
+    display: grid;
+    grid-template-columns: 0.75fr 1.5fr;
+    gap: 80px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.boundary-heading {
+    max-width: 320px;
+}
+
+
+.boundary-heading .eyebrow {
+    margin-bottom: 15px;
+}
+
+
+.boundary-heading h2 {
+    color: var(--text);
+}
+
+
+.boundary-content {
+    display: grid;
+    gap: 14px;
+
+    max-width: 700px;
+}
+
+
+/* ================================
+   BOUNDARY CARDS
+================================ */
+
+.boundary-card {
+    padding: 26px 30px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    background: var(--white);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.boundary-card:hover {
+    transform: translateY(-3px);
+
+    border-color: var(--cherry-light);
+
+    box-shadow:
+        0 12px 30px rgba(60, 30, 30, 0.07);
+}
+
+
+.boundary-card h3 {
+    margin-bottom: 8px;
+
+    color: var(--cherry);
+
+    font-size: 1.1rem;
+}
+
+
+.boundary-card p {
+    color: var(--muted);
+
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+
+/* ================================
+   FINAL NOTE
+================================ */
+
+.boundary-note {
+    max-width: 850px;
+
+    margin: 80px auto;
+    padding: 40px;
+
+    border-radius: var(--radius-medium);
+
+    background: var(--cherry);
+    color: var(--white);
+}
+
+
+.boundary-note .eyebrow {
+    margin-bottom: 12px;
+    color: #f2dadd;
+}
+
+
+.boundary-note h2 {
+    margin-bottom: 15px;
+    color: var(--white);
+}
+
+
+.boundary-note p:last-child {
+    color: #f3dfe1;
+
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 750px) {
+
+    .boundaries-header {
+        padding: 50px 0 65px;
+    }
+
+
+    .boundaries-back-link {
+        margin-bottom: 45px;
+    }
+
+
+    .boundary-section {
+        padding: 65px 0;
+
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+
+    .boundary-heading {
+        max-width: 600px;
+    }
+
+
+    .boundary-note {
+        margin: 60px auto;
+        padding: 30px;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .boundaries-header {
+        padding: 40px 0 55px;
+    }
+
+
+    .boundaries-header h1 {
+        font-size: 3.2rem;
+    }
+
+
+    .boundaries-intro {
+        font-size: 1rem;
+    }
+
+
+    .boundary-section {
+        padding: 55px 0;
+    }
+
+
+    .boundary-card {
+        padding: 23px 25px;
+    }
+
+
+    .boundary-note {
+        padding: 25px;
+    }
+
+}
