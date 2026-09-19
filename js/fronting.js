@@ -28,6 +28,123 @@ async function loadFrontLogs() {
     }
 
     console.log("Front logs:", data);
+
+    displayFrontLogs(data);
+}
+
+
+// =================================
+// DISPLAY FRONT LOGS
+// =================================
+
+function displayFrontLogs(logs) {
+
+    const logList = document.querySelector(".front-log-list");
+
+    if (!logList) {
+        console.error("Could not find .front-log-list");
+        return;
+    }
+
+    logList.innerHTML = "";
+
+    logs.forEach((log, index) => {
+
+        const card = document.createElement("article");
+        card.className = "front-log-card";
+
+        card.innerHTML = `
+            <div class="front-log-number">
+                ${String(index + 1).padStart(2, "0")}
+            </div>
+
+            <div class="front-log-main">
+
+                <div class="front-log-top">
+                    <h3>${log.member}</h3>
+                    <span class="front-log-date">
+                        ${formatDate(log.start_time)}
+                    </span>
+                </div>
+
+                <p class="front-log-time">
+                    ${formatTime(log.start_time)}
+                    →
+                    ${log.end_time ? formatTime(log.end_time) : "Currently fronting"}
+                </p>
+
+                <p class="front-log-duration">
+                    ${calculateDuration(log.start_time, log.end_time)}
+                </p>
+
+            </div>
+        `;
+
+        logList.appendChild(card);
+    });
+}
+
+
+// =================================
+// DATE FORMATTING
+// =================================
+
+function formatDate(dateString) {
+
+    const date = new Date(dateString);
+
+    return date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+}
+
+
+// =================================
+// TIME FORMATTING
+// =================================
+
+function formatTime(dateString) {
+
+    const date = new Date(dateString);
+
+    return date.toLocaleTimeString("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+
+// =================================
+// DURATION
+// =================================
+
+function calculateDuration(startString, endString) {
+
+    if (!endString) {
+        return "Still fronting";
+    }
+
+    const start = new Date(startString);
+    const end = new Date(endString);
+
+    const difference = end - start;
+
+    const totalMinutes = Math.floor(difference / 60000);
+
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+
+    if (hours === 0) {
+        return `Duration: ${minutes}m`;
+    }
+
+    if (minutes === 0) {
+        return `Duration: ${hours}h`;
+    }
+
+    return `Duration: ${hours}h ${minutes}m`;
 }
 
 
