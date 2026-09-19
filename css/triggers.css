@@ -4,56 +4,25 @@
 
 
 /* ================================
-   HOMEPAGE PREVIEW
+   HOMEPAGE TRIGGER CARD
 ================================ */
 
-.trigger-preview-section {
-    padding: 100px 0;
-
-    background: var(--ivory-dark);
-
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+.trigger-preview-card {
+    position: relative;
 }
 
 
-.trigger-preview-content {
-    max-width: 720px;
-}
-
-
-.trigger-preview-section .eyebrow {
-    color: var(--cherry);
-}
-
-
-.trigger-preview-section h2 {
-    color: var(--text);
-}
-
-
-.trigger-preview-text {
-    max-width: 650px;
-
-    margin-top: 20px;
-
-    color: var(--muted);
-
-    font-size: 1.05rem;
-    line-height: 1.8;
-}
-
-
-.trigger-read-more {
+.trigger-preview-card .trigger-read-more {
     display: inline-flex;
-    align-items: center;
-    gap: 10px;
 
-    margin-top: 28px;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 22px;
 
     color: var(--cherry);
 
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 800;
 
     transition:
@@ -62,14 +31,14 @@
 }
 
 
-.trigger-read-more:hover {
+.trigger-preview-card .trigger-read-more:hover {
     color: var(--cherry-dark);
     transform: translateX(4px);
 }
 
 
-.trigger-read-more span {
-    font-size: 1.1rem;
+.trigger-preview-card .trigger-read-more span {
+    font-size: 1rem;
 }
 
 
