@@ -4,6 +4,19 @@
 
 
 /* ================================
+   PAGE WRAPPER
+================================ */
+
+.triggers-page {
+    width: min(1180px, 90%);
+    margin: 0 auto;
+
+    background: #eee9e5;
+    color: #321d22;
+}
+
+
+/* ================================
    HOMEPAGE PREVIEW
 ================================ */
 
@@ -65,7 +78,6 @@
 
 .trigger-read-more:hover {
     color: #401820;
-
     transform: translateX(4px);
 }
 
@@ -76,18 +88,7 @@
 
 
 /* ================================
-   TRIGGERS PAGE
-================================ */
-
-.triggers-page {
-    background: #eee9e5;
-
-    color: #321d22;
-}
-
-
-/* ================================
-   PAGE HEADER
+   TRIGGERS HEADER
 ================================ */
 
 .triggers-header {
@@ -118,7 +119,6 @@
 
 .trigger-back-link:hover {
     color: #652b35;
-
     transform: translateX(-3px);
 }
 
@@ -161,6 +161,10 @@
 }
 
 
+/* ================================
+   CONTENT INTRO
+================================ */
+
 .trigger-section-intro {
     max-width: 750px;
 
@@ -193,17 +197,18 @@
 ================================ */
 
 .trigger-grid {
-    display: grid;
-
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
 
     gap: 24px;
 
-    max-width: 900px;
+    width: 100%;
 }
 
 
 .trigger-card {
+    width: 100%;
+
     padding: 38px 40px;
 
     border: 1px solid #d8cfca;
@@ -237,7 +242,7 @@
 
 
 .trigger-card p {
-    margin-bottom: 18px;
+    margin: 0 0 18px;
 
     color: #685d60;
 
@@ -287,10 +292,25 @@
 
 
 /* ================================
+   FOOTER
+================================ */
+
+/*
+   The footer is global and stays
+   controlled by style.css.
+*/
+
+
+/* ================================
    MOBILE
 ================================ */
 
 @media (max-width: 750px) {
+
+    .triggers-page {
+        width: 90%;
+    }
+
 
     .trigger-preview-section {
         padding: 70px 0;
@@ -312,11 +332,6 @@
     }
 
 
-    .trigger-grid {
-        max-width: none;
-    }
-
-
     .trigger-card {
         padding: 30px;
     }
@@ -329,7 +344,12 @@
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 520px) {
+
+    .triggers-page {
+        width: 88%;
+    }
+
 
     .trigger-preview-section {
         padding: 55px 0;
