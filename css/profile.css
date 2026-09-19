@@ -98,9 +98,11 @@
 .profile-about {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.65fr);
 
     gap: 80px;
+
+    align-items: start;
 }
 
 
@@ -121,16 +123,21 @@
 ================================ */
 
 .profile-facts {
-    display: grid;
+    display: flex;
 
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+
+    align-items: flex-start;
 
     gap: 14px;
 }
 
 
 .profile-fact {
-    padding: 24px;
+    width: fit-content;
+    max-width: 100%;
+
+    padding: 20px 24px;
 
     border: 1px solid var(--border);
     border-radius: var(--radius-medium);
@@ -152,10 +159,14 @@
 
 
 .profile-fact-value {
+    margin: 0;
+
     color: var(--text);
 
     font-size: 1.1rem;
     font-weight: 700;
+
+    overflow-wrap: break-word;
 }
 
 
@@ -208,7 +219,7 @@
 .profile-columns {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     gap: 18px;
 }
@@ -250,16 +261,21 @@
 ================================ */
 
 .relationship-grid {
-    display: grid;
+    display: flex;
 
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+
+    align-items: flex-start;
 
     gap: 14px;
 }
 
 
 .relationship-card {
-    padding: 24px;
+    width: fit-content;
+    max-width: 100%;
+
+    padding: 20px 24px;
 
     border: 1px solid var(--border);
     border-radius: var(--radius-medium);
@@ -289,12 +305,17 @@
 @media (max-width: 750px) {
 
     .profile-header {
-        padding: 50px 0 70px;
+        padding: 50px 0 65px;
     }
 
 
     .back-link {
-        margin-bottom: 50px;
+        margin-bottom: 45px;
+    }
+
+
+    .profile-section {
+        padding: 55px 0;
     }
 
 
@@ -305,13 +326,23 @@
     }
 
 
+    .profile-about-text {
+        max-width: none;
+    }
+
+
     .profile-columns {
         grid-template-columns: 1fr;
     }
 
 
-    .relationship-grid {
-        grid-template-columns: 1fr;
+    .profile-list-card {
+        min-height: auto;
+    }
+
+
+    .relationship-card {
+        max-width: 100%;
     }
 
 }
@@ -319,8 +350,43 @@
 
 @media (max-width: 500px) {
 
-    .profile-facts {
-        grid-template-columns: 1fr;
+    .profile-header {
+        padding: 40px 0 55px;
+    }
+
+
+    .profile-header h1 {
+        font-size: 2.5rem;
+    }
+
+
+    .profile-role {
+        font-size: 1rem;
+    }
+
+
+    .profile-section {
+        padding: 45px 0;
+    }
+
+
+    .profile-section-heading {
+        margin-bottom: 25px;
+    }
+
+
+    .profile-fact {
+        width: 100%;
+    }
+
+
+    .profile-fact-value {
+        font-size: 1rem;
+    }
+
+
+    .relationship-card {
+        width: 100%;
     }
 
 }
