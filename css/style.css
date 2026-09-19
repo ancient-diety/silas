@@ -340,9 +340,10 @@
         ================================= */
 
         .block-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-auto-rows: minmax(250px, auto);
+          gap: 18px;
         }
 
 
@@ -384,6 +385,10 @@
 
             background: var(--cherry);
             color: var(--white);
+        }
+
+        .trigger-preview-card {
+           min-height: 250px;
         }
 
 
