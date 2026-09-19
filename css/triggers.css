@@ -4,29 +4,16 @@
 
 
 /* ================================
-   PAGE WRAPPER
-================================ */
-
-.triggers-page {
-    width: min(1180px, 90%);
-    margin: 0 auto;
-
-    background: #eee9e5;
-    color: #321d22;
-}
-
-
-/* ================================
    HOMEPAGE PREVIEW
 ================================ */
 
 .trigger-preview-section {
     padding: 100px 0;
 
-    background: #eee9e5;
+    background: var(--ivory-dark);
 
-    border-top: 1px solid #d8cfca;
-    border-bottom: 1px solid #d8cfca;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 
@@ -36,12 +23,12 @@
 
 
 .trigger-preview-section .eyebrow {
-    color: #652b35;
+    color: var(--cherry);
 }
 
 
 .trigger-preview-section h2 {
-    color: #321d22;
+    color: var(--text);
 }
 
 
@@ -50,7 +37,7 @@
 
     margin-top: 20px;
 
-    color: #685d60;
+    color: var(--muted);
 
     font-size: 1.05rem;
     line-height: 1.8;
@@ -59,13 +46,12 @@
 
 .trigger-read-more {
     display: inline-flex;
-
     align-items: center;
     gap: 10px;
 
     margin-top: 28px;
 
-    color: #652b35;
+    color: var(--cherry);
 
     font-size: 0.9rem;
     font-weight: 800;
@@ -77,7 +63,7 @@
 
 
 .trigger-read-more:hover {
-    color: #401820;
+    color: var(--cherry-dark);
     transform: translateX(4px);
 }
 
@@ -88,25 +74,33 @@
 
 
 /* ================================
-   TRIGGERS HEADER
+   TRIGGERS PAGE
+================================ */
+
+.triggers-page {
+    color: var(--text);
+}
+
+
+/* ================================
+   PAGE HEADER
 ================================ */
 
 .triggers-header {
     padding: 70px 0 90px;
 
-    border-bottom: 1px solid #d8cfca;
+    border-bottom: 1px solid var(--border);
 }
 
 
 .trigger-back-link {
     display: inline-flex;
-
     align-items: center;
     gap: 10px;
 
     margin-bottom: 70px;
 
-    color: #75686b;
+    color: var(--muted);
 
     font-size: 0.85rem;
     font-weight: 700;
@@ -118,7 +112,7 @@
 
 
 .trigger-back-link:hover {
-    color: #652b35;
+    color: var(--cherry);
     transform: translateX(-3px);
 }
 
@@ -126,7 +120,7 @@
 .trigger-eyebrow {
     margin-bottom: 16px;
 
-    color: #652b35;
+    color: var(--cherry);
 
     font-size: 0.75rem;
     font-weight: 800;
@@ -136,7 +130,7 @@
 
 
 .triggers-header h1 {
-    color: #4b2028;
+    color: var(--cherry);
 }
 
 
@@ -145,7 +139,7 @@
 
     margin-top: 22px;
 
-    color: #685d60;
+    color: var(--muted);
 
     font-size: 1.05rem;
     line-height: 1.8;
@@ -173,19 +167,19 @@
 
 
 .trigger-section-intro .eyebrow {
-    color: #652b35;
+    color: var(--cherry);
 }
 
 
 .trigger-section-intro h2 {
-    color: #321d22;
+    color: var(--text);
 }
 
 
 .trigger-section-intro > p:last-child {
     margin-top: 20px;
 
-    color: #685d60;
+    color: var(--muted);
 
     font-size: 1.05rem;
     line-height: 1.8;
@@ -199,7 +193,6 @@
 .trigger-grid {
     display: flex;
     flex-direction: column;
-
     gap: 24px;
 
     width: 100%;
@@ -211,10 +204,10 @@
 
     padding: 38px 40px;
 
-    border: 1px solid #d8cfca;
+    border: 1px solid var(--border);
     border-radius: var(--radius-medium);
 
-    background: #f5f1ee;
+    background: var(--white);
 }
 
 
@@ -223,7 +216,7 @@
 
     margin-bottom: 20px;
 
-    color: #8b4a55;
+    color: var(--cherry-light);
 
     font-size: 0.7rem;
     font-weight: 800;
@@ -235,7 +228,7 @@
 .trigger-card h3 {
     margin-bottom: 18px;
 
-    color: #4b2028;
+    color: var(--cherry);
 
     font-size: 1.35rem;
 }
@@ -244,7 +237,7 @@
 .trigger-card p {
     margin: 0 0 18px;
 
-    color: #685d60;
+    color: var(--muted);
 
     font-size: 1rem;
     line-height: 1.8;
@@ -257,7 +250,7 @@
 
 
 .trigger-card b {
-    color: #652b35;
+    color: var(--cherry);
 }
 
 
@@ -271,34 +264,24 @@
     margin-top: 75px;
     padding: 32px 35px;
 
-    border-left: 3px solid #652b35;
+    border-left: 3px solid var(--cherry);
 
-    background: #e7e0dc;
+    background: var(--ivory-dark);
 }
 
 
 .trigger-note .eyebrow {
     margin-bottom: 15px;
 
-    color: #652b35;
+    color: var(--cherry);
 }
 
 
 .trigger-note p:last-child {
-    color: #685d60;
+    color: var(--muted);
 
     line-height: 1.8;
 }
-
-
-/* ================================
-   FOOTER
-================================ */
-
-/*
-   The footer is global and stays
-   controlled by style.css.
-*/
 
 
 /* ================================
@@ -306,11 +289,6 @@
 ================================ */
 
 @media (max-width: 750px) {
-
-    .triggers-page {
-        width: 90%;
-    }
-
 
     .trigger-preview-section {
         padding: 70px 0;
@@ -346,11 +324,6 @@
 
 @media (max-width: 520px) {
 
-    .triggers-page {
-        width: 88%;
-    }
-
-
     .trigger-preview-section {
         padding: 55px 0;
     }
@@ -362,7 +335,7 @@
 
 
     .triggers-header h1 {
-        font-size: 2.5rem;
+        font-size: 3.2rem;
     }
 
 
@@ -393,157 +366,6 @@
 
 
     .trigger-note {
-        padding: 25px;
-    }
-
-}
-
-/* ================================
-   TRIGGER PAGE OVERRIDES
-   These override global style.css rules
-================================ */
-
-main.triggers-page {
-    width: min(1180px, 90%);
-    margin: 0 auto;
-    padding: 0;
-}
-
-
-/* Header */
-
-main.triggers-page .triggers-header {
-    width: 100%;
-    padding: 70px 0 90px;
-    margin: 0;
-}
-
-
-/* Main trigger content */
-
-main.triggers-page .trigger-content {
-    width: 100%;
-    padding: 90px 0;
-    margin: 0;
-}
-
-
-/* Intro */
-
-main.triggers-page .trigger-section-intro {
-    width: 100%;
-    max-width: 750px;
-    margin: 0 0 55px;
-    padding: 0;
-}
-
-
-/* Cards container */
-
-main.triggers-page .trigger-grid {
-    width: 100%;
-    max-width: none;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 24px;
-
-    margin: 0;
-    padding: 0;
-}
-
-
-/* Individual cards */
-
-main.triggers-page .trigger-card {
-    width: 100%;
-    max-width: none;
-
-    display: block;
-
-    margin: 0;
-    padding: 38px 40px;
-
-    border: 1px solid #d8cfca;
-    border-radius: 22px;
-
-    background: #f5f1ee;
-}
-
-
-/* Card text */
-
-main.triggers-page .trigger-card h3 {
-    margin: 0 0 18px;
-}
-
-
-main.triggers-page .trigger-card p {
-    margin: 0 0 18px;
-}
-
-
-main.triggers-page .trigger-card p:last-child {
-    margin-bottom: 0;
-}
-
-
-/* Note */
-
-main.triggers-page .trigger-note {
-    width: 100%;
-    max-width: 750px;
-
-    margin: 75px 0 0;
-    padding: 32px 35px;
-}
-
-
-/* ================================
-   MOBILE
-================================ */
-
-@media (max-width: 750px) {
-
-    main.triggers-page {
-        width: 90%;
-    }
-
-    main.triggers-page .triggers-header {
-        padding: 50px 0 65px;
-    }
-
-    main.triggers-page .trigger-content {
-        padding: 65px 0;
-    }
-
-    main.triggers-page .trigger-card {
-        padding: 30px;
-    }
-
-}
-
-
-@media (max-width: 520px) {
-
-    main.triggers-page {
-        width: 88%;
-    }
-
-    main.triggers-page .triggers-header {
-        padding: 40px 0 55px;
-    }
-
-    main.triggers-page .trigger-content {
-        padding: 50px 0;
-    }
-
-    main.triggers-page .trigger-card {
-        padding: 25px;
-    }
-
-    main.triggers-page .trigger-note {
         padding: 25px;
     }
 
