@@ -217,21 +217,23 @@ async function displayFrontLogs(logs) {
 
 
                 const { error } =
-                    await supabaseClient
-                        .from("front_logs")
-                        .delete()
-                        .eq("id", logId);
+    await supabaseClient
+        .from("front_logs")
+        .update({
+            end_time: new Date().toISOString()
+        })
+        .eq("id", logId);
 
 
                 if (error) {
 
                     console.error(
-                        "Could not remove front log:",
+                        "Could not end front log:",
                         error
                     );
 
                     alert(
-                        "Could not remove this front log."
+                        "Could not end this front log."
                     );
 
                     button.disabled = false;
