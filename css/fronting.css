@@ -473,3 +473,64 @@
         padding: 25px;
     }
 }
+
+.front-history-link-section {
+    margin-top: 65px;
+    padding: 30px;
+}
+
+/* ================================
+   FRONT HISTORY LINK
+================================ */
+
+.front-history-link-section {
+    margin-top: 90px;
+    padding: 45px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    background: var(--ivory-dark);
+}
+
+
+.front-history-link-section
+.fronting-section-intro {
+    margin-bottom: 25px;
+}
+
+
+.front-history-button {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 20px;
+
+    border-radius: 999px;
+
+    background: var(--cherry);
+    color: var(--white);
+
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.front-history-button:hover {
+    background: var(--cherry-dark);
+
+    transform: translateY(-2px);
+}
+
+
+.front-history-button span {
+    font-size: 1.1rem;
+}
