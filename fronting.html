@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,6 +116,105 @@
                     <p class="current-front-time">
                         Front started today at 18:42
                     </p>
+
+                </div>
+
+
+                <!-- ================================
+                     ADD FRONT LOG
+                ================================= -->
+
+                <div class="fronting-section-intro add-log-intro">
+
+                    <p class="eyebrow">LOG ACTIVITY</p>
+
+                    <h2>Add a front log</h2>
+
+                    <p>
+                        Record when someone started and stopped fronting.
+                    </p>
+
+                </div>
+
+
+                <div class="add-front-log-card">
+
+                    <form id="front-log-form">
+
+                        <div class="front-log-form-group">
+
+                            <label for="log-member">
+                                Member
+                            </label>
+
+                            <input
+                                type="text"
+                                id="log-member"
+                                placeholder="e.g. Bella"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="front-log-form-row">
+
+                            <div class="front-log-form-group">
+
+                                <label for="log-start">
+                                    Start time
+                                </label>
+
+                                <input
+                                    type="datetime-local"
+                                    id="log-start"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="front-log-form-group">
+
+                                <label for="log-end">
+                                    End time
+                                </label>
+
+                                <input
+                                    type="datetime-local"
+                                    id="log-end"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="front-log-form-group">
+
+                            <label for="log-notes">
+                                Notes <span>(optional)</span>
+                            </label>
+
+                            <textarea
+                                id="log-notes"
+                                placeholder="Anything you want to remember about this front..."
+                                rows="4"
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="front-log-submit"
+                        >
+                            Save front log
+                        </button>
+
+                        <p id="front-log-message"></p>
+
+                    </form>
 
                 </div>
 
