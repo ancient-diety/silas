@@ -108,13 +108,21 @@ async function displayFrontLogs(logs) {
 
                 <div class="front-log-top">
 
-                    <h3>${log.member}</h3>
+    <div>
 
-                    <span class="front-log-date">
-                        ${formatDate(log.start_time)}
-                    </span>
+        <h3>${log.member}</h3>
 
-                </div>
+        <p class="front-log-type">
+            ${log.front_type || "Fronting"}
+        </p>
+
+    </div>
+
+    <span class="front-log-date">
+        ${formatDate(log.start_time)}
+    </span>
+
+</div>
 
 
                 <p class="front-log-time">
