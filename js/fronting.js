@@ -799,6 +799,224 @@ function formatCurrentFrontTime(
 
 }
 
+// =================================
+// FRONTING STATISTICS
+// =================================
+
+async function loadFrontingStatistics() {
+
+    const totalLogsElement =
+        document.getElementById(
+            "stat-total-logs"
+        );
+
+    const monthlySwitchesElement =
+        document.getElementById(
+            "stat-monthly-switches"
+        );
+
+    const mostActiveElement =
+        document.getElementById(
+            "stat-most-active"
+        );
+
+
+    if (
+        !totalLogsElement ||
+        !monthlySwitchesElement ||
+        !mostActiveElement
+    ) {
+        return;
+    }
+
+
+    // =================================
+    // GET CURRENT YEAR
+    // =================================
+
+    const now =
+        new Date();
+
+    const year =
+        now.getFullYear();
+
+
+    const startOfYear =
+        new Date(
+            year,
+            0,
+            1
+        ).toISOString();
+
+
+    const startOfNextYear =
+        new Date(
+            year + 1,
+            0,
+            1
+        ).toISOString();
+
+
+    // =================================
+    // GET CURRENT MONTH
+    // =================================
+
+    const startOfMonth =
+        new Date(
+            year,
+            now.getMonth(),
+            1
+        ).toISOString();
+
+
+    const startOfNextMonth =
+        new Date(
+            year,
+            now.getMonth() + 1,
+            1
+        ).toISOString();
+
+
+    // =================================
+    // QUALIFYING FRONT TYPES
+    // =================================
+
+    const qualifyingTypes = [
+        "Fronting",
+        "Co-Fronting",
+        "Co-Hosting",
+        "Blended Fronting"
+    ];
+
+
+    // =================================
+    // GET THIS YEAR'S LOGS
+    // =================================
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("front_logs")
+        .select("member, front_type, start_time")
+        .gte("start_time", startOfYear)
+        .lt("start_time", startOfNextYear)
+        .in("front_type", qualifyingTypes);
+
+
+    if (error) {
+
+        console.error(
+            "Could not load fronting statistics:",
+            error
+        );
+
+        totalLogsElement.textContent = "—";
+        monthlySwitchesElement.textContent = "—";
+        mostActiveElement.textContent = "—";
+
+        return;
+    }
+
+
+    // =================================
+    // TOTAL LOGS THIS YEAR
+    // =================================
+
+    totalLogsElement.textContent =
+        data.length;
+
+
+    // =================================
+    // SWITCHES THIS MONTH
+    // =================================
+
+    const monthlyLogs =
+        data.filter((log) => {
+
+            const start =
+                new Date(
+                    log.start_time
+                );
+
+            return (
+                start >=
+                    new Date(startOfMonth)
+                &&
+                start <
+                    new Date(startOfNextMonth)
+            );
+
+        });
+
+
+    monthlySwitchesElement.textContent =
+        monthlyLogs.length;
+
+
+    // =================================
+    // MOST ACTIVE FRONTER
+    // =================================
+
+    if (data.length === 0) {
+
+        mostActiveElement.textContent =
+            "None yet";
+
+        return;
+    }
+
+
+    const memberCounts = {};
+
+
+    data.forEach((log) => {
+
+        const member =
+            log.member;
+
+
+        if (!memberCounts[member]) {
+            memberCounts[member] = 0;
+        }
+
+
+        memberCounts[member]++;
+
+    });
+
+
+    let mostActiveMember =
+        null;
+
+    let highestCount =
+        0;
+
+
+    Object.entries(
+        memberCounts
+    ).forEach(
+        ([member, count]) => {
+
+            if (count > highestCount) {
+
+                highestCount =
+                    count;
+
+                mostActiveMember =
+                    member;
+
+            }
+
+        }
+    );
+
+
+    mostActiveElement.textContent =
+        mostActiveMember;
+
+}
+
 
 // =================================
 // START
