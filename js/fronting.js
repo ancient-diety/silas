@@ -1097,3 +1097,36 @@ setInterval(
     updateLiveDurations,
     1000
 );
+
+
+// =================================
+// ADD FRONT UI
+// =================================
+
+const frontTypeButtons = document.querySelectorAll(".front-type-option");
+const frontTypeInput = document.getElementById("log-front-type");
+
+frontTypeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+
+        // Remove selected state from all buttons
+        frontTypeButtons.forEach(option => {
+            option.classList.remove("selected");
+        });
+
+        // Select this button
+        button.classList.add("selected");
+
+        // Save selected type
+        frontTypeInput.value = button.dataset.value;
+    });
+});
+
+// Select Fronting by default
+const defaultFrontType = document.querySelector(
+    '.front-type-option[data-value="Fronting"]'
+);
+
+if (defaultFrontType) {
+    defaultFrontType.classList.add("selected");
+}
