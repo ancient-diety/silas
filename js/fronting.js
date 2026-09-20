@@ -21,8 +21,11 @@ async function checkLogin() {
         data: { session }
     } = await supabaseClient.auth.getSession();
 
-    const addLogSection = document.querySelector(".add-log-intro");
-    const addLogCard = document.querySelector(".add-front-log-card");
+    const addLogSection =
+        document.querySelector(".add-log-intro");
+
+    const addLogCard =
+        document.querySelector(".add-front-log-card");
 
     if (!addLogSection || !addLogCard) {
         return;
@@ -67,9 +70,10 @@ async function loadFrontLogs() {
 // DISPLAY FRONT LOGS
 // =================================
 
-function displayFrontLogs(logs) {
+async function displayFrontLogs(logs) {
 
-    const logList = document.querySelector(".front-log-list");
+    const logList =
+        document.querySelector(".front-log-list");
 
     if (!logList) {
         console.error("Could not find .front-log-list");
@@ -78,52 +82,166 @@ function displayFrontLogs(logs) {
 
     logList.innerHTML = "";
 
+
+    // Check whether someone is logged in
+    const {
+        data: { session }
+    } = await supabaseClient.auth.getSession();
+
+
     logs.forEach((log, index) => {
 
-        const card = document.createElement("article");
+        const card =
+            document.createElement("article");
+
         card.className = "front-log-card";
 
+
         card.innerHTML = `
+
             <div class="front-log-number">
                 ${String(index + 1).padStart(2, "0")}
             </div>
 
+
             <div class="front-log-main">
 
                 <div class="front-log-top">
+
                     <h3>${log.member}</h3>
 
                     <span class="front-log-date">
                         ${formatDate(log.start_time)}
                     </span>
+
                 </div>
 
+
                 <p class="front-log-time">
+
                     ${formatTime(log.start_time)}
+
                     →
-                    ${log.end_time
-                        ? formatTime(log.end_time)
-                        : "Currently fronting"}
+
+                    ${
+                        log.end_time
+                            ? formatTime(log.end_time)
+                            : "Currently fronting"
+                    }
+
                 </p>
 
+
                 <p class="front-log-duration">
+
                     ${calculateDuration(
                         log.start_time,
                         log.end_time
                     )}
+
                 </p>
+
 
                 ${
                     log.notes
-                        ? `<p class="front-log-notes">${log.notes}</p>`
+                        ? `
+                            <p class="front-log-notes">
+                                ${log.notes}
+                            </p>
+                          `
+                        : ""
+                }
+
+
+                ${
+                    session
+                        ? `
+                            <button
+                                type="button"
+                                class="remove-front-button"
+                                data-id="${log.id}"
+                            >
+                                Remove front
+                            </button>
+                          `
                         : ""
                 }
 
             </div>
         `;
 
+
         logList.appendChild(card);
+
     });
+
+
+    // Add delete button listeners
+    if (session) {
+
+        const removeButtons =
+            document.querySelectorAll(
+                ".remove-front-button"
+            );
+
+
+        removeButtons.forEach((button) => {
+
+            button.addEventListener("click", async () => {
+
+                const logId =
+                    button.dataset.id;
+
+
+                const confirmed =
+                    confirm(
+                        "Remove this front log?"
+                    );
+
+
+                if (!confirmed) {
+                    return;
+                }
+
+
+                button.disabled = true;
+                button.textContent = "Removing...";
+
+
+                const { error } =
+                    await supabaseClient
+                        .from("front_logs")
+                        .delete()
+                        .eq("id", logId);
+
+
+                if (error) {
+
+                    console.error(
+                        "Could not remove front log:",
+                        error
+                    );
+
+                    alert(
+                        "Could not remove this front log."
+                    );
+
+                    button.disabled = false;
+                    button.textContent = "Remove front";
+
+                    return;
+                }
+
+
+                // Reload the cards
+                await loadFrontLogs();
+
+            });
+
+        });
+
+    }
+
 }
 
 
@@ -131,80 +249,117 @@ function displayFrontLogs(logs) {
 // ADD FRONT LOG
 // =================================
 
-const frontLogForm = document.getElementById("front-log-form");
+const frontLogForm =
+    document.getElementById("front-log-form");
+
 
 if (frontLogForm) {
 
-    frontLogForm.addEventListener("submit", async (event) => {
+    frontLogForm.addEventListener(
+        "submit",
+        async (event) => {
 
-        event.preventDefault();
-
-        const message =
-            document.getElementById("front-log-message");
-
-        const member =
-            document.getElementById("log-member").value.trim();
-
-        const startTime =
-            document.getElementById("log-start").value;
-
-        const endTime =
-            document.getElementById("log-end").value;
-
-        const notes =
-            document.getElementById("log-notes").value.trim();
+            event.preventDefault();
 
 
-        message.textContent = "Saving...";
+            const message =
+                document.getElementById(
+                    "front-log-message"
+                );
 
 
-        const {
-            data: { session }
-        } = await supabaseClient.auth.getSession();
+            const member =
+                document.getElementById(
+                    "log-member"
+                ).value.trim();
 
 
-        if (!session) {
+            const startTime =
+                document.getElementById(
+                    "log-start"
+                ).value;
+
+
+            const endTime =
+                document.getElementById(
+                    "log-end"
+                ).value;
+
+
+            const notes =
+                document.getElementById(
+                    "log-notes"
+                ).value.trim();
+
+
+            message.textContent = "Saving...";
+
+
+            const {
+                data: { session }
+            } = await supabaseClient.auth.getSession();
+
+
+            if (!session) {
+
+                message.textContent =
+                    "You must be logged in to add a front log.";
+
+                return;
+            }
+
+
+            const { error } =
+                await supabaseClient
+                    .from("front_logs")
+                    .insert({
+
+                        member: member,
+
+                        start_time:
+                            new Date(
+                                startTime
+                            ).toISOString(),
+
+                        end_time:
+                            endTime
+                                ? new Date(
+                                    endTime
+                                  ).toISOString()
+                                : null,
+
+                        notes:
+                            notes || null
+
+                    });
+
+
+            if (error) {
+
+                console.error(
+                    "Could not save front log:",
+                    error
+                );
+
+                message.textContent =
+                    "Could not save the front log.";
+
+                return;
+            }
+
 
             message.textContent =
-                "You must be logged in to add a front log.";
+                "Front log saved! ♡";
 
-            return;
+
+            frontLogForm.reset();
+
+
+            await loadFrontLogs();
+
         }
+    );
 
-
-        const { error } = await supabaseClient
-            .from("front_logs")
-            .insert({
-                member: member,
-                start_time: new Date(startTime).toISOString(),
-                end_time: endTime
-                    ? new Date(endTime).toISOString()
-                    : null,
-                notes: notes || null
-            });
-
-
-        if (error) {
-
-            console.error("Could not save front log:", error);
-
-            message.textContent =
-                "Could not save the front log.";
-
-            return;
-        }
-
-
-        message.textContent =
-            "Front log saved! ♡";
-
-
-        frontLogForm.reset();
-
-
-        await loadFrontLogs();
-
-    });
 }
 
 
@@ -216,11 +371,14 @@ function formatDate(dateString) {
 
     const date = new Date(dateString);
 
-    return date.toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-    });
+    return date.toLocaleDateString(
+        "en-GB",
+        {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        }
+    );
 }
 
 
@@ -232,10 +390,13 @@ function formatTime(dateString) {
 
     const date = new Date(dateString);
 
-    return date.toLocaleTimeString("en-GB", {
-        hour: "2-digit",
-        minute: "2-digit"
-    });
+    return date.toLocaleTimeString(
+        "en-GB",
+        {
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
 }
 
 
@@ -243,22 +404,38 @@ function formatTime(dateString) {
 // DURATION
 // =================================
 
-function calculateDuration(startString, endString) {
+function calculateDuration(
+    startString,
+    endString
+) {
 
     if (!endString) {
         return "Still fronting";
     }
 
-    const start = new Date(startString);
-    const end = new Date(endString);
 
-    const difference = end - start;
+    const start =
+        new Date(startString);
+
+    const end =
+        new Date(endString);
+
+
+    const difference =
+        end - start;
+
 
     const totalMinutes =
-        Math.floor(difference / 60000);
+        Math.floor(
+            difference / 60000
+        );
+
 
     const hours =
-        Math.floor(totalMinutes / 60);
+        Math.floor(
+            totalMinutes / 60
+        );
+
 
     const minutes =
         totalMinutes % 60;
@@ -268,11 +445,14 @@ function calculateDuration(startString, endString) {
         return `Duration: ${minutes}m`;
     }
 
+
     if (minutes === 0) {
         return `Duration: ${hours}h`;
     }
 
+
     return `Duration: ${hours}h ${minutes}m`;
+
 }
 
 
