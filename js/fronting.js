@@ -140,14 +140,18 @@ async function displayFrontLogs(logs) {
                 </p>
 
 
-                <p class="front-log-duration">
+                <p
+    class="front-log-duration"
+    data-start="${log.start_time}"
+    data-end="${log.end_time || ""}"
+>
 
-                    ${calculateDuration(
-                        log.start_time,
-                        log.end_time
-                    )}
+    ${calculateDuration(
+        log.start_time,
+        log.end_time
+    )}
 
-                </p>
+</p>
 
 
                 ${
@@ -468,3 +472,47 @@ function calculateDuration(
 
 checkLogin();
 loadFrontLogs();
+
+// =================================
+// LIVE FRONTING DURATION
+// =================================
+
+function updateLiveDurations() {
+
+    const durationElements =
+        document.querySelectorAll(
+            ".front-log-duration"
+        );
+
+    durationElements.forEach((element) => {
+
+        const start =
+            element.dataset.start;
+
+        const end =
+            element.dataset.end;
+
+        // Only update active fronts
+        if (!start || end) {
+            return;
+        }
+
+        element.textContent =
+            calculateDuration(
+                start,
+                null
+            );
+
+    });
+
+}
+
+
+// Update immediately
+updateLiveDurations();
+
+// Then update every minute
+setInterval(
+    updateLiveDurations,
+    60000
+);
