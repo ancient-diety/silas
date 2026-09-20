@@ -416,9 +416,50 @@ function calculateDuration(
     endString
 ) {
 
-    if (!endString) {
-        return "Still fronting";
-    }
+    const start =
+        new Date(startString);
+
+    const end =
+        endString
+            ? new Date(endString)
+            : new Date();
+
+    const difference =
+        Math.max(
+            0,
+            end - start
+        );
+
+    const totalSeconds =
+        Math.floor(
+            difference / 1000
+        );
+
+    const hours =
+        Math.floor(
+            totalSeconds / 3600
+        );
+
+    const minutes =
+        Math.floor(
+            (totalSeconds % 3600) / 60
+        );
+
+    const seconds =
+        totalSeconds % 60;
+
+    const paddedHours =
+        String(hours).padStart(2, "0");
+
+    const paddedMinutes =
+        String(minutes).padStart(2, "0");
+
+    const paddedSeconds =
+        String(seconds).padStart(2, "0");
+
+    return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+
+}
 
 
     const start =
@@ -471,7 +512,7 @@ checkLogin();
 loadFrontLogs();
 
 // =================================
-// LIVE FRONTING DURATION
+// LIVE FRONTING STOPWATCH
 // =================================
 
 function updateLiveDurations() {
@@ -489,7 +530,6 @@ function updateLiveDurations() {
         const end =
             element.dataset.end;
 
-        // Only update active fronts
         if (!start || end) {
             return;
         }
@@ -508,8 +548,9 @@ function updateLiveDurations() {
 // Update immediately
 updateLiveDurations();
 
-// Then update every minute
+
+// Update every second
 setInterval(
     updateLiveDurations,
-    60000
+    1000
 );
