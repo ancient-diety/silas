@@ -287,12 +287,6 @@ if (frontLogForm) {
                 ).value;
 
 
-            const startTime =
-                document.getElementById(
-                    "log-start"
-                ).value;
-
-
             const endTime =
                 document.getElementById(
                     "log-end"
@@ -328,10 +322,8 @@ if (frontLogForm) {
                     .insert({
     member: member,
     front_type: frontType,
-    start_time:
-        new Date(
-            startTime
-        ).toISOString(),
+start_time:
+    new Date().toISOString(),
 
                         end_time:
                             endTime
