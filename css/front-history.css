@@ -1,0 +1,351 @@
+/* ================================
+   FRONT HISTORY PAGE
+================================ */
+
+.history-page {
+    color: var(--text);
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.history-header {
+    padding: 70px 0 90px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.history-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 70px;
+
+    color: var(--muted);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.history-back-link:hover {
+    color: var(--cherry);
+
+    transform: translateX(-3px);
+}
+
+
+.history-eyebrow {
+    margin-bottom: 16px;
+
+    color: var(--cherry);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+}
+
+
+.history-header h1 {
+    color: var(--cherry);
+}
+
+
+.history-intro {
+    max-width: 680px;
+
+    margin-top: 22px;
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+
+/* ================================
+   CONTENT
+================================ */
+
+.history-content {
+    padding: 90px 0;
+}
+
+
+.history-section-intro {
+    max-width: 750px;
+
+    margin-bottom: 45px;
+}
+
+
+.history-section-intro .eyebrow {
+    color: var(--cherry);
+}
+
+
+.history-section-intro > p:last-child {
+    margin-top: 20px;
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+
+/* ================================
+   HISTORY LIST
+================================ */
+
+.front-history-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+.history-loading {
+    grid-column: 1 / -1;
+
+    color: var(--muted);
+
+    font-size: 0.95rem;
+}
+
+
+/* ================================
+   HISTORY CARD
+================================ */
+
+.history-card {
+    display: grid;
+
+    grid-template-columns:
+        34px minmax(0, 1fr);
+
+    gap: 14px;
+
+    padding: 18px 20px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-medium);
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.history-card:hover {
+    transform: translateY(-3px);
+
+    border-color: var(--cherry-light);
+
+    box-shadow:
+        0 12px 30px rgba(60, 30, 30, 0.07);
+}
+
+
+/* ================================
+   NUMBER
+================================ */
+
+.history-number {
+    padding-top: 3px;
+
+    color: var(--cherry-light);
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+}
+
+
+/* ================================
+   CARD CONTENT
+================================ */
+
+.history-card-main {
+    min-width: 0;
+}
+
+
+.history-card-top {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+
+.history-card-top h3 {
+    margin: 0;
+
+    color: var(--cherry);
+
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+
+.history-card-type {
+    margin: 3px 0 0;
+
+    color: var(--muted);
+
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+
+.history-card-date {
+    flex-shrink: 0;
+
+    color: var(--muted);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    text-align: right;
+}
+
+
+.history-card-time {
+    margin: 9px 0 0;
+
+    color: var(--text);
+
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+
+.history-card-duration {
+    display: inline-block;
+
+    margin: 5px 0 0;
+
+    color: var(--muted);
+
+    font-family: monospace;
+
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+}
+
+
+.history-card-notes {
+    margin: 9px 0 0;
+
+    color: var(--muted);
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 750px) {
+
+    .history-header {
+        padding: 50px 0 65px;
+    }
+
+
+    .history-back-link {
+        margin-bottom: 45px;
+    }
+
+
+    .history-content {
+        padding: 65px 0;
+    }
+
+
+    .front-history-list {
+        grid-template-columns: 1fr;
+    }
+
+
+    .history-card {
+        grid-template-columns:
+            38px minmax(0, 1fr);
+
+        gap: 14px;
+
+        padding: 20px;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .history-header {
+        padding: 40px 0 55px;
+    }
+
+
+    .history-header h1 {
+        font-size: 3.2rem;
+    }
+
+
+    .history-intro {
+        font-size: 1rem;
+    }
+
+
+    .history-content {
+        padding: 50px 0;
+    }
+
+
+    .history-card {
+        grid-template-columns:
+            30px minmax(0, 1fr);
+
+        padding: 17px;
+    }
+
+
+    .history-card-top {
+        flex-direction: column;
+
+        gap: 4px;
+    }
+
+
+    .history-card-date {
+        text-align: left;
+    }
+
+}
