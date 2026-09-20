@@ -145,14 +145,11 @@ async function displayFrontLogs(logs) {
     data-start="${log.start_time}"
     data-end="${log.end_time || ""}"
 >
-
     ${calculateDuration(
         log.start_time,
         log.end_time
     )}
-
 </p>
-
 
                 ${
                     log.notes
