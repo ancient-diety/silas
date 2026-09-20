@@ -653,6 +653,152 @@ function calculateDuration(
 
 }
 
+// =================================
+// CURRENTLY FRONTING
+// =================================
+
+async function loadCurrentFront() {
+
+    const nameElement =
+        document.getElementById(
+            "current-front-name"
+        );
+
+    const timeElement =
+        document.getElementById(
+            "current-front-time"
+        );
+
+
+    if (!nameElement || !timeElement) {
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("front_logs")
+        .select("*")
+        .eq("front_type", "Fronting")
+        .is("end_time", null)
+        .order("start_time", {
+            ascending: false
+        });
+
+
+    if (error) {
+
+        console.error(
+            "Could not load current front:",
+            error
+        );
+
+        nameElement.textContent =
+            "Unable to load";
+
+        timeElement.textContent =
+            "Could not check current front.";
+
+        return;
+    }
+
+
+    // =================================
+    // NO ONE IS CURRENTLY FRONTING
+    // =================================
+
+    if (!data || data.length === 0) {
+
+        nameElement.textContent =
+            "No one";
+
+        timeElement.textContent =
+            "No active fronting log.";
+
+        return;
+    }
+
+
+    // =================================
+    // CURRENT FRONT(S)
+    // =================================
+
+    const names =
+        data.map(
+            (log) => log.member
+        );
+
+
+    nameElement.textContent =
+        names.join(" + ");
+
+
+    // Show when the current front started
+    const latestFront =
+        data[0];
+
+
+    timeElement.textContent =
+        `Front started ${formatCurrentFrontTime(
+            latestFront.start_time
+        )}`;
+
+}
+
+
+// =================================
+// CURRENT FRONT TIME
+// =================================
+
+function formatCurrentFrontTime(
+    dateString
+) {
+
+    const date =
+        new Date(dateString);
+
+
+    const today =
+        new Date();
+
+
+    const sameDay =
+        date.toDateString() ===
+        today.toDateString();
+
+
+    const time =
+        date.toLocaleTimeString(
+            "en-GB",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+
+    if (sameDay) {
+        return `today at ${time}`;
+    }
+
+
+    const dateText =
+        date.toLocaleDateString(
+            "en-GB",
+            {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+
+    return `${dateText} at ${time}`;
+
+}
+
 
 // =================================
 // START
