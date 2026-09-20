@@ -1028,6 +1028,15 @@ loadCurrentFront();
 loadFrontingStatistics();
 
 // =================================
+// UPDATE FRONTING STATISTICS
+// =================================
+
+setInterval(
+    loadFrontingStatistics,
+    5000
+);
+
+// =================================
 // UPDATE CURRENT FRONT
 // =================================
 
