@@ -534,3 +534,319 @@
 .front-history-button span {
     font-size: 1.1rem;
 }
+
+/* =================================
+   ADD FRONT
+================================= */
+
+.add-front-section {
+    margin-top: 70px;
+}
+
+
+.section-heading {
+    margin-bottom: 24px;
+}
+
+
+.section-eyebrow {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--cherry);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+}
+
+
+.section-heading h2 {
+    margin: 0 0 8px;
+
+    color: var(--text);
+
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+
+.section-heading p {
+    max-width: 600px;
+
+    margin: 0;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+}
+
+
+/* CARD */
+
+.add-front-card {
+    padding: 34px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-large);
+
+    box-shadow: 0 8px 30px rgba(80, 40, 40, 0.05);
+}
+
+
+/* FORM */
+
+.front-form-group {
+    margin-bottom: 28px;
+}
+
+
+.front-form-group label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--text);
+
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+
+.optional-label {
+    margin-left: 6px;
+
+    color: var(--muted);
+
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+
+/* INPUTS */
+
+.front-form-group input[type="text"],
+.front-form-group input[type="datetime-local"],
+.front-form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 14px 16px;
+
+    background: var(--ivory);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-small);
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 0.95rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.front-form-group textarea {
+    resize: vertical;
+
+    min-height: 110px;
+
+    line-height: 1.6;
+}
+
+
+.front-form-group input:focus,
+.front-form-group textarea:focus {
+    background: var(--white);
+
+    border-color: var(--cherry-light);
+
+    box-shadow:
+        0 0 0 4px rgba(184, 74, 92, 0.09);
+}
+
+
+.front-form-group input::placeholder,
+.front-form-group textarea::placeholder {
+    color: #a99a96;
+}
+
+
+.field-help {
+    margin: 8px 0 0;
+
+    color: var(--muted);
+
+    font-size: 0.8rem;
+
+    line-height: 1.5;
+}
+
+
+/* FRONT TYPE OPTIONS */
+
+.front-type-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+
+.front-type-option {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    padding: 15px 16px;
+
+    background: var(--ivory);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-small);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.front-type-option:hover {
+    background: var(--white);
+
+    border-color: var(--cherry-light);
+
+    transform: translateY(-1px);
+}
+
+
+.front-type-option.selected {
+    background: #fff0f2;
+
+    border-color: var(--cherry);
+
+    box-shadow:
+        0 0 0 3px rgba(143, 38, 56, 0.08);
+}
+
+
+.front-type-name {
+    margin-bottom: 4px;
+
+    color: var(--text);
+
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+
+.front-type-description {
+    color: var(--muted);
+
+    font-size: 0.78rem;
+
+    line-height: 1.4;
+}
+
+
+/* SUBMIT */
+
+.front-submit-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 13px 21px;
+
+    background: var(--cherry);
+
+    border: none;
+
+    border-radius: var(--radius-small);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.front-submit-button:hover {
+    background: var(--cherry-dark);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 18px rgba(143, 38, 56, 0.18);
+}
+
+
+.front-submit-button:active {
+    transform: translateY(0);
+}
+
+
+.front-submit-button span {
+    font-size: 1.1rem;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .add-front-card {
+        padding: 22px;
+    }
+
+
+    .front-type-options {
+        grid-template-columns: 1fr;
+    }
+
+
+    .section-heading h2 {
+        font-size: 1.7rem;
+    }
+
+}
