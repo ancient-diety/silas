@@ -1131,14 +1131,33 @@ if (defaultFrontType) {
     defaultFrontType.classList.add("selected");
 }
 
-const frontForm = document.getElementById("front-log-form");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (frontForm) {
-    console.log("✅ Front form found");
+    const form = document.getElementById("front-log-form");
 
-    frontForm.addEventListener("submit", () => {
-        console.log("✅ ADD FRONT BUTTON FIRED");
+    if (!form) {
+        console.log("❌ front-log-form was not found");
+        return;
+    }
+
+    console.log("✅ front-log-form found");
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        console.log("🚀 ADD FRONT SUBMIT FIRED");
+
+        const member = document.getElementById("log-member").value.trim();
+        const frontType = document.getElementById("log-front-type").value;
+        const endInput = document.getElementById("log-end").value;
+        const notes = document.getElementById("log-notes").value.trim();
+
+        console.log({
+            member,
+            frontType,
+            endInput,
+            notes
+        });
     });
-} else {
-    console.log("❌ Front form NOT found");
-}
+
+});
