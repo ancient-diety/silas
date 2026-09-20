@@ -149,43 +149,6 @@
     font-size: 0.95rem;
 }
 
-.front-log-main {
-    min-width: 0;
-}
-
-.front-log-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-}
-
-.front-log-top h3 {
-    margin: 0;
-}
-
-.front-log-type {
-    margin: 4px 0 0;
-    color: var(--muted);
-    font-size: 0.9rem;
-}
-
-.front-log-time {
-    margin: 10px 0 0;
-}
-
-.front-log-duration {
-    margin: 5px 0 0;
-
-    font-family: monospace;
-    font-size: 0.95rem;
-    font-weight: 600;
-}
-
-.front-log-notes {
-    margin: 10px 0 0;
-}
-
 
 /* ================================
    RECENT LOGS
@@ -196,23 +159,34 @@
 }
 
 .front-log-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
 }
+
+
+/* ================================
+   FRONT LOG CARD
+================================ */
 
 .front-log-card {
     display: grid;
-    grid-template-columns: 44px 1fr;
-    gap: 16px;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 14px;
 
-    padding: 20px 22px;
+    padding: 18px 20px;
 
     background: var(--white);
+
     border: 1px solid var(--border);
     border-radius: var(--radius-medium);
 
     box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .front-log-card:hover {
@@ -220,10 +194,18 @@
 
     border-color: var(--cherry-light);
 
-    box-shadow: 0 12px 30px rgba(60, 30, 30, 0.07);
+    box-shadow:
+        0 12px 30px rgba(60, 30, 30, 0.07);
 }
 
+
+/* ================================
+   CARD NUMBER
+================================ */
+
 .front-log-number {
+    padding-top: 3px;
+
     color: var(--cherry-light);
 
     font-size: 0.7rem;
@@ -232,45 +214,82 @@
     letter-spacing: 0.12em;
 }
 
+
+/* ================================
+   CARD CONTENT
+================================ */
+
 .front-log-main {
     min-width: 0;
 }
 
 .front-log-top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 20px;
+
+    gap: 12px;
 }
 
 .front-log-top h3 {
+    margin: 0;
+
     color: var(--cherry);
 
-    font-size: 1.35rem;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+.front-log-type {
+    margin: 3px 0 0;
+
+    color: var(--muted);
+
+    font-size: 0.78rem;
+    font-weight: 600;
 }
 
 .front-log-date {
+    flex-shrink: 0;
+
     color: var(--muted);
 
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     font-weight: 700;
+
+    text-align: right;
 }
 
 .front-log-time {
-    margin-top: 12px;
+    margin: 9px 0 0;
 
     color: var(--text);
 
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
 }
 
 .front-log-duration {
-    margin-top: 7px;
+    display: inline-block;
+
+    margin: 5px 0 0;
 
     color: var(--muted);
 
-    font-size: 0.9rem;
+    font-family: monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+}
+
+.front-log-notes {
+    margin: 9px 0 0;
+
+    color: var(--muted);
+
+    font-size: 0.85rem;
+    line-height: 1.5;
 }
 
 
@@ -318,8 +337,6 @@
     font-size: 0.85rem;
     font-weight: 700;
 }
-
-
 
 
 /* ================================
@@ -377,16 +394,20 @@
         font-size: 2.5rem;
     }
 
+    .front-log-list {
+        grid-template-columns: 1fr;
+    }
+
     .front-log-card {
-        grid-template-columns: 45px 1fr;
-        gap: 15px;
-        padding: 25px;
+        grid-template-columns: 38px minmax(0, 1fr);
+
+        gap: 14px;
+
+        padding: 20px;
     }
 
     .front-log-top {
         align-items: flex-start;
-        flex-direction: column;
-        gap: 7px;
     }
 
     .front-stat-grid {
@@ -426,15 +447,26 @@
     }
 
     .front-log-card {
-        padding: 22px;
+        grid-template-columns: 30px minmax(0, 1fr);
+
+        padding: 17px;
+    }
+
+    .front-log-top {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .front-log-date {
+        text-align: left;
     }
 
     .front-log-top h3 {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
     }
 
     .front-log-time {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .fronting-note {
