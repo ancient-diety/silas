@@ -318,13 +318,12 @@ if (frontLogForm) {
                 await supabaseClient
                     .from("front_logs")
                     .insert({
-
-                        member: member,
-
-                        start_time:
-                            new Date(
-                                startTime
-                            ).toISOString(),
+    member: member,
+    front_type: frontType,
+    start_time:
+        new Date(
+            startTime
+        ).toISOString(),
 
                         end_time:
                             endTime
