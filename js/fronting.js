@@ -806,6 +806,7 @@ function formatCurrentFrontTime(
 
 checkLogin();
 loadFrontLogs();
+loadCurrentFront();
 
 
 // =================================
