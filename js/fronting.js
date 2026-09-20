@@ -808,6 +808,15 @@ checkLogin();
 loadFrontLogs();
 loadCurrentFront();
 
+// =================================
+// UPDATE CURRENT FRONT
+// =================================
+
+setInterval(
+    loadCurrentFront,
+    5000
+);
+
 
 // =================================
 // LIVE FRONTING STOPWATCH
