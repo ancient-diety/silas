@@ -51,9 +51,10 @@ async function checkLogin() {
 async function loadFrontLogs() {
 
     const { data, error } = await supabaseClient
-        .from("front_logs")
-        .select("*")
-        .order("start_time", { ascending: false });
+    .from("front_logs")
+    .select("*")
+    .is("end_time", null)
+    .order("start_time", { ascending: false });
 
     if (error) {
         console.error(
