@@ -267,6 +267,102 @@ async function displayFrontLogs(logs) {
 
 }
 
+// =================================
+// EDIT FRONT LOG
+// =================================
+
+const editButtons =
+    document.querySelectorAll(
+        ".edit-front-button"
+    );
+
+editButtons.forEach((button) => {
+
+    button.addEventListener("click", async () => {
+
+        const logId =
+            button.dataset.id;
+
+        const card =
+            button.closest(".front-log-card");
+
+        if (!card) {
+            return;
+        }
+
+        const logType =
+            card.querySelector(".front-log-type");
+
+        const logNotes =
+            card.querySelector(".front-log-notes");
+
+        const currentType =
+            logType
+                ? logType.textContent.trim()
+                : "Fronting";
+
+        const currentNotes =
+            logNotes
+                ? logNotes.textContent.trim()
+                : "";
+
+        const newType =
+            prompt(
+                "Fronting type:",
+                currentType
+            );
+
+        if (newType === null) {
+            return;
+        }
+
+        const newNotes =
+            prompt(
+                "Notes:",
+                currentNotes
+            );
+
+        if (newNotes === null) {
+            return;
+        }
+
+        button.disabled = true;
+        button.textContent = "Saving...";
+
+        const { error } =
+            await supabaseClient
+                .from("front_logs")
+                .update({
+                    front_type:
+                        newType.trim(),
+                    notes:
+                        newNotes.trim() || null
+                })
+                .eq("id", logId);
+
+        if (error) {
+
+            console.error(
+                "Could not edit front log:",
+                error
+            );
+
+            alert(
+                "Could not edit this front log."
+            );
+
+            button.disabled = false;
+            button.textContent = "Edit front";
+
+            return;
+        }
+
+        await loadFrontLogs();
+
+    });
+
+});
+
 
 // =================================
 // ADD FRONT LOG
