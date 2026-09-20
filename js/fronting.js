@@ -461,55 +461,13 @@ function calculateDuration(
 
 }
 
-
-    const start =
-        new Date(startString);
-
-    const end =
-        new Date(endString);
-
-
-    const difference =
-        end - start;
-
-
-    const totalMinutes =
-        Math.floor(
-            difference / 60000
-        );
-
-
-    const hours =
-        Math.floor(
-            totalMinutes / 60
-        );
-
-
-    const minutes =
-        totalMinutes % 60;
-
-
-    if (hours === 0) {
-        return `Duration: ${minutes}m`;
-    }
-
-
-    if (minutes === 0) {
-        return `Duration: ${hours}h`;
-    }
-
-
-    return `Duration: ${hours}h ${minutes}m`;
-
-}
-
-
 // =================================
 // START
 // =================================
 
 checkLogin();
 loadFrontLogs();
+
 
 // =================================
 // LIVE FRONTING STOPWATCH
