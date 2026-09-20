@@ -453,7 +453,7 @@ if (frontLogForm) {
 
             const frontType =
                 document.getElementById(
-                    "log-type"
+                    "log-front-type"
                 ).value;
 
 
