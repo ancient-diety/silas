@@ -43,7 +43,6 @@ async function checkLogin() {
     addLogCard.style.display = "";
 }
 
-
 // =================================
 // LOAD FRONT LOGS
 // =================================
