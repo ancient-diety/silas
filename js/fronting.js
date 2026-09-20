@@ -273,6 +273,11 @@ if (frontLogForm) {
                     "log-member"
                 ).value.trim();
 
+            const frontType =
+               document.getElementById(
+                    "log-type"
+                ).value;
+
 
             const startTime =
                 document.getElementById(
