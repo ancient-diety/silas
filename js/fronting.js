@@ -21,32 +21,21 @@ async function checkLogin() {
         data: { session }
     } = await supabaseClient.auth.getSession();
 
-
     const addFrontSection =
         document.querySelector(".add-front-section");
-
 
     if (!addFrontSection) {
         return;
     }
 
-
-    // Hide the entire Add Front section
-    // when nobody is logged in
-
     if (!session) {
-
         addFrontSection.style.display = "none";
-
         return;
     }
 
-
-    // Show it when logged in
-
     addFrontSection.style.display = "";
-
 }
+
 
 // =================================
 // LOAD FRONT LOGS
@@ -55,10 +44,10 @@ async function checkLogin() {
 async function loadFrontLogs() {
 
     const { data, error } = await supabaseClient
-    .from("front_logs")
-    .select("*")
-    .is("end_time", null)
-    .order("start_time", { ascending: false });
+        .from("front_logs")
+        .select("*")
+        .is("end_time", null)
+        .order("start_time", { ascending: false });
 
     if (error) {
         console.error(
@@ -67,8 +56,6 @@ async function loadFrontLogs() {
         );
         return;
     }
-
-    console.log("Front logs:", data);
 
     displayFrontLogs(data);
 }
@@ -92,16 +79,9 @@ async function displayFrontLogs(logs) {
 
     logList.innerHTML = "";
 
-
-    // Check whether someone is logged in
     const {
         data: { session }
     } = await supabaseClient.auth.getSession();
-
-
-    // =================================
-    // CREATE CARDS
-    // =================================
 
     logs.forEach((log, index) => {
 
@@ -110,13 +90,11 @@ async function displayFrontLogs(logs) {
 
         card.className = "front-log-card";
 
-
         card.innerHTML = `
 
             <div class="front-log-number">
                 ${String(index + 1).padStart(2, "0")}
             </div>
-
 
             <div class="front-log-main">
 
@@ -138,7 +116,6 @@ async function displayFrontLogs(logs) {
 
                 </div>
 
-
                 <p class="front-log-time">
 
                     ${formatTime(log.start_time)}
@@ -153,7 +130,6 @@ async function displayFrontLogs(logs) {
 
                 </p>
 
-
                 <p
                     class="front-log-duration"
                     data-start="${log.start_time}"
@@ -165,7 +141,6 @@ async function displayFrontLogs(logs) {
                     )}
                 </p>
 
-
                 ${
                     log.notes
                         ? `
@@ -175,7 +150,6 @@ async function displayFrontLogs(logs) {
                           `
                         : ""
                 }
-
 
                 ${
                     session
@@ -206,14 +180,12 @@ async function displayFrontLogs(logs) {
             </div>
         `;
 
-
         logList.appendChild(card);
-
     });
 
 
     // =================================
-    // REMOVE FRONT BUTTONS
+    // END FRONT BUTTONS
     // =================================
 
     if (session) {
@@ -222,7 +194,6 @@ async function displayFrontLogs(logs) {
             document.querySelectorAll(
                 ".remove-front-button"
             );
-
 
         removeButtons.forEach((button) => {
 
@@ -233,22 +204,18 @@ async function displayFrontLogs(logs) {
                     const logId =
                         button.dataset.id;
 
-
                     const confirmed =
                         confirm(
-                            "Remove this front log?"
+                            "End this front?"
                         );
-
 
                     if (!confirmed) {
                         return;
                     }
 
-
                     button.disabled = true;
                     button.textContent =
-                        "Removing...";
-
+                        "Ending...";
 
                     const { error } =
                         await supabaseClient
@@ -259,7 +226,6 @@ async function displayFrontLogs(logs) {
                             })
                             .eq("id", logId);
 
-
                     if (error) {
 
                         console.error(
@@ -268,19 +234,19 @@ async function displayFrontLogs(logs) {
                         );
 
                         alert(
-                            "Could not end this front log."
+                            "Could not end this front."
                         );
 
                         button.disabled = false;
                         button.textContent =
-                            "Remove front";
+                            "End front";
 
                         return;
                     }
 
-
-                    // Reload the cards
                     await loadFrontLogs();
+                    await loadCurrentFront();
+                    await loadFrontingStatistics();
 
                 }
             );
@@ -297,7 +263,6 @@ async function displayFrontLogs(logs) {
                 ".edit-front-button"
             );
 
-
         editButtons.forEach((button) => {
 
             button.addEventListener(
@@ -307,72 +272,58 @@ async function displayFrontLogs(logs) {
                     const logId =
                         button.dataset.id;
 
-
                     const card =
                         button.closest(
                             ".front-log-card"
                         );
 
-
                     if (!card) {
                         return;
                     }
-
 
                     const logType =
                         card.querySelector(
                             ".front-log-type"
                         );
 
-
                     const logNotes =
                         card.querySelector(
                             ".front-log-notes"
                         );
-
 
                     const currentType =
                         logType
                             ? logType.textContent.trim()
                             : "Fronting";
 
-
                     const currentNotes =
                         logNotes
                             ? logNotes.textContent.trim()
                             : "";
 
-
-                    // Ask for new fronting type
                     const newType =
                         prompt(
                             "Fronting type:",
                             currentType
                         );
 
-
                     if (newType === null) {
                         return;
                     }
 
-
-                    // Ask for new notes
                     const newNotes =
                         prompt(
                             "Notes:",
                             currentNotes
                         );
 
-
                     if (newNotes === null) {
                         return;
                     }
 
-
                     button.disabled = true;
                     button.textContent =
                         "Saving...";
-
 
                     const { error } =
                         await supabaseClient
@@ -386,7 +337,6 @@ async function displayFrontLogs(logs) {
                                         || null
                             })
                             .eq("id", logId);
-
 
                     if (error) {
 
@@ -406,15 +356,79 @@ async function displayFrontLogs(logs) {
                         return;
                     }
 
-
-                    // Reload the cards
                     await loadFrontLogs();
+                    await loadCurrentFront();
+                    await loadFrontingStatistics();
 
                 }
             );
 
         });
 
+    }
+
+}
+
+
+// =================================
+// ADD FRONT UI
+// =================================
+
+const frontTypeButtons =
+    document.querySelectorAll(
+        ".front-type-option"
+    );
+
+const frontTypeInput =
+    document.getElementById(
+        "log-front-type"
+    );
+
+frontTypeButtons.forEach((button) => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            frontTypeButtons.forEach(
+                (option) => {
+                    option.classList.remove(
+                        "selected"
+                    );
+                }
+            );
+
+            button.classList.add(
+                "selected"
+            );
+
+            if (frontTypeInput) {
+                frontTypeInput.value =
+                    button.dataset.value;
+            }
+
+        }
+    );
+
+});
+
+
+// Default to Fronting
+
+const defaultFrontType =
+    document.querySelector(
+        '.front-type-option[data-value="Fronting"]'
+    );
+
+if (defaultFrontType) {
+
+    defaultFrontType.classList.add(
+        "selected"
+    );
+
+    if (frontTypeInput) {
+        frontTypeInput.value =
+            "Fronting";
     }
 
 }
@@ -429,7 +443,6 @@ const frontLogForm =
         "front-log-form"
     );
 
-
 if (frontLogForm) {
 
     frontLogForm.addEventListener(
@@ -438,30 +451,20 @@ if (frontLogForm) {
 
             event.preventDefault();
 
-
-            const message =
-                document.getElementById(
-                    "front-log-message"
-                );
-
-
             const member =
                 document.getElementById(
                     "log-member"
                 ).value.trim();
-
 
             const frontType =
                 document.getElementById(
                     "log-front-type"
                 ).value;
 
-
             const endTime =
                 document.getElementById(
                     "log-end"
                 ).value;
-
 
             const notes =
                 document.getElementById(
@@ -469,20 +472,15 @@ if (frontLogForm) {
                 ).value.trim();
 
 
-            message.textContent =
-                "Saving...";
-
-
             const {
                 data: { session }
             } = await supabaseClient.auth.getSession();
 
 
+            // Do not allow logged-out users
+            // to submit a front
+
             if (!session) {
-
-                message.textContent =
-                    "You must be logged in to add a front log.";
-
                 return;
             }
 
@@ -517,25 +515,52 @@ if (frontLogForm) {
             if (error) {
 
                 console.error(
-                    "Could not save front log:",
+                    "Could not add front:",
                     error
                 );
 
-                message.textContent =
-                    "Could not save the front log.";
+                alert(
+                    "Could not add this front."
+                );
 
                 return;
             }
 
 
-            message.textContent =
-                "Front log saved! ♡";
-
+            // Reset form
 
             frontLogForm.reset();
 
 
+            // Restore Fronting as default
+
+            frontTypeButtons.forEach(
+                (option) => {
+                    option.classList.remove(
+                        "selected"
+                    );
+                }
+            );
+
+
+            if (defaultFrontType) {
+                defaultFrontType.classList.add(
+                    "selected"
+                );
+            }
+
+
+            if (frontTypeInput) {
+                frontTypeInput.value =
+                    "Fronting";
+            }
+
+
+            // Refresh everything
+
             await loadFrontLogs();
+            await loadCurrentFront();
+            await loadFrontingStatistics();
 
         }
     );
@@ -551,7 +576,6 @@ function formatDate(dateString) {
 
     const date =
         new Date(dateString);
-
 
     return date.toLocaleDateString(
         "en-GB",
@@ -572,7 +596,6 @@ function formatTime(dateString) {
 
     const date =
         new Date(dateString);
-
 
     return date.toLocaleTimeString(
         "en-GB",
@@ -596,12 +619,10 @@ function calculateDuration(
     const start =
         new Date(startString);
 
-
     const end =
         endString
             ? new Date(endString)
             : new Date();
-
 
     const difference =
         Math.max(
@@ -609,28 +630,23 @@ function calculateDuration(
             end - start
         );
 
-
     const totalSeconds =
         Math.floor(
             difference / 1000
         );
-
 
     const hours =
         Math.floor(
             totalSeconds / 3600
         );
 
-
     const minutes =
         Math.floor(
             (totalSeconds % 3600) / 60
         );
 
-
     const seconds =
         totalSeconds % 60;
-
 
     const paddedHours =
         String(hours).padStart(
@@ -638,13 +654,11 @@ function calculateDuration(
             "0"
         );
 
-
     const paddedMinutes =
         String(minutes).padStart(
             2,
             "0"
         );
-
 
     const paddedSeconds =
         String(seconds).padStart(
@@ -652,10 +666,9 @@ function calculateDuration(
             "0"
         );
 
-
     return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
-
 }
+
 
 // =================================
 // CURRENTLY FRONTING
@@ -673,11 +686,9 @@ async function loadCurrentFront() {
             "current-front-time"
         );
 
-
     if (!nameElement || !timeElement) {
         return;
     }
-
 
     const {
         data,
@@ -690,7 +701,6 @@ async function loadCurrentFront() {
         .order("start_time", {
             ascending: false
         });
-
 
     if (error) {
 
@@ -708,11 +718,6 @@ async function loadCurrentFront() {
         return;
     }
 
-
-    // =================================
-    // NO ONE IS CURRENTLY FRONTING
-    // =================================
-
     if (!data || data.length === 0) {
 
         nameElement.textContent =
@@ -724,25 +729,16 @@ async function loadCurrentFront() {
         return;
     }
 
-
-    // =================================
-    // CURRENT FRONT(S)
-    // =================================
-
     const names =
         data.map(
             (log) => log.member
         );
 
-
     nameElement.textContent =
         names.join(" + ");
 
-
-    // Show when the current front started
     const latestFront =
         data[0];
-
 
     timeElement.textContent =
         `Front started ${formatCurrentFrontTime(
@@ -763,15 +759,12 @@ function formatCurrentFrontTime(
     const date =
         new Date(dateString);
 
-
     const today =
         new Date();
-
 
     const sameDay =
         date.toDateString() ===
         today.toDateString();
-
 
     const time =
         date.toLocaleTimeString(
@@ -782,11 +775,9 @@ function formatCurrentFrontTime(
             }
         );
 
-
     if (sameDay) {
         return `today at ${time}`;
     }
-
 
     const dateText =
         date.toLocaleDateString(
@@ -798,10 +789,10 @@ function formatCurrentFrontTime(
             }
         );
 
-
     return `${dateText} at ${time}`;
 
 }
+
 
 // =================================
 // FRONTING STATISTICS
@@ -824,7 +815,6 @@ async function loadFrontingStatistics() {
             "stat-most-active"
         );
 
-
     if (
         !totalLogsElement ||
         !monthlySwitchesElement ||
@@ -833,17 +823,11 @@ async function loadFrontingStatistics() {
         return;
     }
 
-
-    // =================================
-    // GET CURRENT YEAR
-    // =================================
-
     const now =
         new Date();
 
     const year =
         now.getFullYear();
-
 
     const startOfYear =
         new Date(
@@ -852,18 +836,12 @@ async function loadFrontingStatistics() {
             1
         ).toISOString();
 
-
     const startOfNextYear =
         new Date(
             year + 1,
             0,
             1
         ).toISOString();
-
-
-    // =================================
-    // GET CURRENT MONTH
-    // =================================
 
     const startOfMonth =
         new Date(
@@ -872,18 +850,12 @@ async function loadFrontingStatistics() {
             1
         ).toISOString();
 
-
     const startOfNextMonth =
         new Date(
             year,
             now.getMonth() + 1,
             1
         ).toISOString();
-
-
-    // =================================
-    // QUALIFYING FRONT TYPES
-    // =================================
 
     const qualifyingTypes = [
         "Fronting",
@@ -892,21 +864,26 @@ async function loadFrontingStatistics() {
         "Blended Fronting"
     ];
 
-
-    // =================================
-    // GET THIS YEAR'S LOGS
-    // =================================
-
     const {
         data,
         error
     } = await supabaseClient
         .from("front_logs")
-        .select("member, front_type, start_time")
-        .gte("start_time", startOfYear)
-        .lt("start_time", startOfNextYear)
-        .in("front_type", qualifyingTypes);
-
+        .select(
+            "member, front_type, start_time"
+        )
+        .gte(
+            "start_time",
+            startOfYear
+        )
+        .lt(
+            "start_time",
+            startOfNextYear
+        )
+        .in(
+            "front_type",
+            qualifyingTypes
+        );
 
     if (error) {
 
@@ -915,25 +892,20 @@ async function loadFrontingStatistics() {
             error
         );
 
-        totalLogsElement.textContent = "—";
-        monthlySwitchesElement.textContent = "—";
-        mostActiveElement.textContent = "—";
+        totalLogsElement.textContent =
+            "—";
+
+        monthlySwitchesElement.textContent =
+            "—";
+
+        mostActiveElement.textContent =
+            "—";
 
         return;
     }
 
-
-    // =================================
-    // TOTAL LOGS THIS YEAR
-    // =================================
-
     totalLogsElement.textContent =
         data.length;
-
-
-    // =================================
-    // SWITCHES THIS MONTH
-    // =================================
 
     const monthlyLogs =
         data.filter((log) => {
@@ -953,14 +925,8 @@ async function loadFrontingStatistics() {
 
         });
 
-
     monthlySwitchesElement.textContent =
         monthlyLogs.length;
-
-
-    // =================================
-    // MOST ACTIVE FRONTER
-    // =================================
 
     if (data.length === 0) {
 
@@ -970,32 +936,26 @@ async function loadFrontingStatistics() {
         return;
     }
 
-
     const memberCounts = {};
-
 
     data.forEach((log) => {
 
         const member =
             log.member;
 
-
         if (!memberCounts[member]) {
             memberCounts[member] = 0;
         }
 
-
         memberCounts[member]++;
 
     });
-
 
     let mostActiveMember =
         null;
 
     let highestCount =
         0;
-
 
     Object.entries(
         memberCounts
@@ -1015,39 +975,10 @@ async function loadFrontingStatistics() {
         }
     );
 
-
     mostActiveElement.textContent =
         mostActiveMember;
 
 }
-
-
-// =================================
-// START
-// =================================
-
-checkLogin();
-loadFrontLogs();
-loadCurrentFront();
-loadFrontingStatistics();
-
-// =================================
-// UPDATE FRONTING STATISTICS
-// =================================
-
-setInterval(
-    loadFrontingStatistics,
-    5000
-);
-
-// =================================
-// UPDATE CURRENT FRONT
-// =================================
-
-setInterval(
-    loadCurrentFront,
-    5000
-);
 
 
 // =================================
@@ -1061,21 +992,17 @@ function updateLiveDurations() {
             ".front-log-duration"
         );
 
-
     durationElements.forEach((element) => {
 
         const start =
             element.dataset.start;
 
-
         const end =
             element.dataset.end;
-
 
         if (!start || end) {
             return;
         }
-
 
         element.textContent =
             calculateDuration(
@@ -1088,76 +1015,40 @@ function updateLiveDurations() {
 }
 
 
-// Update immediately
+// =================================
+// START
+// =================================
+
+checkLogin();
+loadFrontLogs();
+loadCurrentFront();
+loadFrontingStatistics();
+
+
+// Update statistics
+
+setInterval(
+    loadFrontingStatistics,
+    5000
+);
+
+
+// Update current front
+
+setInterval(
+    loadCurrentFront,
+    5000
+);
+
+
+// Update stopwatch immediately
+
 updateLiveDurations();
 
 
-// Update every second
+// Update stopwatch every second
+
 setInterval(
     updateLiveDurations,
     1000
 );
-
-
-// =================================
-// ADD FRONT UI
-// =================================
-
-const frontTypeButtons = document.querySelectorAll(".front-type-option");
-const frontTypeInput = document.getElementById("log-front-type");
-
-frontTypeButtons.forEach(button => {
-    button.addEventListener("click", () => {
-
-        // Remove selected state from all buttons
-        frontTypeButtons.forEach(option => {
-            option.classList.remove("selected");
-        });
-
-        // Select this button
-        button.classList.add("selected");
-
-        // Save selected type
-        frontTypeInput.value = button.dataset.value;
-    });
-});
-
-// Select Fronting by default
-const defaultFrontType = document.querySelector(
-    '.front-type-option[data-value="Fronting"]'
-);
-
-if (defaultFrontType) {
-    defaultFrontType.classList.add("selected");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const form = document.getElementById("front-log-form");
-
-    if (!form) {
-        console.log("❌ front-log-form was not found");
-        return;
-    }
-
-    console.log("✅ front-log-form found");
-
-    form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        console.log("🚀 ADD FRONT SUBMIT FIRED");
-
-        const member = document.getElementById("log-member").value.trim();
-        const frontType = document.getElementById("log-front-type").value;
-        const endInput = document.getElementById("log-end").value;
-        const notes = document.getElementById("log-notes").value.trim();
-
-        console.log({
-            member,
-            frontType,
-            endInput,
-            notes
-        });
-    });
-
-});
