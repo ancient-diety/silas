@@ -191,7 +191,7 @@ async function displayFrontLogs(logs) {
                                     class="remove-front-button"
                                     data-id="${log.id}"
                                 >
-                                    Remove front
+                                    End front
                                 </button>
 
                             </div>
