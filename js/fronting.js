@@ -21,26 +21,31 @@ async function checkLogin() {
         data: { session }
     } = await supabaseClient.auth.getSession();
 
-    const addLogSection =
-        document.querySelector(".add-log-intro");
 
-    const addLogCard =
-        document.querySelector(".add-front-log-card");
+    const addFrontSection =
+        document.querySelector(".add-front-section");
 
-    if (!addLogSection || !addLogCard) {
+
+    if (!addFrontSection) {
         return;
     }
+
+
+    // Hide the entire Add Front section
+    // when nobody is logged in
 
     if (!session) {
 
-        addLogSection.style.display = "none";
-        addLogCard.style.display = "none";
+        addFrontSection.style.display = "none";
 
         return;
     }
 
-    addLogSection.style.display = "";
-    addLogCard.style.display = "";
+
+    // Show it when logged in
+
+    addFrontSection.style.display = "";
+
 }
 
 // =================================
