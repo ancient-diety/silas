@@ -163,18 +163,30 @@ async function displayFrontLogs(logs) {
 
 
                 ${
-                    session
-                        ? `
-                            <button
-                                type="button"
-                                class="remove-front-button"
-                                data-id="${log.id}"
-                            >
-                                Remove front
-                            </button>
-                          `
-                        : ""
-                }
+    session
+        ? `
+            <div class="front-log-actions">
+
+                <button
+                    type="button"
+                    class="edit-front-button"
+                    data-id="${log.id}"
+                >
+                    Edit front
+                </button>
+
+                <button
+                    type="button"
+                    class="remove-front-button"
+                    data-id="${log.id}"
+                >
+                    Remove front
+                </button>
+
+            </div>
+          `
+        : ""
+}
 
             </div>
         `;
