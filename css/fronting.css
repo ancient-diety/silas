@@ -149,6 +149,43 @@
     font-size: 0.95rem;
 }
 
+.front-log-main {
+    min-width: 0;
+}
+
+.front-log-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.front-log-top h3 {
+    margin: 0;
+}
+
+.front-log-type {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.front-log-time {
+    margin: 10px 0 0;
+}
+
+.front-log-duration {
+    margin: 5px 0 0;
+
+    font-family: monospace;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.front-log-notes {
+    margin: 10px 0 0;
+}
+
 
 /* ================================
    RECENT LOGS
@@ -166,20 +203,16 @@
 
 .front-log-card {
     display: grid;
-    grid-template-columns: 70px 1fr;
-    gap: 25px;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
 
-    padding: 30px;
+    padding: 20px 22px;
 
+    background: var(--white);
     border: 1px solid var(--border);
     border-radius: var(--radius-medium);
 
-    background: var(--white);
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    box-sizing: border-box;
 }
 
 .front-log-card:hover {
@@ -285,6 +318,8 @@
     font-size: 0.85rem;
     font-weight: 700;
 }
+
+
 
 
 /* ================================
