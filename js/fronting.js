@@ -1130,3 +1130,15 @@ const defaultFrontType = document.querySelector(
 if (defaultFrontType) {
     defaultFrontType.classList.add("selected");
 }
+
+const frontForm = document.getElementById("front-log-form");
+
+if (frontForm) {
+    console.log("✅ Front form found");
+
+    frontForm.addEventListener("submit", () => {
+        console.log("✅ ADD FRONT BUTTON FIRED");
+    });
+} else {
+    console.log("❌ Front form NOT found");
+}
