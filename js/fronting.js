@@ -56,7 +56,10 @@ async function loadFrontLogs() {
         .order("start_time", { ascending: false });
 
     if (error) {
-        console.error("Could not load front logs:", error);
+        console.error(
+            "Could not load front logs:",
+            error
+        );
         return;
     }
 
@@ -76,7 +79,9 @@ async function displayFrontLogs(logs) {
         document.querySelector(".front-log-list");
 
     if (!logList) {
-        console.error("Could not find .front-log-list");
+        console.error(
+            "Could not find .front-log-list"
+        );
         return;
     }
 
@@ -88,6 +93,10 @@ async function displayFrontLogs(logs) {
         data: { session }
     } = await supabaseClient.auth.getSession();
 
+
+    // =================================
+    // CREATE CARDS
+    // =================================
 
     logs.forEach((log, index) => {
 
@@ -108,21 +117,21 @@ async function displayFrontLogs(logs) {
 
                 <div class="front-log-top">
 
-    <div>
+                    <div>
 
-        <h3>${log.member}</h3>
+                        <h3>${log.member}</h3>
 
-        <p class="front-log-type">
-            ${log.front_type || "Fronting"}
-        </p>
+                        <p class="front-log-type">
+                            ${log.front_type || "Fronting"}
+                        </p>
 
-    </div>
+                    </div>
 
-    <span class="front-log-date">
-        ${formatDate(log.start_time)}
-    </span>
+                    <span class="front-log-date">
+                        ${formatDate(log.start_time)}
+                    </span>
 
-</div>
+                </div>
 
 
                 <p class="front-log-time">
@@ -141,15 +150,16 @@ async function displayFrontLogs(logs) {
 
 
                 <p
-    class="front-log-duration"
-    data-start="${log.start_time}"
-    data-end="${log.end_time || ""}"
->
-    ${calculateDuration(
-        log.start_time,
-        log.end_time
-    )}
-</p>
+                    class="front-log-duration"
+                    data-start="${log.start_time}"
+                    data-end="${log.end_time || ""}"
+                >
+                    ${calculateDuration(
+                        log.start_time,
+                        log.end_time
+                    )}
+                </p>
+
 
                 ${
                     log.notes
@@ -163,30 +173,30 @@ async function displayFrontLogs(logs) {
 
 
                 ${
-    session
-        ? `
-            <div class="front-log-actions">
+                    session
+                        ? `
+                            <div class="front-log-actions">
 
-                <button
-                    type="button"
-                    class="edit-front-button"
-                    data-id="${log.id}"
-                >
-                    Edit front
-                </button>
+                                <button
+                                    type="button"
+                                    class="edit-front-button"
+                                    data-id="${log.id}"
+                                >
+                                    Edit front
+                                </button>
 
-                <button
-                    type="button"
-                    class="remove-front-button"
-                    data-id="${log.id}"
-                >
-                    Remove front
-                </button>
+                                <button
+                                    type="button"
+                                    class="remove-front-button"
+                                    data-id="${log.id}"
+                                >
+                                    Remove front
+                                </button>
 
-            </div>
-          `
-        : ""
-}
+                            </div>
+                          `
+                        : ""
+                }
 
             </div>
         `;
@@ -197,7 +207,10 @@ async function displayFrontLogs(logs) {
     });
 
 
-    // Add delete button listeners
+    // =================================
+    // REMOVE FRONT BUTTONS
+    // =================================
+
     if (session) {
 
         const removeButtons =
@@ -208,58 +221,192 @@ async function displayFrontLogs(logs) {
 
         removeButtons.forEach((button) => {
 
-            button.addEventListener("click", async () => {
+            button.addEventListener(
+                "click",
+                async () => {
 
-                const logId =
-                    button.dataset.id;
-
-
-                const confirmed =
-                    confirm(
-                        "Remove this front log?"
-                    );
+                    const logId =
+                        button.dataset.id;
 
 
-                if (!confirmed) {
-                    return;
+                    const confirmed =
+                        confirm(
+                            "Remove this front log?"
+                        );
+
+
+                    if (!confirmed) {
+                        return;
+                    }
+
+
+                    button.disabled = true;
+                    button.textContent =
+                        "Removing...";
+
+
+                    const { error } =
+                        await supabaseClient
+                            .from("front_logs")
+                            .update({
+                                end_time:
+                                    new Date().toISOString()
+                            })
+                            .eq("id", logId);
+
+
+                    if (error) {
+
+                        console.error(
+                            "Could not end front log:",
+                            error
+                        );
+
+                        alert(
+                            "Could not end this front log."
+                        );
+
+                        button.disabled = false;
+                        button.textContent =
+                            "Remove front";
+
+                        return;
+                    }
+
+
+                    // Reload the cards
+                    await loadFrontLogs();
+
                 }
+            );
+
+        });
 
 
-                button.disabled = true;
-                button.textContent = "Removing...";
+        // =================================
+        // EDIT FRONT BUTTONS
+        // =================================
+
+        const editButtons =
+            document.querySelectorAll(
+                ".edit-front-button"
+            );
 
 
-                const { error } =
-    await supabaseClient
-        .from("front_logs")
-        .update({
-            end_time: new Date().toISOString()
-        })
-        .eq("id", logId);
+        editButtons.forEach((button) => {
+
+            button.addEventListener(
+                "click",
+                async () => {
+
+                    const logId =
+                        button.dataset.id;
 
 
-                if (error) {
+                    const card =
+                        button.closest(
+                            ".front-log-card"
+                        );
 
-                    console.error(
-                        "Could not end front log:",
-                        error
-                    );
 
-                    alert(
-                        "Could not end this front log."
-                    );
+                    if (!card) {
+                        return;
+                    }
 
-                    button.disabled = false;
-                    button.textContent = "Remove front";
 
-                    return;
+                    const logType =
+                        card.querySelector(
+                            ".front-log-type"
+                        );
+
+
+                    const logNotes =
+                        card.querySelector(
+                            ".front-log-notes"
+                        );
+
+
+                    const currentType =
+                        logType
+                            ? logType.textContent.trim()
+                            : "Fronting";
+
+
+                    const currentNotes =
+                        logNotes
+                            ? logNotes.textContent.trim()
+                            : "";
+
+
+                    // Ask for new fronting type
+                    const newType =
+                        prompt(
+                            "Fronting type:",
+                            currentType
+                        );
+
+
+                    if (newType === null) {
+                        return;
+                    }
+
+
+                    // Ask for new notes
+                    const newNotes =
+                        prompt(
+                            "Notes:",
+                            currentNotes
+                        );
+
+
+                    if (newNotes === null) {
+                        return;
+                    }
+
+
+                    button.disabled = true;
+                    button.textContent =
+                        "Saving...";
+
+
+                    const { error } =
+                        await supabaseClient
+                            .from("front_logs")
+                            .update({
+                                front_type:
+                                    newType.trim(),
+
+                                notes:
+                                    newNotes.trim()
+                                        || null
+                            })
+                            .eq("id", logId);
+
+
+                    if (error) {
+
+                        console.error(
+                            "Could not edit front log:",
+                            error
+                        );
+
+                        alert(
+                            "Could not edit this front log."
+                        );
+
+                        button.disabled = false;
+                        button.textContent =
+                            "Edit front";
+
+                        return;
+                    }
+
+
+                    // Reload the cards
+                    await loadFrontLogs();
+
                 }
-
-
-                // Reload the cards
-                await loadFrontLogs();
-
-            });
+            );
 
         });
 
@@ -267,109 +414,15 @@ async function displayFrontLogs(logs) {
 
 }
 
-// =================================
-// EDIT FRONT LOG
-// =================================
-
-const editButtons =
-    document.querySelectorAll(
-        ".edit-front-button"
-    );
-
-editButtons.forEach((button) => {
-
-    button.addEventListener("click", async () => {
-
-        const logId =
-            button.dataset.id;
-
-        const card =
-            button.closest(".front-log-card");
-
-        if (!card) {
-            return;
-        }
-
-        const logType =
-            card.querySelector(".front-log-type");
-
-        const logNotes =
-            card.querySelector(".front-log-notes");
-
-        const currentType =
-            logType
-                ? logType.textContent.trim()
-                : "Fronting";
-
-        const currentNotes =
-            logNotes
-                ? logNotes.textContent.trim()
-                : "";
-
-        const newType =
-            prompt(
-                "Fronting type:",
-                currentType
-            );
-
-        if (newType === null) {
-            return;
-        }
-
-        const newNotes =
-            prompt(
-                "Notes:",
-                currentNotes
-            );
-
-        if (newNotes === null) {
-            return;
-        }
-
-        button.disabled = true;
-        button.textContent = "Saving...";
-
-        const { error } =
-            await supabaseClient
-                .from("front_logs")
-                .update({
-                    front_type:
-                        newType.trim(),
-                    notes:
-                        newNotes.trim() || null
-                })
-                .eq("id", logId);
-
-        if (error) {
-
-            console.error(
-                "Could not edit front log:",
-                error
-            );
-
-            alert(
-                "Could not edit this front log."
-            );
-
-            button.disabled = false;
-            button.textContent = "Edit front";
-
-            return;
-        }
-
-        await loadFrontLogs();
-
-    });
-
-});
-
 
 // =================================
 // ADD FRONT LOG
 // =================================
 
 const frontLogForm =
-    document.getElementById("front-log-form");
+    document.getElementById(
+        "front-log-form"
+    );
 
 
 if (frontLogForm) {
@@ -392,8 +445,9 @@ if (frontLogForm) {
                     "log-member"
                 ).value.trim();
 
+
             const frontType =
-               document.getElementById(
+                document.getElementById(
                     "log-type"
                 ).value;
 
@@ -410,7 +464,8 @@ if (frontLogForm) {
                 ).value.trim();
 
 
-            message.textContent = "Saving...";
+            message.textContent =
+                "Saving...";
 
 
             const {
@@ -431,16 +486,21 @@ if (frontLogForm) {
                 await supabaseClient
                     .from("front_logs")
                     .insert({
-    member: member,
-    front_type: frontType,
-start_time:
-    new Date().toISOString(),
+
+                        member:
+                            member,
+
+                        front_type:
+                            frontType,
+
+                        start_time:
+                            new Date().toISOString(),
 
                         end_time:
                             endTime
                                 ? new Date(
                                     endTime
-                                  ).toISOString()
+                                ).toISOString()
                                 : null,
 
                         notes:
@@ -484,7 +544,9 @@ start_time:
 
 function formatDate(dateString) {
 
-    const date = new Date(dateString);
+    const date =
+        new Date(dateString);
+
 
     return date.toLocaleDateString(
         "en-GB",
@@ -503,7 +565,9 @@ function formatDate(dateString) {
 
 function formatTime(dateString) {
 
-    const date = new Date(dateString);
+    const date =
+        new Date(dateString);
+
 
     return date.toLocaleTimeString(
         "en-GB",
@@ -527,10 +591,12 @@ function calculateDuration(
     const start =
         new Date(startString);
 
+
     const end =
         endString
             ? new Date(endString)
             : new Date();
+
 
     const difference =
         Math.max(
@@ -538,36 +604,54 @@ function calculateDuration(
             end - start
         );
 
+
     const totalSeconds =
         Math.floor(
             difference / 1000
         );
+
 
     const hours =
         Math.floor(
             totalSeconds / 3600
         );
 
+
     const minutes =
         Math.floor(
             (totalSeconds % 3600) / 60
         );
 
+
     const seconds =
         totalSeconds % 60;
 
+
     const paddedHours =
-        String(hours).padStart(2, "0");
+        String(hours).padStart(
+            2,
+            "0"
+        );
+
 
     const paddedMinutes =
-        String(minutes).padStart(2, "0");
+        String(minutes).padStart(
+            2,
+            "0"
+        );
+
 
     const paddedSeconds =
-        String(seconds).padStart(2, "0");
+        String(seconds).padStart(
+            2,
+            "0"
+        );
+
 
     return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
 
 }
+
 
 // =================================
 // START
@@ -588,17 +672,21 @@ function updateLiveDurations() {
             ".front-log-duration"
         );
 
+
     durationElements.forEach((element) => {
 
         const start =
             element.dataset.start;
 
+
         const end =
             element.dataset.end;
+
 
         if (!start || end) {
             return;
         }
+
 
         element.textContent =
             calculateDuration(
