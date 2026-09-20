@@ -125,126 +125,225 @@
                      ADD FRONT LOG
                 ================================= -->
 
-                <div class="fronting-section-intro add-log-intro">
+                <section class="front-section add-front-section">
 
-                    <p class="eyebrow">LOG ACTIVITY</p>
+    <div class="section-heading">
+        <span class="section-eyebrow">LOG A FRONT</span>
 
-                    <h2>Add a front log</h2>
+        <h2>Add a front</h2>
 
-                    <p>
-                        Record when someone started and stopped fronting.
-                    </p>
+        <p>
+            Record who's currently fronting and anything worth remembering.
+        </p>
+    </div>
+
+
+    <div class="add-front-card">
+
+        <form id="front-log-form">
+
+
+            <!-- MEMBER -->
+
+            <div class="front-form-group">
+
+                <label for="log-member">
+                    Who's fronting?
+                </label>
+
+                <input
+                    type="text"
+                    id="log-member"
+                    placeholder="e.g. Bella"
+                    required
+                >
+
+            </div>
+
+
+            <!-- FRONTING TYPE -->
+
+            <div class="front-form-group">
+
+                <label>
+                    What's happening?
+                </label>
+
+                <div class="front-type-options">
+
+                    <button
+                        type="button"
+                        class="front-type-option"
+                        data-value="Fronting"
+                    >
+                        <span class="front-type-name">
+                            Fronting
+                        </span>
+
+                        <span class="front-type-description">
+                            In control of the body
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="front-type-option"
+                        data-value="Co-Fronting"
+                    >
+                        <span class="front-type-name">
+                            Co-Fronting
+                        </span>
+
+                        <span class="front-type-description">
+                            Actively fronting together
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="front-type-option"
+                        data-value="Co-Hosting"
+                    >
+                        <span class="front-type-name">
+                            Co-Hosting
+                        </span>
+
+                        <span class="front-type-description">
+                            Helping the person in front
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="front-type-option"
+                        data-value="Blended Fronting"
+                    >
+                        <span class="front-type-name">
+                            Blended Fronting
+                        </span>
+
+                        <span class="front-type-description">
+                            Control is partially shared
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="front-type-option"
+                        data-value="Co-Consciousness"
+                    >
+                        <span class="front-type-name">
+                            Co-Consciousness
+                        </span>
+
+                        <span class="front-type-description">
+                            Aware, but not in control
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="front-type-option"
+                        data-value="Backseat Observing"
+                    >
+                        <span class="front-type-name">
+                            Backseat Observing
+                        </span>
+
+                        <span class="front-type-description">
+                            Quietly watching from the back
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="front-type-option"
+                        data-value="Passive Influence"
+                    >
+                        <span class="front-type-name">
+                            Passive Influence
+                        </span>
+
+                        <span class="front-type-description">
+                            Close enough to influence
+                        </span>
+                    </button>
 
                 </div>
 
 
-                <div class="add-front-log-card">
+                <!-- Hidden value used by JavaScript -->
 
-                    <form id="front-log-form">
+                <input
+                    type="hidden"
+                    id="log-front-type"
+                    value="Fronting"
+                >
 
-                        <div class="front-log-form-group">
-
-                            <label for="log-member">
-                                Member
-                            </label>
-
-                            <input
-                                type="text"
-                                id="log-member"
-                                placeholder="e.g. Bella"
-                                required
-                            >
-
-                        </div>
-
-                        <div class="front-log-form-group">
-
-    <label for="log-type">
-        Fronting type
-    </label>
-
-    <select id="log-type" required>
-
-        <option value="">
-            Select a fronting type
-        </option>
-
-        <option value="Fronting">
-            Fronting
-        </option>
-
-        <option value="Co-Fronting">
-            Co-Fronting
-        </option>
-
-        <option value="Co-Consciousness">
-            Co-Consciousness
-        </option>
-
-        <option value="Co-Hosting">
-            Co-Hosting
-        </option>
-
-        <option value="Blended Fronting">
-            Blended Fronting
-        </option>
-
-        <option value="Backseat Observing">
-            Backseat Observing
-        </option>
-
-        <option value="Passive Influence">
-            Passive Influence
-        </option>
-
-    </select>
-
-</div>
+            </div>
 
 
-                        <div class="front-log-form-group">
+            <!-- END TIME -->
 
-    <label for="log-end">
-        End time
-    </label>
+            <div class="front-form-group">
 
-    <input
-        type="datetime-local"
-        id="log-end"
-    >
+                <label for="log-end">
+                    End time
+                    <span class="optional-label">optional</span>
+                </label>
 
-</div>
+                <input
+                    type="datetime-local"
+                    id="log-end"
+                >
 
+                <p class="field-help">
+                    Leave this empty if the front is still happening.
+                </p>
 
-                        <div class="front-log-form-group">
-
-                            <label for="log-notes">
-                                Notes <span>(optional)</span>
-                            </label>
-
-                            <textarea
-                                id="log-notes"
-                                placeholder="Anything you want to remember about this front..."
-                                rows="4"
-                            ></textarea>
-
-                        </div>
+            </div>
 
 
-                        <button
-                            type="submit"
-                            class="front-log-submit"
-                        >
-                            Save front log
-                        </button>
+            <!-- NOTES -->
 
-                        <p id="front-log-message"></p>
+            <div class="front-form-group">
 
-                    </form>
+                <label for="log-notes">
+                    Notes
+                    <span class="optional-label">optional</span>
+                </label>
 
-                </div>
+                <textarea
+                    id="log-notes"
+                    rows="4"
+                    placeholder="Anything you want to remember..."
+                ></textarea>
+
+            </div>
 
 
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="front-submit-button"
+            >
+                <span>＋</span>
+                Add front
+            </button>
+
+
+        </form>
+
+    </div>
+
+</section>
                 <!-- ================================
                      RECENT LOGS
                 ================================= -->
