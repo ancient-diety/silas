@@ -1025,6 +1025,7 @@ async function loadFrontingStatistics() {
 checkLogin();
 loadFrontLogs();
 loadCurrentFront();
+loadFrontingStatistics();
 
 // =================================
 // UPDATE CURRENT FRONT
