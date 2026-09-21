@@ -35,11 +35,8 @@ const nextMonthButton =
 const todayButton =
     document.getElementById("today-button");
 
-const calendarAddEvent = 
+const calendarAddEvent =
     document.getElementById("calendar-add-event");
-
-const eventAnnual = 
-   document.getElementById("event-annual");
 
 
 /* =========================================
@@ -79,6 +76,11 @@ const calendarEventForm =
         "calendar-event-form"
     );
 
+const eventDateInput =
+    document.getElementById(
+        "event-date"
+    );
+
 const eventTitleInput =
     document.getElementById(
         "event-title"
@@ -94,10 +96,29 @@ const eventCategoryInput =
         "event-category"
     );
 
+const eventAnnual =
+    document.getElementById(
+        "event-annual"
+    );
 
 const categoryOptions =
     document.querySelectorAll(
         ".calendar-category-option"
+    );
+
+
+/* =========================================
+   FORM LABELS / BUTTON
+========================================= */
+
+const addEventLabel =
+    document.querySelector(
+        ".calendar-add-event-label"
+    );
+
+const saveEventButton =
+    document.querySelector(
+        ".calendar-save-button"
     );
 
 
@@ -114,6 +135,14 @@ let currentDate =
 ========================================= */
 
 let selectedDate =
+    null;
+
+
+/* =========================================
+   EDITING EVENT
+========================================= */
+
+let editingEventId =
     null;
 
 
@@ -190,16 +219,104 @@ async function loadCalendarEvents() {
 
 }
 
+
+/* =========================================
+   CHECK LOGIN
+========================================= */
+
 async function checkCalendarLogin() {
+
     const {
         data: { session }
-    } = await supabaseClient.auth.getSession();
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
 
-    if (session) {
-        calendarAddEvent.style.display = "";
-    } else {
-        calendarAddEvent.style.display = "none";
+
+    if (calendarAddEvent) {
+
+        if (session) {
+
+            calendarAddEvent.style.display =
+                "";
+
+        } else {
+
+            calendarAddEvent.style.display =
+                "none";
+
+        }
+
     }
+
+
+    return session;
+
+}
+
+
+/* =========================================
+   GET EVENTS FOR DATE
+========================================= */
+
+function getEventsForDate(
+    dateString
+) {
+
+    const selectedDateObject =
+        new Date(
+            `${dateString}T00:00:00`
+        );
+
+
+    const selectedMonth =
+        selectedDateObject.getMonth();
+
+
+    const selectedDay =
+        selectedDateObject.getDate();
+
+
+    return calendarEvents.filter(
+        (event) => {
+
+            /* Annual event */
+
+            if (
+                event.is_annual === true
+            ) {
+
+                const parts =
+                    event.event_date.split("-");
+
+
+                const eventMonth =
+                    Number(parts[1]) - 1;
+
+
+                const eventDay =
+                    Number(parts[2]);
+
+
+                return (
+                    eventMonth === selectedMonth &&
+                    eventDay === selectedDay
+                );
+
+            }
+
+
+            /* One-time event */
+
+            return (
+                event.event_date ===
+                dateString
+            );
+
+        }
+    );
+
 }
 
 
@@ -226,18 +343,12 @@ function renderCalendar() {
         currentDate.getMonth();
 
 
-    /* Update heading */
-
     calendarMonth.textContent =
         `${monthNames[month]} ${year}`;
 
 
-    /* Clear calendar */
-
     calendarGrid.innerHTML = "";
 
-
-    /* First day of month */
 
     const firstDay =
         new Date(
@@ -247,8 +358,6 @@ function renderCalendar() {
         ).getDay();
 
 
-    /* Days in month */
-
     const daysInMonth =
         new Date(
             year,
@@ -256,8 +365,6 @@ function renderCalendar() {
             0
         ).getDate();
 
-
-    /* Previous month days */
 
     const daysInPreviousMonth =
         new Date(
@@ -467,47 +574,8 @@ function createDayCell(
 
 
         const dayEvents =
-            calendarEvents.filter(
-                (event) => {
-
-                    /* =========================
-                       ANNUAL EVENT
-                    ========================= */
-
-                    if (
-                        event.is_annual === true
-                    ) {
-
-                        const parts =
-                            event.event_date.split("-");
-
-
-                        const eventMonth =
-                            Number(parts[1]) - 1;
-
-
-                        const eventDay =
-                            Number(parts[2]);
-
-
-                        return (
-                            eventMonth === month &&
-                            eventDay === dayNumber
-                        );
-
-                    }
-
-
-                    /* =========================
-                       ONE-TIME EVENT
-                    ========================= */
-
-                    return (
-                        event.event_date ===
-                        dateString
-                    );
-
-                }
+            getEventsForDate(
+                dateString
             );
 
 
@@ -531,6 +599,28 @@ function createDayCell(
                 eventElement.title =
                     event.description ||
                     event.title;
+
+
+                /* =================================
+                   CLICK INDIVIDUAL EVENT
+                ================================= */
+
+                eventElement.addEventListener(
+                    "click",
+                    (clickEvent) => {
+
+                        clickEvent.stopPropagation();
+
+
+                        openCalendarModal(
+                            year,
+                            month,
+                            dayNumber,
+                            event.id
+                        );
+
+                    }
+                );
 
 
                 eventsContainer.appendChild(
@@ -608,11 +698,14 @@ function createDateString(
 function openCalendarModal(
     year,
     month,
-    day
+    day,
+    eventId = null
 ) {
 
     if (!calendarModal) {
+
         return;
+
     }
 
 
@@ -622,6 +715,10 @@ function openCalendarModal(
             month,
             day
         );
+
+
+    editingEventId =
+        null;
 
 
     const selectedDateObject =
@@ -651,9 +748,24 @@ function openCalendarModal(
     }
 
 
-    /* Show events for this day */
+    /* Set default date for adding */
 
-    renderModalEvents();
+    resetEventForm();
+
+
+    if (eventDateInput) {
+
+        eventDateInput.value =
+            selectedDate;
+
+    }
+
+
+    /* Show events */
+
+    renderModalEvents(
+        eventId
+    );
 
 
     calendarModal.classList.add(
@@ -677,7 +789,9 @@ function openCalendarModal(
    RENDER MODAL EVENTS
 ========================================= */
 
-function renderModalEvents() {
+async function renderModalEvents(
+    selectedEventId = null
+) {
 
     const eventList =
         document.getElementById(
@@ -686,32 +800,19 @@ function renderModalEvents() {
 
 
     if (!eventList) {
+
         return;
+
     }
 
 
     eventList.innerHTML = "";
 
 
-    const selectedDateObject = new Date(`${selectedDate}T00:00:00`);
-
-const selectedMonth = selectedDateObject.getMonth();
-const selectedDay = selectedDateObject.getDate();
-
-const dayEvents = calendarEvents.filter(event => {
-
-    if (event.is_annual) {
-        const eventDate = new Date(`${event.event_date}T00:00:00`);
-
-        return (
-            eventDate.getMonth() === selectedMonth &&
-            eventDate.getDate() === selectedDay
+    const dayEvents =
+        getEventsForDate(
+            selectedDate
         );
-    }
-
-    return event.event_date === selectedDate;
-
-});
 
 
     if (dayEvents.length === 0) {
@@ -766,6 +867,14 @@ const dayEvents = calendarEvents.filter(event => {
     }
 
 
+    const {
+        data: { session }
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
+
+
     dayEvents.forEach(
         (event) => {
 
@@ -777,6 +886,18 @@ const dayEvents = calendarEvents.filter(event => {
 
             eventCard.className =
                 `calendar-modal-event ${event.category}`;
+
+
+            if (
+                String(event.id) ===
+                String(selectedEventId)
+            ) {
+
+                eventCard.classList.add(
+                    "selected-event"
+                );
+
+            }
 
 
             const title =
@@ -792,6 +913,29 @@ const dayEvents = calendarEvents.filter(event => {
             eventCard.appendChild(
                 title
             );
+
+
+            if (event.is_annual === true) {
+
+                const annualLabel =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                annualLabel.className =
+                    "calendar-annual-label";
+
+
+                annualLabel.textContent =
+                    "↻ Every year";
+
+
+                eventCard.appendChild(
+                    annualLabel
+                );
+
+            }
 
 
             if (event.description) {
@@ -813,6 +957,105 @@ const dayEvents = calendarEvents.filter(event => {
             }
 
 
+            /* =================================
+               EVENT ACTIONS
+            ================================= */
+
+            if (session) {
+
+                const actions =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                actions.className =
+                    "calendar-event-actions";
+
+
+                const editButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                editButton.type =
+                    "button";
+
+
+                editButton.className =
+                    "calendar-edit-button";
+
+
+                editButton.textContent =
+                    "Edit";
+
+
+                editButton.addEventListener(
+                    "click",
+                    (clickEvent) => {
+
+                        clickEvent.stopPropagation();
+
+
+                        startEditingEvent(
+                            event
+                        );
+
+                    }
+                );
+
+
+                const deleteButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                deleteButton.type =
+                    "button";
+
+
+                deleteButton.className =
+                    "calendar-delete-button";
+
+
+                deleteButton.textContent =
+                    "Delete";
+
+
+                deleteButton.addEventListener(
+                    "click",
+                    async (clickEvent) => {
+
+                        clickEvent.stopPropagation();
+
+
+                        await deleteCalendarEvent(
+                            event.id
+                        );
+
+                    }
+                );
+
+
+                actions.appendChild(
+                    editButton
+                );
+
+
+                actions.appendChild(
+                    deleteButton
+                );
+
+
+                eventCard.appendChild(
+                    actions
+                );
+
+            }
+
+
             eventList.appendChild(
                 eventCard
             );
@@ -824,14 +1067,298 @@ const dayEvents = calendarEvents.filter(event => {
 
 
 /* =========================================
+   START EDITING EVENT
+========================================= */
+
+function startEditingEvent(
+    event
+) {
+
+    editingEventId =
+        event.id;
+
+
+    if (eventDateInput) {
+
+        eventDateInput.value =
+            event.event_date;
+
+    }
+
+
+    if (eventTitleInput) {
+
+        eventTitleInput.value =
+            event.title;
+
+    }
+
+
+    if (eventDescriptionInput) {
+
+        eventDescriptionInput.value =
+            event.description ||
+            "";
+
+    }
+
+
+    if (eventCategoryInput) {
+
+        eventCategoryInput.value =
+            event.category;
+
+    }
+
+
+    if (eventAnnual) {
+
+        eventAnnual.checked =
+            event.is_annual === true;
+
+    }
+
+
+    /* Update selected category */
+
+    categoryOptions.forEach(
+        (option) => {
+
+            option.classList.toggle(
+                "selected",
+                option.dataset.category ===
+                event.category
+            );
+
+        }
+    );
+
+
+    /* Change form appearance */
+
+    if (addEventLabel) {
+
+        addEventLabel.textContent =
+            "EDIT EVENT";
+
+    }
+
+
+    if (saveEventButton) {
+
+        saveEventButton.textContent =
+            "Save changes";
+
+    }
+
+
+    if (calendarAddEvent) {
+
+        calendarAddEvent.style.display =
+            "";
+
+    }
+
+
+    /* Scroll form into view */
+
+    if (calendarAddEvent) {
+
+        calendarAddEvent.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+
+    }
+
+}
+
+
+/* =========================================
+   RESET EVENT FORM
+========================================= */
+
+function resetEventForm() {
+
+    editingEventId =
+        null;
+
+
+    if (calendarEventForm) {
+
+        calendarEventForm.reset();
+
+    }
+
+
+    if (eventCategoryInput) {
+
+        eventCategoryInput.value =
+            "personal";
+
+    }
+
+
+    if (eventAnnual) {
+
+        eventAnnual.checked =
+            false;
+
+    }
+
+
+    categoryOptions.forEach(
+        (option) => {
+
+            option.classList.remove(
+                "selected"
+            );
+
+        }
+    );
+
+
+    const defaultCategory =
+        document.querySelector(
+            '.calendar-category-option[data-category="personal"]'
+        );
+
+
+    if (defaultCategory) {
+
+        defaultCategory.classList.add(
+            "selected"
+        );
+
+    }
+
+
+    if (addEventLabel) {
+
+        addEventLabel.textContent =
+            "ADD SOMETHING";
+
+    }
+
+
+    if (saveEventButton) {
+
+        saveEventButton.textContent =
+            "Add event";
+
+    }
+
+}
+
+
+/* =========================================
+   DELETE EVENT
+========================================= */
+
+async function deleteCalendarEvent(
+    eventId
+) {
+
+    const {
+        data: { session }
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
+
+
+    if (!session) {
+
+        alert(
+            "You need to be logged in to delete calendar events."
+        );
+
+        return;
+
+    }
+
+
+    const event =
+        calendarEvents.find(
+            (item) =>
+                String(item.id) ===
+                String(eventId)
+        );
+
+
+    if (!event) {
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            `Delete "${event.title}"?`
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    const { error } =
+        await supabaseClient
+            .from("calendar_events")
+            .delete()
+            .eq(
+                "id",
+                eventId
+            );
+
+
+    if (error) {
+
+        console.error(
+            "Error deleting calendar event:",
+            error
+        );
+
+
+        alert(
+            "Something went wrong while deleting the event."
+        );
+
+
+        return;
+
+    }
+
+
+    resetEventForm();
+
+
+    await loadCalendarEvents();
+
+
+    renderModalEvents();
+
+}
+
+
+/* =========================================
    CLOSE MODAL
 ========================================= */
 
 function closeCalendarModal() {
 
     if (!calendarModal) {
+
         return;
+
     }
+
+
+    resetEventForm();
 
 
     calendarModal.classList.remove(
@@ -951,29 +1478,16 @@ categoryOptions.forEach(
 
 
 /* =========================================
-   ADD EVENT
+   ADD / EDIT EVENT
 ========================================= */
 
 if (calendarEventForm) {
 
     calendarEventForm.addEventListener(
         "submit",
-        async (event) => {
+        async (submitEvent) => {
 
-            event.preventDefault();
-
-
-            /* Make sure we have a date */
-
-            if (!selectedDate) {
-
-                alert(
-                    "Please select a day first."
-                );
-
-                return;
-
-            }
+            submitEvent.preventDefault();
 
 
             /* Get login session */
@@ -989,7 +1503,7 @@ if (calendarEventForm) {
             if (!session) {
 
                 alert(
-                    "You need to be logged in to add calendar events."
+                    "You need to be logged in to modify calendar events."
                 );
 
                 return;
@@ -998,6 +1512,12 @@ if (calendarEventForm) {
 
 
             /* Get form values */
+
+            const eventDate =
+                eventDateInput
+                    ? eventDateInput.value
+                    : selectedDate;
+
 
             const title =
                 eventTitleInput.value.trim();
@@ -1010,8 +1530,20 @@ if (calendarEventForm) {
             const category =
                 eventCategoryInput.value;
 
-           const isAnnual = 
-              eventAnnual.checked;
+
+            const isAnnual =
+                eventAnnual.checked;
+
+
+            if (!eventDate) {
+
+                alert(
+                    "Please choose a date."
+                );
+
+                return;
+
+            }
 
 
             if (!title) {
@@ -1021,19 +1553,100 @@ if (calendarEventForm) {
             }
 
 
-            /* Save event */
+            /* =================================
+               EDIT EXISTING EVENT
+            ================================= */
 
-            const { error } = await supabaseClient
-    .from("calendar_events")
-    .insert([
-        {
-            title: title,
-            description: description,
-            event_date: selectedDate,
-            category: category,
-            is_annual: isAnnual
-        }
-    ]);
+            if (editingEventId !== null) {
+
+                const { error } =
+                    await supabaseClient
+                        .from("calendar_events")
+                        .update({
+                            title: title,
+                            description: description,
+                            event_date: eventDate,
+                            category: category,
+                            is_annual: isAnnual
+                        })
+                        .eq(
+                            "id",
+                            editingEventId
+                        );
+
+
+                if (error) {
+
+                    console.error(
+                        "Error updating calendar event:",
+                        error
+                    );
+
+
+                    alert(
+                        "Something went wrong while updating the event."
+                    );
+
+
+                    return;
+
+                }
+
+
+                selectedDate =
+                    eventDate;
+
+
+                const updatedDate =
+                    new Date(
+                        `${eventDate}T00:00:00`
+                    );
+
+
+                if (calendarModalTitle) {
+
+                    calendarModalTitle.textContent =
+                        updatedDate.toLocaleDateString(
+                            undefined,
+                            {
+                                month: "long",
+                                day: "numeric",
+                                year: "numeric"
+                            }
+                        );
+
+                }
+
+
+                resetEventForm();
+
+
+                await loadCalendarEvents();
+
+
+                renderModalEvents();
+
+                return;
+
+            }
+
+
+            /* =================================
+               CREATE NEW EVENT
+            ================================= */
+
+            const { error } =
+                await supabaseClient
+                    .from("calendar_events")
+                    .insert([
+                        {
+                            title: title,
+                            description: description,
+                            event_date: eventDate,
+                            category: category,
+                            is_annual: isAnnual
+                        }
+                    ]);
 
 
             if (error) {
@@ -1056,39 +1669,13 @@ if (calendarEventForm) {
 
             /* Reset form */
 
-            calendarEventForm.reset();
+            resetEventForm();
 
 
-            if (eventCategoryInput) {
+            if (eventDateInput) {
 
-                eventCategoryInput.value =
-                    "personal";
-
-            }
-
-
-            categoryOptions.forEach(
-                (item) => {
-
-                    item.classList.remove(
-                        "selected"
-                    );
-
-                }
-            );
-
-
-            const defaultCategory =
-                document.querySelector(
-                    '.calendar-category-option[data-category="personal"]'
-                );
-
-
-            if (defaultCategory) {
-
-                defaultCategory.classList.add(
-                    "selected"
-                );
+                eventDateInput.value =
+                    selectedDate;
 
             }
 
