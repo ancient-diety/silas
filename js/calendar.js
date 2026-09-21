@@ -38,6 +38,10 @@ const todayButton =
 const calendarAddEvent = 
     document.getElementById("calendar-add-event");
 
+const eventAnnual = 
+   document.getElementById("event-annual");
+
+
 /* =========================================
    MODAL
 ========================================= */
