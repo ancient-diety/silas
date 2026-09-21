@@ -22,13 +22,20 @@ async function checkLogin() {
 
     if (!makeNoteButton) return;
 
+
     const {
         data: { session }
     } = await supabaseClient.auth.getSession();
 
-    if (!session) {
-        makeNoteButton.style.display = "none";
+
+    if (session) {
+
+        makeNoteButton.classList.add(
+            "authenticated"
+        );
+
     }
+
 }
 
 
