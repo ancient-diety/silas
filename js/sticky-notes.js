@@ -259,13 +259,6 @@ if (noteForm) {
             }
 
 
-            /* Get the author's name */
-
-            const author =
-                session.user.user_metadata?.display_name
-                || "System member";
-
-
             /* Save the note */
 
             const {
