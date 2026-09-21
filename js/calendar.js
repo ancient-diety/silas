@@ -466,12 +466,20 @@ function createDayCell(
             );
 
 
-        const dayEvents =
-            calendarEvents.filter(
-                (event) =>
-                    event.event_date ===
-                    dateString
-            );
+        const dayEvents = calendarEvents.filter(event => {
+
+    if (event.is_annual) {
+        const eventDate = new Date(`${event.event_date}T00:00:00`);
+
+        return (
+            eventDate.getMonth() === month &&
+            eventDate.getDate() === day
+        );
+    }
+
+    return event.event_date === dateString;
+
+});
 
 
         dayEvents.forEach(
@@ -656,12 +664,25 @@ function renderModalEvents() {
     eventList.innerHTML = "";
 
 
-    const dayEvents =
-        calendarEvents.filter(
-            (event) =>
-                event.event_date ===
-                selectedDate
+    const selectedDateObject = new Date(`${selectedDate}T00:00:00`);
+
+const selectedMonth = selectedDateObject.getMonth();
+const selectedDay = selectedDateObject.getDate();
+
+const dayEvents = calendarEvents.filter(event => {
+
+    if (event.is_annual) {
+        const eventDate = new Date(`${event.event_date}T00:00:00`);
+
+        return (
+            eventDate.getMonth() === selectedMonth &&
+            eventDate.getDate() === selectedDay
         );
+    }
+
+    return event.event_date === selectedDate;
+
+});
 
 
     if (dayEvents.length === 0) {
