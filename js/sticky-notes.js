@@ -90,34 +90,42 @@ function closeNoteModal() {
 
 
 if (makeNoteButton) {
+
     makeNoteButton.addEventListener(
         "click",
         openNoteModal
     );
+
 }
 
 
 if (noteModalClose) {
+
     noteModalClose.addEventListener(
         "click",
         closeNoteModal
     );
+
 }
 
 
 if (noteModalBackdrop) {
+
     noteModalBackdrop.addEventListener(
         "click",
         closeNoteModal
     );
+
 }
 
 
 if (noteCancelButton) {
+
     noteCancelButton.addEventListener(
         "click",
         closeNoteModal
     );
+
 }
 
 
@@ -139,14 +147,24 @@ colourOptions.forEach((option) => {
     option.addEventListener("click", () => {
 
         colourOptions.forEach((item) => {
-            item.classList.remove("selected");
+
+            item.classList.remove(
+                "selected"
+            );
+
         });
 
-        option.classList.add("selected");
+
+        option.classList.add(
+            "selected"
+        );
+
 
         if (colourInput) {
+
             colourInput.value =
                 option.dataset.colour;
+
         }
 
     });
@@ -161,8 +179,13 @@ const defaultColour =
         '.note-colour-option[data-colour="yellow"]'
     );
 
+
 if (defaultColour) {
-    defaultColour.classList.add("selected");
+
+    defaultColour.classList.add(
+        "selected"
+    );
+
 }
 
 
@@ -184,14 +207,24 @@ sizeOptions.forEach((option) => {
     option.addEventListener("click", () => {
 
         sizeOptions.forEach((item) => {
-            item.classList.remove("selected");
+
+            item.classList.remove(
+                "selected"
+            );
+
         });
 
-        option.classList.add("selected");
+
+        option.classList.add(
+            "selected"
+        );
+
 
         if (sizeInput) {
+
             sizeInput.value =
                 option.dataset.size;
+
         }
 
     });
@@ -215,25 +248,30 @@ if (noteForm) {
 
             event.preventDefault();
 
+
             const author =
-               document.getElementById(
-                   "note-author"
-               ).value.trim();
+                document.getElementById(
+                    "note-author"
+                ).value.trim();
+
 
             const title =
                 document.getElementById(
                     "note-title"
                 ).value.trim();
 
+
             const content =
                 document.getElementById(
                     "note-content"
                 ).value.trim();
 
+
             const colour =
                 document.getElementById(
                     "note-colour"
                 ).value;
+
 
             const size =
                 document.getElementById(
@@ -296,39 +334,66 @@ if (noteForm) {
 
             noteForm.reset();
 
+
             if (colourInput) {
-                colourInput.value = "yellow";
+
+                colourInput.value =
+                    "yellow";
+
             }
 
+
             if (sizeInput) {
-                sizeInput.value = "medium";
+
+                sizeInput.value =
+                    "medium";
+
             }
 
 
             /* Reset colour selection */
 
             colourOptions.forEach((item) => {
-                item.classList.remove("selected");
+
+                item.classList.remove(
+                    "selected"
+                );
+
             });
 
+
             if (defaultColour) {
-                defaultColour.classList.add("selected");
+
+                defaultColour.classList.add(
+                    "selected"
+                );
+
             }
 
 
             /* Reset size selection */
 
             sizeOptions.forEach((item) => {
-                item.classList.remove("selected");
+
+                item.classList.remove(
+                    "selected"
+                );
+
             });
+
 
             const defaultSize =
                 document.querySelector(
                     '.note-size-option[data-size="medium"]'
                 );
 
+
             if (defaultSize) {
-                defaultSize.classList.add("selected");
+
+                defaultSize.classList.add(
+                    "selected"
+                );
+
             }
 
 
@@ -353,10 +418,22 @@ if (noteForm) {
 async function loadStickyNotes() {
 
     const stickyBoard =
-        document.getElementById("sticky-board");
+        document.getElementById(
+            "sticky-board"
+        );
+
 
     if (!stickyBoard) return;
 
+
+    /* Get login status ONCE */
+
+    const {
+        data: { session }
+    } = await supabaseClient.auth.getSession();
+
+
+    /* Get notes */
 
     const {
         data: notes,
@@ -376,118 +453,182 @@ async function loadStickyNotes() {
             error
         );
 
+        stickyBoard.classList.add(
+            "loaded"
+        );
+
         return;
 
     }
 
-    
 
-    /* Remove example notes */
+    /* Clear board */
 
     stickyBoard.innerHTML = "";
 
 
+    /* Create notes */
+
     notes.forEach((note) => {
 
         const article =
-            document.createElement("article");
+            document.createElement(
+                "article"
+            );
+
 
         article.className =
             `sticky-note note-${note.color} note-${note.size}`;
 
 
         const pin =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         pin.className =
             "sticky-pin";
 
 
         const content =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         content.className =
             "sticky-note-content";
 
 
         const heading =
-            document.createElement("h3");
+            document.createElement(
+                "h3"
+            );
+
 
         heading.textContent =
             note.title || "Untitled";
 
 
         const paragraph =
-            document.createElement("p");
+            document.createElement(
+                "p"
+            );
+
 
         paragraph.textContent =
             note.content;
 
 
-        content.appendChild(heading);
-        content.appendChild(paragraph);
+        content.appendChild(
+            heading
+        );
 
+
+        content.appendChild(
+            paragraph
+        );
+
+
+        /* Footer */
 
         const footer =
-    document.createElement("div");
-
-footer.className =
-    "sticky-note-footer";
-
-
-const authorDate =
-    document.createElement("span");
-
-authorDate.textContent =
-    `${note.author} · ${formatNoteDate(note.created_at)}`;
+            document.createElement(
+                "div"
+            );
 
 
-footer.appendChild(authorDate);
+        footer.className =
+            "sticky-note-footer";
 
 
-/* Delete button for authenticated users */
-
-const {
-    data: { session }
-} = await supabaseClient.auth.getSession();
-
-
-if (session) {
-
-    const deleteButton =
-        document.createElement("button");
-
-    deleteButton.type =
-        "button";
-
-    deleteButton.className =
-        "sticky-delete-button";
-
-    deleteButton.textContent =
-        "Delete note";
+        const authorDate =
+            document.createElement(
+                "span"
+            );
 
 
-    deleteButton.addEventListener(
-        "click",
-        () => deleteStickyNote(note.id)
-    );
+        authorDate.textContent =
+            `${note.author} · ${formatNoteDate(note.created_at)}`;
 
 
-    footer.appendChild(deleteButton);
-
-}
-
-
-        article.appendChild(pin);
-        article.appendChild(content);
-        article.appendChild(footer);
+        footer.appendChild(
+            authorDate
+        );
 
 
-        stickyBoard.appendChild(article);
+        /* Delete button */
+
+        if (session) {
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            deleteButton.type =
+                "button";
+
+
+            deleteButton.className =
+                "sticky-delete-button";
+
+
+            deleteButton.textContent =
+                "Delete note";
+
+
+            deleteButton.addEventListener(
+                "click",
+                () => deleteStickyNote(note.id)
+            );
+
+
+            footer.appendChild(
+                deleteButton
+            );
+
+        }
+
+
+        /* Build note */
+
+        article.appendChild(
+            pin
+        );
+
+
+        article.appendChild(
+            content
+        );
+
+
+        article.appendChild(
+            footer
+        );
+
+
+        stickyBoard.appendChild(
+            article
+        );
 
     });
 
+
+    /* Reveal board */
+
+    stickyBoard.classList.add(
+        "loaded"
+    );
+
 }
+
+
+/* =========================================
+   DELETE STICKY NOTE
+========================================= */
 
 async function deleteStickyNote(noteId) {
 
@@ -499,6 +640,26 @@ async function deleteStickyNote(noteId) {
 
     if (!confirmed) return;
 
+
+    /* Make sure user is still logged in */
+
+    const {
+        data: { session }
+    } = await supabaseClient.auth.getSession();
+
+
+    if (!session) {
+
+        alert(
+            "You need to be logged in to delete notes."
+        );
+
+        return;
+
+    }
+
+
+    /* Delete note */
 
     const {
         error
@@ -524,9 +685,12 @@ async function deleteStickyNote(noteId) {
     }
 
 
+    /* Reload board */
+
     loadStickyNotes();
 
 }
+
 
 /* =========================================
    NOTE DATE
@@ -536,6 +700,7 @@ function formatNoteDate(dateString) {
 
     const date =
         new Date(dateString);
+
 
     return date.toLocaleDateString(
         undefined,
@@ -553,4 +718,5 @@ function formatNoteDate(dateString) {
 ========================================= */
 
 checkLogin();
+
 loadStickyNotes();
