@@ -749,3 +749,14 @@
 .sticky-note {
     align-self: start;
 }
+
+
+/* Auth-only button stays hidden until login status is confirmed */
+
+.make-note-button {
+    display: none;
+}
+
+.make-note-button.authenticated {
+    display: inline-flex;
+}
