@@ -35,6 +35,8 @@ const nextMonthButton =
 const todayButton =
     document.getElementById("today-button");
 
+const calendarAddEvent = 
+    document.getElementById("calendar-add-event");
 
 /* =========================================
    MODAL
@@ -182,6 +184,18 @@ async function loadCalendarEvents() {
 
     renderCalendar();
 
+}
+
+async function checkCalendarLogin() {
+    const {
+        data: { session }
+    } = await supabaseClient.auth.getSession();
+
+    if (session) {
+        calendarAddEvent.style.display = "";
+    } else {
+        calendarAddEvent.style.display = "none";
+    }
 }
 
 
@@ -1116,4 +1130,5 @@ if (todayButton) {
    START
 ========================================= */
 
+checkCalendarLogin();
 loadCalendarEvents();
