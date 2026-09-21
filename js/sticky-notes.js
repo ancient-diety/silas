@@ -215,6 +215,11 @@ if (noteForm) {
 
             event.preventDefault();
 
+            const author =
+               document.getElementById(
+                   "note-author"
+               ).value.trim();
+
             const title =
                 document.getElementById(
                     "note-title"
