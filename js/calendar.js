@@ -466,20 +466,49 @@ function createDayCell(
             );
 
 
-        const dayEvents = calendarEvents.filter(event => {
+        const dayEvents =
+            calendarEvents.filter(
+                (event) => {
 
-    if (event.is_annual) {
-        const eventDate = new Date(`${event.event_date}T00:00:00`);
+                    /* =========================
+                       ANNUAL EVENT
+                    ========================= */
 
-        return (
-            eventDate.getMonth() === month &&
-            eventDate.getDate() === day
-        );
-    }
+                    if (
+                        event.is_annual === true
+                    ) {
 
-    return event.event_date === dateString;
+                        const parts =
+                            event.event_date.split("-");
 
-});
+
+                        const eventMonth =
+                            Number(parts[1]) - 1;
+
+
+                        const eventDay =
+                            Number(parts[2]);
+
+
+                        return (
+                            eventMonth === month &&
+                            eventDay === dayNumber
+                        );
+
+                    }
+
+
+                    /* =========================
+                       ONE-TIME EVENT
+                    ========================= */
+
+                    return (
+                        event.event_date ===
+                        dateString
+                    );
+
+                }
+            );
 
 
         dayEvents.forEach(
