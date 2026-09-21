@@ -960,6 +960,9 @@ if (calendarEventForm) {
             const category =
                 eventCategoryInput.value;
 
+           const isAnnual = 
+              eventAnnual.checked;
+
 
             if (!title) {
 
