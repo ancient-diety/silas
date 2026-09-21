@@ -1,5 +1,23 @@
 /* =========================================
-   CALENDAR
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+    "https://khyauwjpffmoaaqpgqac.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_pj9MAWsA9oBry6sPge3vzw_uAW8YS7E";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================================
+   CALENDAR ELEMENTS
 ========================================= */
 
 const calendarMonth =
@@ -26,10 +44,14 @@ const calendarModal =
     document.getElementById("calendar-modal");
 
 const calendarModalTitle =
-    document.getElementById("calendar-modal-title");
+    document.getElementById(
+        "calendar-modal-title"
+    );
 
 const calendarModalClose =
-    document.getElementById("calendar-modal-close");
+    document.getElementById(
+        "calendar-modal-close"
+    );
 
 const calendarModalBackdrop =
     document.getElementById(
@@ -51,10 +73,21 @@ const calendarEventForm =
         "calendar-event-form"
     );
 
+const eventTitleInput =
+    document.getElementById(
+        "event-title"
+    );
+
+const eventDescriptionInput =
+    document.getElementById(
+        "event-description"
+    );
+
 const eventCategoryInput =
     document.getElementById(
         "event-category"
     );
+
 
 const categoryOptions =
     document.querySelectorAll(
@@ -66,14 +99,23 @@ const categoryOptions =
    CURRENT DATE
 ========================================= */
 
-let currentDate = new Date();
+let currentDate =
+    new Date();
 
 
 /* =========================================
    SELECTED DATE
 ========================================= */
 
-let selectedDate = null;
+let selectedDate =
+    null;
+
+
+/* =========================================
+   EVENTS
+========================================= */
+
+let calendarEvents = [];
 
 
 /* =========================================
@@ -81,6 +123,7 @@ let selectedDate = null;
 ========================================= */
 
 const monthNames = [
+
     "January",
     "February",
     "March",
@@ -93,7 +136,53 @@ const monthNames = [
     "October",
     "November",
     "December"
+
 ];
+
+
+/* =========================================
+   LOAD EVENTS
+========================================= */
+
+async function loadCalendarEvents() {
+
+    const {
+        data: events,
+        error
+    } = await supabaseClient
+        .from("calendar_events")
+        .select("*")
+        .order(
+            "event_date",
+            {
+                ascending: true
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            "Error loading calendar events:",
+            error
+        );
+
+        calendarEvents = [];
+
+        renderCalendar();
+
+        return;
+
+    }
+
+
+    calendarEvents =
+        events || [];
+
+
+    renderCalendar();
+
+}
 
 
 /* =========================================
@@ -102,8 +191,13 @@ const monthNames = [
 
 function renderCalendar() {
 
-    if (!calendarGrid || !calendarMonth) {
+    if (
+        !calendarGrid ||
+        !calendarMonth
+    ) {
+
         return;
+
     }
 
 
@@ -120,7 +214,7 @@ function renderCalendar() {
         `${monthNames[month]} ${year}`;
 
 
-    /* Clear existing days */
+    /* Clear calendar */
 
     calendarGrid.innerHTML = "";
 
@@ -145,7 +239,7 @@ function renderCalendar() {
         ).getDate();
 
 
-    /* Days in previous month */
+    /* Previous month days */
 
     const daysInPreviousMonth =
         new Date(
@@ -176,7 +270,9 @@ function renderCalendar() {
             );
 
 
-        calendarGrid.appendChild(day);
+        calendarGrid.appendChild(
+            day
+        );
 
     }
 
@@ -211,7 +307,9 @@ function renderCalendar() {
             );
 
 
-        calendarGrid.appendChild(day);
+        calendarGrid.appendChild(
+            day
+        );
 
     }
 
@@ -220,10 +318,13 @@ function renderCalendar() {
        NEXT MONTH
     ===================================== */
 
-    const totalCells = 42;
+    const totalCells =
+        42;
+
 
     const cellsUsed =
         firstDay + daysInMonth;
+
 
     const remainingCells =
         totalCells - cellsUsed;
@@ -242,7 +343,9 @@ function renderCalendar() {
             );
 
 
-        calendarGrid.appendChild(day);
+        calendarGrid.appendChild(
+            day
+        );
 
     }
 
@@ -262,7 +365,9 @@ function createDayCell(
 ) {
 
     const day =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     day.className =
@@ -287,8 +392,12 @@ function createDayCell(
     }
 
 
+    /* Day number */
+
     const number =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     number.className =
@@ -299,29 +408,88 @@ function createDayCell(
         dayNumber;
 
 
-    day.appendChild(number);
+    day.appendChild(
+        number
+    );
 
 
     /* Event container */
 
-    const events =
-        document.createElement("div");
+    const eventsContainer =
+        document.createElement(
+            "div"
+        );
 
 
-    events.className =
+    eventsContainer.className =
         "calendar-events";
 
 
-    day.appendChild(events);
+    day.appendChild(
+        eventsContainer
+    );
 
 
     /* =====================================
-       CLICK CURRENT-MONTH DAYS
+       DISPLAY EVENTS
     ===================================== */
 
-    if (!otherMonth && year !== null) {
+    if (
+        !otherMonth &&
+        year !== null &&
+        month !== null
+    ) {
 
-        day.style.cursor = "pointer";
+        const dateString =
+            createDateString(
+                year,
+                month,
+                dayNumber
+            );
+
+
+        const dayEvents =
+            calendarEvents.filter(
+                (event) =>
+                    event.event_date ===
+                    dateString
+            );
+
+
+        dayEvents.forEach(
+            (event) => {
+
+                const eventElement =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                eventElement.className =
+                    `calendar-event ${event.category}`;
+
+
+                eventElement.textContent =
+                    event.title;
+
+
+                eventElement.title =
+                    event.description ||
+                    event.title;
+
+
+                eventsContainer.appendChild(
+                    eventElement
+                );
+
+            }
+        );
+
+
+        /* Make current month days clickable */
+
+        day.style.cursor =
+            "pointer";
 
 
         day.addEventListener(
@@ -346,6 +514,39 @@ function createDayCell(
 
 
 /* =========================================
+   CREATE DATE STRING
+========================================= */
+
+function createDateString(
+    year,
+    month,
+    day
+) {
+
+    const monthString =
+        String(
+            month + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const dayString =
+        String(
+            day
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    return `${year}-${monthString}-${dayString}`;
+
+}
+
+
+/* =========================================
    OPEN MODAL
 ========================================= */
 
@@ -361,6 +562,14 @@ function openCalendarModal(
 
 
     selectedDate =
+        createDateString(
+            year,
+            month,
+            day
+        );
+
+
+    const selectedDateObject =
         new Date(
             year,
             month,
@@ -369,7 +578,7 @@ function openCalendarModal(
 
 
     const formattedDate =
-        selectedDate.toLocaleDateString(
+        selectedDateObject.toLocaleDateString(
             undefined,
             {
                 month: "long",
@@ -387,6 +596,11 @@ function openCalendarModal(
     }
 
 
+    /* Show events for this day */
+
+    renderModalEvents();
+
+
     calendarModal.classList.add(
         "open"
     );
@@ -400,6 +614,143 @@ function openCalendarModal(
 
     document.body.style.overflow =
         "hidden";
+
+}
+
+
+/* =========================================
+   RENDER MODAL EVENTS
+========================================= */
+
+function renderModalEvents() {
+
+    const eventList =
+        document.getElementById(
+            "calendar-event-list"
+        );
+
+
+    if (!eventList) {
+        return;
+    }
+
+
+    eventList.innerHTML = "";
+
+
+    const dayEvents =
+        calendarEvents.filter(
+            (event) =>
+                event.event_date ===
+                selectedDate
+        );
+
+
+    if (dayEvents.length === 0) {
+
+        const emptyState =
+            document.createElement(
+                "div"
+            );
+
+
+        emptyState.className =
+            "calendar-empty-state";
+
+
+        const symbol =
+            document.createElement(
+                "span"
+            );
+
+
+        symbol.textContent =
+            "✦";
+
+
+        const text =
+            document.createElement(
+                "p"
+            );
+
+
+        text.textContent =
+            "Nothing planned for this day yet.";
+
+
+        emptyState.appendChild(
+            symbol
+        );
+
+
+        emptyState.appendChild(
+            text
+        );
+
+
+        eventList.appendChild(
+            emptyState
+        );
+
+
+        return;
+
+    }
+
+
+    dayEvents.forEach(
+        (event) => {
+
+            const eventCard =
+                document.createElement(
+                    "div"
+                );
+
+
+            eventCard.className =
+                `calendar-modal-event ${event.category}`;
+
+
+            const title =
+                document.createElement(
+                    "strong"
+                );
+
+
+            title.textContent =
+                event.title;
+
+
+            eventCard.appendChild(
+                title
+            );
+
+
+            if (event.description) {
+
+                const description =
+                    document.createElement(
+                        "p"
+                    );
+
+
+                description.textContent =
+                    event.description;
+
+
+                eventCard.appendChild(
+                    description
+                );
+
+            }
+
+
+            eventList.appendChild(
+                eventCard
+            );
+
+        }
+    );
 
 }
 
@@ -433,7 +784,7 @@ function closeCalendarModal() {
 
 
 /* =========================================
-   CLOSE BUTTON
+   MODAL BUTTONS
 ========================================= */
 
 if (calendarModalClose) {
@@ -446,10 +797,6 @@ if (calendarModalClose) {
 }
 
 
-/* =========================================
-   BACKDROP
-========================================= */
-
 if (calendarModalBackdrop) {
 
     calendarModalBackdrop.addEventListener(
@@ -459,10 +806,6 @@ if (calendarModalBackdrop) {
 
 }
 
-
-/* =========================================
-   CANCEL BUTTON
-========================================= */
 
 if (calendarCancelButton) {
 
@@ -485,7 +828,9 @@ document.addEventListener(
         if (
             event.key === "Escape" &&
             calendarModal &&
-            calendarModal.classList.contains("open")
+            calendarModal.classList.contains(
+                "open"
+            )
         ) {
 
             closeCalendarModal();
@@ -538,28 +883,165 @@ categoryOptions.forEach(
 
 
 /* =========================================
-   FORM
+   ADD EVENT
 ========================================= */
 
 if (calendarEventForm) {
 
     calendarEventForm.addEventListener(
         "submit",
-        (event) => {
+        async (event) => {
 
             event.preventDefault();
 
 
-            /*
-                Supabase comes later.
+            /* Make sure we have a date */
 
-                For now, just close the
-                modal after testing the UI.
-            */
+            if (!selectedDate) {
 
-            closeCalendarModal();
+                alert(
+                    "Please select a day first."
+                );
+
+                return;
+
+            }
+
+
+            /* Get login session */
+
+            const {
+                data: { session }
+            } =
+                await supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (!session) {
+
+                alert(
+                    "You need to be logged in to add calendar events."
+                );
+
+                return;
+
+            }
+
+
+            /* Get form values */
+
+            const title =
+                eventTitleInput.value.trim();
+
+
+            const description =
+                eventDescriptionInput.value.trim();
+
+
+            const category =
+                eventCategoryInput.value;
+
+
+            if (!title) {
+
+                return;
+
+            }
+
+
+            /* Save event */
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from("calendar_events")
+                    .insert([
+                        {
+                            title:
+                                title,
+
+                            description:
+                                description || null,
+
+                            event_date:
+                                selectedDate,
+
+                            category:
+                                category
+                        }
+                    ]);
+
+
+            if (error) {
+
+                console.error(
+                    "Error creating calendar event:",
+                    error
+                );
+
+
+                alert(
+                    "Something went wrong while adding the event."
+                );
+
+
+                return;
+
+            }
+
+
+            /* Reset form */
+
+            calendarEventForm.reset();
+
+
+            if (eventCategoryInput) {
+
+                eventCategoryInput.value =
+                    "personal";
+
+            }
+
+
+            categoryOptions.forEach(
+                (item) => {
+
+                    item.classList.remove(
+                        "selected"
+                    );
+
+                }
+            );
+
+
+            const defaultCategory =
+                document.querySelector(
+                    '.calendar-category-option[data-category="personal"]'
+                );
+
+
+            if (defaultCategory) {
+
+                defaultCategory.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+            /* Reload events */
+
+            await loadCalendarEvents();
+
+
+            /* Keep modal open */
+
+            renderModalEvents();
 
         }
+
     );
 
 }
@@ -634,4 +1116,4 @@ if (todayButton) {
    START
 ========================================= */
 
-renderCalendar();
+loadCalendarEvents();
