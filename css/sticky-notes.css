@@ -336,3 +336,404 @@
     }
 
 }
+
+/* =========================================
+   MAKE A NOTE MODAL
+========================================= */
+
+.note-modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    visibility: hidden;
+    opacity: 0;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+
+    z-index: 1000;
+}
+
+.note-modal.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.note-modal-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(43, 32, 33, 0.45);
+
+    backdrop-filter: blur(3px);
+}
+
+.note-modal-card {
+    position: relative;
+
+    width: min(100%, 560px);
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 32px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    box-shadow:
+        0 25px 60px rgba(43, 32, 33, 0.2);
+
+    transform: translateY(12px) scale(0.98);
+
+    transition: transform 0.2s ease;
+}
+
+.note-modal.open .note-modal-card {
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.note-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.note-modal-header h2 {
+    margin: 7px 0 0;
+
+    color: var(--text);
+
+    font-size: 1.65rem;
+}
+
+.note-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    background: var(--ivory);
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 1.5rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.note-modal-close:hover {
+    background: #fff0f2;
+    color: var(--cherry);
+
+    transform: rotate(4deg);
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.note-form-group {
+    margin-bottom: 24px;
+}
+
+.note-form-group label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: var(--text);
+
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.note-form-group input[type="text"],
+.note-form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    background: var(--ivory);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 0.92rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.note-form-group textarea {
+    resize: vertical;
+
+    min-height: 125px;
+}
+
+.note-form-group input:focus,
+.note-form-group textarea:focus {
+    background: var(--white);
+
+    border-color: var(--cherry-light);
+
+    box-shadow:
+        0 0 0 3px rgba(184, 74, 92, 0.1);
+}
+
+.note-form-group input::placeholder,
+.note-form-group textarea::placeholder {
+    color: #aa9994;
+}
+
+
+/* =========================================
+   COLOUR OPTIONS
+========================================= */
+
+.note-colour-options {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.note-colour-option {
+    width: 38px;
+    height: 38px;
+
+    padding: 0;
+
+    border: 3px solid transparent;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 2px 5px rgba(60, 35, 30, 0.12);
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.note-colour-option:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+.note-colour-option.selected {
+    border-color: var(--cherry);
+
+    box-shadow:
+        0 0 0 2px var(--white),
+        0 0 0 4px var(--cherry);
+}
+
+.colour-yellow {
+    background: #fff1a8;
+}
+
+.colour-pink {
+    background: #ffd3dc;
+}
+
+.colour-blue {
+    background: #cfe5f5;
+}
+
+.colour-green {
+    background: #d8edcf;
+}
+
+.colour-purple {
+    background: #e1d5f2;
+}
+
+.colour-peach {
+    background: #ffd9bc;
+}
+
+
+/* =========================================
+   SIZE OPTIONS
+========================================= */
+
+.note-size-options {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+.note-size-option {
+    padding: 10px 16px;
+
+    background: var(--ivory);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.note-size-option:hover {
+    border-color: var(--cherry-light);
+}
+
+.note-size-option.selected {
+    background: var(--cherry);
+
+    border-color: var(--cherry);
+
+    color: white;
+}
+
+
+/* =========================================
+   MODAL ACTIONS
+========================================= */
+
+.note-form-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 32px;
+    padding-top: 22px;
+
+    border-top: 1px solid var(--border);
+}
+
+.note-cancel-button,
+.note-post-button {
+    padding: 11px 18px;
+
+    border-radius: var(--radius-small);
+
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.note-cancel-button {
+    background: transparent;
+
+    border: 1px solid var(--border);
+
+    color: var(--muted);
+}
+
+.note-cancel-button:hover {
+    background: var(--ivory);
+
+    border-color: var(--cherry-light);
+
+    color: var(--text);
+}
+
+.note-post-button {
+    background: var(--cherry);
+
+    border: 1px solid var(--cherry);
+
+    color: white;
+}
+
+.note-post-button:hover {
+    background: var(--cherry-dark);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   MOBILE MODAL
+========================================= */
+
+@media (max-width: 600px) {
+
+    .note-modal {
+        padding: 15px;
+    }
+
+    .note-modal-card {
+        padding: 24px;
+
+        max-height: 94vh;
+    }
+
+    .note-form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .note-cancel-button,
+    .note-post-button {
+        width: 100%;
+    }
+
+}
