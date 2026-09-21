@@ -19,10 +19,61 @@ const todayButton =
 
 
 /* =========================================
+   MODAL
+========================================= */
+
+const calendarModal =
+    document.getElementById("calendar-modal");
+
+const calendarModalTitle =
+    document.getElementById("calendar-modal-title");
+
+const calendarModalClose =
+    document.getElementById("calendar-modal-close");
+
+const calendarModalBackdrop =
+    document.getElementById(
+        "calendar-modal-backdrop"
+    );
+
+const calendarCancelButton =
+    document.getElementById(
+        "calendar-cancel-button"
+    );
+
+
+/* =========================================
+   EVENT FORM
+========================================= */
+
+const calendarEventForm =
+    document.getElementById(
+        "calendar-event-form"
+    );
+
+const eventCategoryInput =
+    document.getElementById(
+        "event-category"
+    );
+
+const categoryOptions =
+    document.querySelectorAll(
+        ".calendar-category-option"
+    );
+
+
+/* =========================================
    CURRENT DATE
 ========================================= */
 
 let currentDate = new Date();
+
+
+/* =========================================
+   SELECTED DATE
+========================================= */
+
+let selectedDate = null;
 
 
 /* =========================================
@@ -74,12 +125,7 @@ function renderCalendar() {
     calendarGrid.innerHTML = "";
 
 
-    /*
-        First day of the month.
-        0 = Sunday
-        1 = Monday
-        etc.
-    */
+    /* First day of month */
 
     const firstDay =
         new Date(
@@ -89,9 +135,7 @@ function renderCalendar() {
         ).getDay();
 
 
-    /*
-        Number of days in current month
-    */
+    /* Days in month */
 
     const daysInMonth =
         new Date(
@@ -101,9 +145,7 @@ function renderCalendar() {
         ).getDate();
 
 
-    /*
-        Number of days in previous month
-    */
+    /* Days in previous month */
 
     const daysInPreviousMonth =
         new Date(
@@ -114,7 +156,7 @@ function renderCalendar() {
 
 
     /* =====================================
-       PREVIOUS MONTH DAYS
+       PREVIOUS MONTH
     ===================================== */
 
     for (
@@ -140,7 +182,7 @@ function renderCalendar() {
 
 
     /* =====================================
-       CURRENT MONTH DAYS
+       CURRENT MONTH
     ===================================== */
 
     const today =
@@ -163,7 +205,9 @@ function renderCalendar() {
             createDayCell(
                 dayNumber,
                 false,
-                isToday
+                isToday,
+                year,
+                month
             );
 
 
@@ -173,16 +217,13 @@ function renderCalendar() {
 
 
     /* =====================================
-       NEXT MONTH DAYS
+       NEXT MONTH
     ===================================== */
 
-    const totalCells =
-        42;
-
+    const totalCells = 42;
 
     const cellsUsed =
         firstDay + daysInMonth;
-
 
     const remainingCells =
         totalCells - cellsUsed;
@@ -215,7 +256,9 @@ function renderCalendar() {
 function createDayCell(
     dayNumber,
     otherMonth = false,
-    isToday = false
+    isToday = false,
+    year = null,
+    month = null
 ) {
 
     const day =
@@ -259,10 +302,7 @@ function createDayCell(
     day.appendChild(number);
 
 
-    /*
-        Events will eventually
-        be inserted here.
-    */
+    /* Event container */
 
     const events =
         document.createElement("div");
@@ -275,7 +315,252 @@ function createDayCell(
     day.appendChild(events);
 
 
+    /* =====================================
+       CLICK CURRENT-MONTH DAYS
+    ===================================== */
+
+    if (!otherMonth && year !== null) {
+
+        day.style.cursor = "pointer";
+
+
+        day.addEventListener(
+            "click",
+            () => {
+
+                openCalendarModal(
+                    year,
+                    month,
+                    dayNumber
+                );
+
+            }
+        );
+
+    }
+
+
     return day;
+
+}
+
+
+/* =========================================
+   OPEN MODAL
+========================================= */
+
+function openCalendarModal(
+    year,
+    month,
+    day
+) {
+
+    if (!calendarModal) {
+        return;
+    }
+
+
+    selectedDate =
+        new Date(
+            year,
+            month,
+            day
+        );
+
+
+    const formattedDate =
+        selectedDate.toLocaleDateString(
+            undefined,
+            {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
+
+    if (calendarModalTitle) {
+
+        calendarModalTitle.textContent =
+            formattedDate;
+
+    }
+
+
+    calendarModal.classList.add(
+        "open"
+    );
+
+
+    calendarModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =========================================
+   CLOSE MODAL
+========================================= */
+
+function closeCalendarModal() {
+
+    if (!calendarModal) {
+        return;
+    }
+
+
+    calendarModal.classList.remove(
+        "open"
+    );
+
+
+    calendarModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+if (calendarModalClose) {
+
+    calendarModalClose.addEventListener(
+        "click",
+        closeCalendarModal
+    );
+
+}
+
+
+/* =========================================
+   BACKDROP
+========================================= */
+
+if (calendarModalBackdrop) {
+
+    calendarModalBackdrop.addEventListener(
+        "click",
+        closeCalendarModal
+    );
+
+}
+
+
+/* =========================================
+   CANCEL BUTTON
+========================================= */
+
+if (calendarCancelButton) {
+
+    calendarCancelButton.addEventListener(
+        "click",
+        closeCalendarModal
+    );
+
+}
+
+
+/* =========================================
+   ESCAPE KEY
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Escape" &&
+            calendarModal &&
+            calendarModal.classList.contains("open")
+        ) {
+
+            closeCalendarModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   CATEGORY SELECTION
+========================================= */
+
+categoryOptions.forEach(
+    (option) => {
+
+        option.addEventListener(
+            "click",
+            () => {
+
+                categoryOptions.forEach(
+                    (item) => {
+
+                        item.classList.remove(
+                            "selected"
+                        );
+
+                    }
+                );
+
+
+                option.classList.add(
+                    "selected"
+                );
+
+
+                if (eventCategoryInput) {
+
+                    eventCategoryInput.value =
+                        option.dataset.category;
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================
+   FORM
+========================================= */
+
+if (calendarEventForm) {
+
+    calendarEventForm.addEventListener(
+        "submit",
+        (event) => {
+
+            event.preventDefault();
+
+
+            /*
+                Supabase comes later.
+
+                For now, just close the
+                modal after testing the UI.
+            */
+
+            closeCalendarModal();
+
+        }
+    );
 
 }
 
