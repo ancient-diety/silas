@@ -973,26 +973,17 @@ if (calendarEventForm) {
 
             /* Save event */
 
-            const {
-                error
-            } =
-                await supabaseClient
-                    .from("calendar_events")
-                    .insert([
-                        {
-                            title:
-                                title,
-
-                            description:
-                                description || null,
-
-                            event_date:
-                                selectedDate,
-
-                            category:
-                                category
-                        }
-                    ]);
+            const { error } = await supabaseClient
+    .from("calendar_events")
+    .insert([
+        {
+            title: title,
+            description: description,
+            event_date: selectedDate,
+            category: category,
+            is_annual: isAnnual
+        }
+    ]);
 
 
             if (error) {
