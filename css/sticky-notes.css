@@ -1,0 +1,338 @@
+/* =========================================
+   STICKY NOTES
+========================================= */
+
+.sticky-header {
+    padding: 70px 0 45px;
+}
+
+.sticky-eyebrow {
+    display: block;
+    margin-top: 24px;
+    margin-bottom: 12px;
+
+    color: var(--cherry);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+.sticky-header h1 {
+    margin: 0 0 14px;
+
+    color: var(--text);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+}
+
+.sticky-header p {
+    max-width: 620px;
+    margin: 0;
+
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   BOARD HEADER
+========================================= */
+
+.sticky-board-section {
+    padding: 20px 0 100px;
+}
+
+.sticky-board-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+
+    margin-bottom: 45px;
+}
+
+.sticky-board-header h2 {
+    margin: 8px 0 0;
+
+    color: var(--text);
+    font-size: 1.7rem;
+}
+
+.make-note-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    background: var(--cherry);
+    border: none;
+    border-radius: var(--radius-small);
+
+    color: white;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.make-note-button span {
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.make-note-button:hover {
+    background: var(--cherry-dark);
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(105, 27, 42, 0.18);
+}
+
+
+/* =========================================
+   STICKY BOARD
+========================================= */
+
+.sticky-board {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(240px, 1fr));
+
+    gap: 55px 40px;
+
+    padding: 45px 30px 70px;
+
+    background: var(--ivory-dark);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-large);
+}
+
+
+/* =========================================
+   NOTES
+========================================= */
+
+.sticky-note {
+    position: relative;
+
+    min-height: 190px;
+
+    padding: 32px 25px 22px;
+
+    border-radius: 3px;
+
+    box-shadow:
+        0 12px 24px rgba(60, 35, 30, 0.12),
+        0 3px 6px rgba(60, 35, 30, 0.08);
+
+    transform-origin: top center;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.sticky-note:hover {
+    transform:
+        translateY(-5px)
+        rotate(0deg);
+
+    box-shadow:
+        0 18px 32px rgba(60, 35, 30, 0.16),
+        0 4px 8px rgba(60, 35, 30, 0.08);
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   NOTE SIZES
+========================================= */
+
+.note-small {
+    min-height: 160px;
+}
+
+.note-medium {
+    min-height: 205px;
+}
+
+.note-large {
+    min-height: 260px;
+}
+
+
+/* =========================================
+   NOTE COLOURS
+========================================= */
+
+.note-yellow {
+    background: #fff1a8;
+}
+
+.note-pink {
+    background: #ffd3dc;
+}
+
+.note-blue {
+    background: #cfe5f5;
+}
+
+.note-green {
+    background: #d8edcf;
+}
+
+.note-purple {
+    background: #e1d5f2;
+}
+
+.note-peach {
+    background: #ffd9bc;
+}
+
+
+/* =========================================
+   PIN
+========================================= */
+
+.sticky-pin {
+    position: absolute;
+
+    top: -10px;
+    left: 50%;
+
+    width: 18px;
+    height: 18px;
+
+    transform: translateX(-50%);
+
+    background: var(--cherry);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 3px 5px rgba(50, 20, 25, 0.25);
+
+    z-index: 2;
+}
+
+.sticky-pin::after {
+    content: "";
+
+    position: absolute;
+
+    top: 4px;
+    left: 5px;
+
+    width: 5px;
+    height: 5px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    border-radius: 50%;
+}
+
+
+/* =========================================
+   NOTE CONTENT
+========================================= */
+
+.sticky-note-content h3 {
+    margin: 0 0 12px;
+
+    color: #352526;
+
+    font-size: 1.15rem;
+    line-height: 1.2;
+}
+
+.sticky-note-content p {
+    margin: 0;
+
+    color: #493b3b;
+
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.sticky-note-footer {
+    margin-top: 25px;
+
+    color: rgba(60, 40, 40, 0.62);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   HANGING ROTATIONS
+========================================= */
+
+.sticky-note:nth-child(1) {
+    transform: rotate(-1.5deg);
+}
+
+.sticky-note:nth-child(2) {
+    transform: rotate(2deg);
+}
+
+.sticky-note:nth-child(3) {
+    transform: rotate(-2deg);
+}
+
+.sticky-note:nth-child(4) {
+    transform: rotate(1.2deg);
+}
+
+.sticky-note:nth-child(5) {
+    transform: rotate(-1deg);
+}
+
+.sticky-note:nth-child(6) {
+    transform: rotate(2.5deg);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .sticky-header {
+        padding: 50px 0 30px;
+    }
+
+    .sticky-board-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .make-note-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .sticky-board {
+        grid-template-columns: 1fr;
+
+        padding: 35px 20px 50px;
+
+        gap: 45px;
+    }
+
+    .sticky-note {
+        width: 100%;
+    }
+
+}
