@@ -760,3 +760,28 @@
 .make-note-button.authenticated {
     display: inline-flex;
 }
+
+.sticky-note-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+
+.sticky-delete-button {
+    border: none;
+    background: transparent;
+    color: var(--cherry);
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+
+.sticky-delete-button:hover {
+    color: var(--cherry-dark);
+    text-decoration: underline;
+}
