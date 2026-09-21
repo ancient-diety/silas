@@ -204,7 +204,7 @@ if (noteForm) {
 
     noteForm.addEventListener(
         "submit",
-        (event) => {
+        async (event) => {
 
             event.preventDefault();
 
@@ -229,15 +229,235 @@ if (noteForm) {
                 ).value;
 
 
-            console.log({
-                title,
-                content,
-                colour,
-                size
+            /* Check that someone is logged in */
+
+            const {
+                data: { session }
+            } = await supabaseClient.auth.getSession();
+
+
+            if (!session) {
+
+                alert(
+                    "You need to be logged in to post a note."
+                );
+
+                return;
+
+            }
+
+
+            /* Get the author's name */
+
+            const author =
+                session.user.user_metadata?.display_name
+                || "System member";
+
+
+            /* Save the note */
+
+            const {
+                error
+            } = await supabaseClient
+                .from("sticky_notes")
+                .insert([
+                    {
+                        title: title || null,
+                        content: content,
+                        color: colour,
+                        size: size,
+                        author: author
+                    }
+                ]);
+
+
+            if (error) {
+
+                console.error(
+                    "Error creating sticky note:",
+                    error
+                );
+
+                alert(
+                    "Something went wrong while posting the note."
+                );
+
+                return;
+
+            }
+
+
+            /* Reset the form */
+
+            noteForm.reset();
+
+            if (colourInput) {
+                colourInput.value = "yellow";
+            }
+
+            if (sizeInput) {
+                sizeInput.value = "medium";
+            }
+
+
+            /* Reset colour selection */
+
+            colourOptions.forEach((item) => {
+                item.classList.remove("selected");
             });
+
+            if (defaultColour) {
+                defaultColour.classList.add("selected");
+            }
+
+
+            /* Reset size selection */
+
+            sizeOptions.forEach((item) => {
+                item.classList.remove("selected");
+            });
+
+            const defaultSize =
+                document.querySelector(
+                    '.note-size-option[data-size="medium"]'
+                );
+
+            if (defaultSize) {
+                defaultSize.classList.add("selected");
+            }
+
 
             closeNoteModal();
 
+
+            /* Reload notes */
+
+            loadStickyNotes();
+
+        }
+
+    );
+
+}
+
+
+/* =========================================
+   LOAD STICKY NOTES
+========================================= */
+
+async function loadStickyNotes() {
+
+    const stickyBoard =
+        document.getElementById("sticky-board");
+
+    if (!stickyBoard) return;
+
+
+    const {
+        data: notes,
+        error
+    } = await supabaseClient
+        .from("sticky_notes")
+        .select("*")
+        .order("created_at", {
+            ascending: false
+        });
+
+
+    if (error) {
+
+        console.error(
+            "Error loading sticky notes:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    /* Remove example notes */
+
+    stickyBoard.innerHTML = "";
+
+
+    notes.forEach((note) => {
+
+        const article =
+            document.createElement("article");
+
+        article.className =
+            `sticky-note note-${note.color} note-${note.size}`;
+
+
+        const pin =
+            document.createElement("div");
+
+        pin.className =
+            "sticky-pin";
+
+
+        const content =
+            document.createElement("div");
+
+        content.className =
+            "sticky-note-content";
+
+
+        const heading =
+            document.createElement("h3");
+
+        heading.textContent =
+            note.title || "Untitled";
+
+
+        const paragraph =
+            document.createElement("p");
+
+        paragraph.textContent =
+            note.content;
+
+
+        content.appendChild(heading);
+        content.appendChild(paragraph);
+
+
+        const footer =
+            document.createElement("div");
+
+        footer.className =
+            "sticky-note-footer";
+
+        footer.textContent =
+            `${note.author} · ${formatNoteDate(note.created_at)}`;
+
+
+        article.appendChild(pin);
+        article.appendChild(content);
+        article.appendChild(footer);
+
+
+        stickyBoard.appendChild(article);
+
+    });
+
+}
+
+
+/* =========================================
+   NOTE DATE
+========================================= */
+
+function formatNoteDate(dateString) {
+
+    const date =
+        new Date(dateString);
+
+    return date.toLocaleDateString(
+        undefined,
+        {
+            day: "numeric",
+            month: "short"
         }
     );
 
@@ -249,3 +469,4 @@ if (noteForm) {
 ========================================= */
 
 checkLogin();
+loadStickyNotes();
