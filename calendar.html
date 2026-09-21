@@ -207,6 +207,196 @@
 
     </main>
 
+        <!-- ================================
+         EVENT MODAL
+    ================================= -->
+
+    <div
+        class="calendar-modal"
+        id="calendar-modal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="calendar-modal-backdrop"
+            id="calendar-modal-backdrop"
+        ></div>
+
+
+        <div
+            class="calendar-modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="calendar-modal-title"
+        >
+
+            <!-- Modal header -->
+
+            <div class="calendar-modal-header">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        CALENDAR EVENT
+                    </span>
+
+                    <h2 id="calendar-modal-title">
+                        September 21, 2026
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="calendar-modal-close"
+                    id="calendar-modal-close"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- Existing events -->
+
+            <div
+                class="calendar-event-list"
+                id="calendar-event-list"
+            >
+
+                <div class="calendar-empty-state">
+                    <span>✦</span>
+
+                    <p>
+                        Nothing planned for this day yet.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- Add event -->
+
+            <div class="calendar-add-event">
+
+                <span class="calendar-add-event-label">
+                    ADD SOMETHING
+                </span>
+
+                <form id="calendar-event-form">
+
+                    <div class="calendar-form-group">
+
+                        <label for="event-title">
+                            Event title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="event-title"
+                            placeholder="Birthday, appointment, plans..."
+                            maxlength="80"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="calendar-form-group">
+
+                        <label for="event-description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="event-description"
+                            rows="3"
+                            placeholder="Anything else to remember?"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="calendar-form-group">
+
+                        <label>
+                            Category
+                        </label>
+
+
+                        <div class="calendar-category-options">
+
+                            <button
+                                type="button"
+                                class="calendar-category-option birthday"
+                                data-category="birthday"
+                            >
+                                Birthday
+                            </button>
+
+                            <button
+                                type="button"
+                                class="calendar-category-option important"
+                                data-category="important"
+                            >
+                                Important
+                            </button>
+
+                            <button
+                                type="button"
+                                class="calendar-category-option personal selected"
+                                data-category="personal"
+                            >
+                                Personal
+                            </button>
+
+                            <button
+                                type="button"
+                                class="calendar-category-option system"
+                                data-category="system"
+                            >
+                                System
+                            </button>
+
+                        </div>
+
+                        <input
+                            type="hidden"
+                            id="event-category"
+                            value="personal"
+                        >
+
+                    </div>
+
+
+                    <div class="calendar-form-actions">
+
+                        <button
+                            type="button"
+                            class="calendar-cancel-button"
+                            id="calendar-cancel-button"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="calendar-save-button"
+                        >
+                            Add event
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
 
     <!-- ================================
          FOOTER :3
