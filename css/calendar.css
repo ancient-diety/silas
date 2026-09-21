@@ -1110,6 +1110,56 @@
     line-height: 1.5;
 }
 
+.calendar-event-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(143, 38, 56, 0.12);
+}
+
+.calendar-event-actions button {
+    border: none;
+    border-radius: 9px;
+    padding: 6px 11px;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.calendar-edit-button {
+    background: rgba(143, 38, 56, 0.09);
+    color: var(--cherry);
+}
+
+.calendar-edit-button:hover {
+    background: rgba(143, 38, 56, 0.16);
+    color: var(--cherry-dark);
+    transform: translateY(-1px);
+}
+
+.calendar-delete-button {
+    background: rgba(128, 111, 107, 0.09);
+    color: var(--muted);
+}
+
+.calendar-delete-button:hover {
+    background: rgba(143, 38, 56, 0.09);
+    color: var(--cherry-dark);
+    transform: translateY(-1px);
+}
+
+.calendar-event-actions button:focus-visible {
+    outline: 2px solid var(--cherry-light);
+    outline-offset: 2px;
+}
+
 
 /* Event category colours */
 
