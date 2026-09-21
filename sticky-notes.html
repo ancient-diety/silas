@@ -213,6 +213,212 @@
 
     </main>
 
+    <!-- ================================
+     MAKE A NOTE MODAL
+================================= -->
+
+<div
+    class="note-modal"
+    id="note-modal"
+    aria-hidden="true"
+>
+
+    <div class="note-modal-backdrop" id="note-modal-backdrop"></div>
+
+    <div
+        class="note-modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="note-modal-title"
+    >
+
+        <div class="note-modal-header">
+
+            <div>
+                <span class="section-eyebrow">
+                    NEW NOTE
+                </span>
+
+                <h2 id="note-modal-title">
+                    Make a note
+                </h2>
+            </div>
+
+            <button
+                type="button"
+                class="note-modal-close"
+                id="note-modal-close"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="note-form">
+
+            <div class="note-form-group">
+
+                <label for="note-title">
+                    Title
+                </label>
+
+                <input
+                    type="text"
+                    id="note-title"
+                    placeholder="Don't forget!"
+                    maxlength="80"
+                >
+
+            </div>
+
+
+            <div class="note-form-group">
+
+                <label for="note-content">
+                    Note
+                </label>
+
+                <textarea
+                    id="note-content"
+                    rows="5"
+                    placeholder="Write something..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="note-form-group">
+
+                <label>
+                    Colour
+                </label>
+
+                <div class="note-colour-options">
+
+                    <button
+                        type="button"
+                        class="note-colour-option colour-yellow"
+                        data-colour="yellow"
+                        aria-label="Yellow"
+                    ></button>
+
+                    <button
+                        type="button"
+                        class="note-colour-option colour-pink"
+                        data-colour="pink"
+                        aria-label="Pink"
+                    ></button>
+
+                    <button
+                        type="button"
+                        class="note-colour-option colour-blue"
+                        data-colour="blue"
+                        aria-label="Blue"
+                    ></button>
+
+                    <button
+                        type="button"
+                        class="note-colour-option colour-green"
+                        data-colour="green"
+                        aria-label="Green"
+                    ></button>
+
+                    <button
+                        type="button"
+                        class="note-colour-option colour-purple"
+                        data-colour="purple"
+                        aria-label="Purple"
+                    ></button>
+
+                    <button
+                        type="button"
+                        class="note-colour-option colour-peach"
+                        data-colour="peach"
+                        aria-label="Peach"
+                    ></button>
+
+                </div>
+
+                <input
+                    type="hidden"
+                    id="note-colour"
+                    value="yellow"
+                >
+
+            </div>
+
+
+            <div class="note-form-group">
+
+                <label>
+                    Size
+                </label>
+
+                <div class="note-size-options">
+
+                    <button
+                        type="button"
+                        class="note-size-option"
+                        data-size="small"
+                    >
+                        Small
+                    </button>
+
+                    <button
+                        type="button"
+                        class="note-size-option selected"
+                        data-size="medium"
+                    >
+                        Medium
+                    </button>
+
+                    <button
+                        type="button"
+                        class="note-size-option"
+                        data-size="large"
+                    >
+                        Large
+                    </button>
+
+                </div>
+
+                <input
+                    type="hidden"
+                    id="note-size"
+                    value="medium"
+                >
+
+            </div>
+
+
+            <div class="note-form-actions">
+
+                <button
+                    type="button"
+                    class="note-cancel-button"
+                    id="note-cancel-button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="note-post-button"
+                >
+                    Post note
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
 
       <!-- ================================
          FOOTER
