@@ -1075,3 +1075,67 @@
     }
 
 }
+
+/* =========================================
+   EVENTS INSIDE MODAL
+========================================= */
+
+.calendar-modal-event {
+    padding: 13px 15px;
+
+    border-radius: 13px;
+
+    border-left: 4px solid transparent;
+}
+
+
+.calendar-modal-event strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--text);
+
+    font-size: 0.88rem;
+}
+
+
+.calendar-modal-event p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 0.78rem;
+
+    line-height: 1.5;
+}
+
+
+/* Event category colours */
+
+.calendar-modal-event.birthday {
+    background: #fff0f3;
+
+    border-left-color: #d9788a;
+}
+
+
+.calendar-modal-event.important {
+    background: #fff9d9;
+
+    border-left-color: #d2b83c;
+}
+
+
+.calendar-modal-event.personal {
+    background: #edf6fc;
+
+    border-left-color: #78a9ca;
+}
+
+
+.calendar-modal-event.system {
+    background: #edf6e9;
+
+    border-left-color: #8bb47c;
+}
