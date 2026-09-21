@@ -737,3 +737,15 @@
     }
 
 }
+
+/* =========================================
+   STICKY NOTE SIZE FIX
+========================================= */
+
+.sticky-board {
+    align-items: start;
+}
+
+.sticky-note {
+    align-self: start;
+}
