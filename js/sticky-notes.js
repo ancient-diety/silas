@@ -428,13 +428,53 @@ async function loadStickyNotes() {
 
 
         const footer =
-            document.createElement("div");
+    document.createElement("div");
 
-        footer.className =
-            "sticky-note-footer";
+footer.className =
+    "sticky-note-footer";
 
-        footer.textContent =
-            `${note.author} · ${formatNoteDate(note.created_at)}`;
+
+const authorDate =
+    document.createElement("span");
+
+authorDate.textContent =
+    `${note.author} · ${formatNoteDate(note.created_at)}`;
+
+
+footer.appendChild(authorDate);
+
+
+/* Delete button for authenticated users */
+
+const {
+    data: { session }
+} = await supabaseClient.auth.getSession();
+
+
+if (session) {
+
+    const deleteButton =
+        document.createElement("button");
+
+    deleteButton.type =
+        "button";
+
+    deleteButton.className =
+        "sticky-delete-button";
+
+    deleteButton.textContent =
+        "Delete note";
+
+
+    deleteButton.addEventListener(
+        "click",
+        () => deleteStickyNote(note.id)
+    );
+
+
+    footer.appendChild(deleteButton);
+
+}
 
 
         article.appendChild(pin);
@@ -448,6 +488,44 @@ async function loadStickyNotes() {
 
 }
 
+async function deleteStickyNote(noteId) {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this note?"
+        );
+
+
+    if (!confirmed) return;
+
+
+    const {
+        error
+    } = await supabaseClient
+        .from("sticky_notes")
+        .delete()
+        .eq("id", noteId);
+
+
+    if (error) {
+
+        console.error(
+            "Error deleting sticky note:",
+            error
+        );
+
+        alert(
+            "Something went wrong while deleting the note."
+        );
+
+        return;
+
+    }
+
+
+    loadStickyNotes();
+
+}
 
 /* =========================================
    NOTE DATE
