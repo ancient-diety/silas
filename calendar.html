@@ -1,1 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calendar.css">
+
+    <title>Our Calendar</title>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         NAVIGATION
+    ================================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="nav-logo">
+            Our System
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="members.html">
+                Members
+            </a>
+
+            <a href="experience.html">
+                Experience
+            </a>
+
+            <a href="triggers.html">
+                Triggers
+            </a>
+
+            <a href="boundaries.html">
+                Boundaries
+            </a>
+
+            <a href="fronting.html">
+                Front Logs
+            </a>
+
+            <a href="sticky-notes.html">
+                Sticky Notes
+            </a>
+
+            <a href="calendar.html" class="active">
+                Our Calendar
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================================
+         CALENDAR
+    ================================= -->
+
+    <main class="calendar-page">
+
+
+        <!-- Decorative calendar frame -->
+
+        <section class="calendar-frame">
+
+            <div class="calendar-decoration calendar-decoration-top-left">
+                ✦
+            </div>
+
+            <div class="calendar-decoration calendar-decoration-top-right">
+                ❀
+            </div>
+
+            <div class="calendar-decoration calendar-decoration-bottom-left">
+                ❀
+            </div>
+
+            <div class="calendar-decoration calendar-decoration-bottom-right">
+                ✦
+            </div>
+
+
+            <!-- Calendar heading -->
+
+            <div class="calendar-heading">
+
+                <div class="calendar-heading-text">
+
+                    <span class="section-eyebrow">
+                        OUR CALENDAR
+                    </span>
+
+                    <h1 id="calendar-month">
+                        September 2026
+                    </h1>
+
+                    <p>
+                        Important dates, events, birthdays and little things we don't want to forget.
+                    </p>
+
+                </div>
+
+
+                <!-- Calendar controls -->
+
+                <div class="calendar-controls">
+
+                    <button
+                        type="button"
+                        id="previous-month"
+                        aria-label="Previous month"
+                    >
+                        ‹
+                    </button>
+
+                    <button
+                        type="button"
+                        id="today-button"
+                        class="today-button"
+                    >
+                        Today
+                    </button>
+
+                    <button
+                        type="button"
+                        id="next-month"
+                        aria-label="Next month"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Calendar -->
+
+            <div class="calendar-wrapper">
+
+                <!-- Days of the week -->
+
+                <div class="calendar-weekdays">
+
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+
+                </div>
+
+
+                <!-- Calendar days -->
+
+                <div
+                    class="calendar-grid"
+                    id="calendar-grid"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- Calendar legend -->
+
+            <div class="calendar-legend">
+
+                <div class="legend-item">
+                    <span class="legend-dot birthday"></span>
+                    Birthdays
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-dot important"></span>
+                    Important
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-dot personal"></span>
+                    Personal
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-dot system"></span>
+                    System
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================
+         FOOTER :3
+    ================================= -->
+
+    <footer>
+
+        <div class="footer-left">
+            Our System
+        </div>
+
+        <div class="footer-right">
+            Made by us ♡
+        </div>
+
+    </footer>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script src="js/calendar.js"></script>
+
+</body>
+
+</html>
