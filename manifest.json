@@ -1,0 +1,15 @@
+{
+    "name": "Silas",
+    "short_name": "Silas",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#fff8ed",
+    "theme_color": "#8f2638",
+    "icons": [
+        {
+            "src": "./silas.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
