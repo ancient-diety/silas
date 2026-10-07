@@ -5,39 +5,71 @@
 
 .seth-page {
 
-    --ivory: #cdb487;
-    --ivory-dark: #a98d61;
+    --ivory: #d1b27d;
+    --ivory-dark: #ae8d5c;
 
-    --cherry: #7b1725;
-    --cherry-dark: #4f0d17;
-    --cherry-light: #963444;
+    --cherry: #b11226;
+    --cherry-dark: #780014;
+    --cherry-light: #d21f35;
 
-    --text: #241914;
-    --muted: #5d4937;
+    --text: #241812;
+    --muted: #5c4634;
 
-    --border: #927650;
-    --white: #dfc99d;
+    --border: #8e704a;
+    --white: #e5cca0;
+
+    position: relative;
 
     background-color: var(--ivory);
 
+    /*
+        Layered sandstone texture.
+        The tiny repeating gradients create
+        a porous, uneven stone appearance.
+    */
     background-image:
+
+        radial-gradient(
+            circle at 18% 27%,
+            rgba(82, 54, 31, 0.10) 0 1px,
+            transparent 2px
+        ),
+
+        radial-gradient(
+            circle at 73% 62%,
+            rgba(255, 241, 205, 0.18) 0 1px,
+            transparent 2px
+        ),
+
+        radial-gradient(
+            circle at 42% 84%,
+            rgba(82, 54, 31, 0.07) 0 2px,
+            transparent 3px
+        ),
+
         linear-gradient(
             90deg,
-            rgba(75, 48, 28, 0.025) 1px,
+            rgba(86, 56, 32, 0.035) 1px,
             transparent 1px
         ),
+
         linear-gradient(
-            rgba(75, 48, 28, 0.025) 1px,
+            rgba(255, 244, 210, 0.04) 1px,
             transparent 1px
         );
 
-    background-size: 37px 37px;
+    background-size:
+        31px 29px,
+        43px 47px,
+        67px 61px,
+        19px 19px,
+        23px 23px;
 
 }
 
 
 /* =========================================
-   AGED STONE OVERLAY
+   ATMOSPHERIC STONE GRAIN
 ========================================= */
 
 .seth-page::before {
@@ -50,21 +82,23 @@
 
     pointer-events: none;
 
-    z-index: 50;
+    z-index: 20;
 
     background:
+
         radial-gradient(
-            circle at 20% 20%,
-            rgba(255,255,255,0.12),
-            transparent 30%
+            ellipse at 15% 10%,
+            rgba(255, 244, 210, 0.16),
+            transparent 32%
         ),
+
         radial-gradient(
-            circle at 80% 70%,
-            rgba(67, 42, 23, 0.08),
+            ellipse at 90% 80%,
+            rgba(74, 42, 20, 0.10),
             transparent 35%
         );
 
-    opacity: 0.65;
+    opacity: 0.9;
 
 }
 
@@ -81,17 +115,19 @@
     position: fixed;
 
     right: 2%;
-    bottom: 7%;
+    bottom: 6%;
 
-    color: rgba(79, 13, 23, 0.11);
+    color:
+        rgba(120, 0, 20, 0.13);
 
-    font-size: clamp(1rem, 2vw, 1.7rem);
+    font-size:
+        clamp(1rem, 2vw, 1.8rem);
 
     letter-spacing: 0.35em;
 
     pointer-events: none;
 
-    transform: rotate(-2deg);
+    transform: rotate(-3deg);
 
 }
 
@@ -110,27 +146,6 @@
 }
 
 
-.seth-page .navbar::after {
-
-    content: "𓊃𓂧𓁣";
-
-    position: absolute;
-
-    right: 0;
-
-    bottom: -11px;
-
-    padding: 0 12px;
-
-    background: var(--ivory);
-
-    color: var(--cherry);
-
-    font-size: 0.9rem;
-
-}
-
-
 .seth-page .nav-logo {
 
     color: var(--cherry);
@@ -139,8 +154,6 @@
         Georgia,
         "Times New Roman",
         serif;
-
-    letter-spacing: 0.05em;
 
 }
 
@@ -154,6 +167,36 @@
 
 
 /* =========================================
+   TEMPLE MARK
+========================================= */
+
+.seth-page .navbar::after {
+
+    content:
+        "𓊃𓂧𓁣";
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: -12px;
+
+    padding:
+        0 12px;
+
+    background:
+        var(--ivory);
+
+    color:
+        var(--cherry);
+
+    font-size:
+        0.95rem;
+
+}
+
+
+/* =========================================
    PROFILE HEADER
 ========================================= */
 
@@ -161,33 +204,28 @@
 
     position: relative;
 
-    padding-top: 100px;
-
-    padding-bottom: 40px;
+    padding-top: 90px;
 
 }
 
 
-/*
-    A temple-style horizontal divider.
-*/
-
 .seth-page .profile-header::before {
 
     content:
-        "𓏏 𓊃 𓂧 𓁣 𓏏";
+        "𓊃𓂧𓁣";
 
     display: block;
 
-    margin-bottom: 35px;
+    margin-bottom: 24px;
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
-    font-size: 1.15rem;
+    font-size:
+        2.2rem;
 
-    letter-spacing: 0.55em;
-
-    opacity: 0.9;
+    letter-spacing:
+        0.18em;
 
 }
 
@@ -195,105 +233,67 @@
 .seth-page .profile-header::after {
 
     content:
-        "𓏏 𓏏 𓏏 𓏏 𓏏 𓏏 𓏏";
+        "𓏏 𓏏 𓏏 𓏏 𓏏";
 
     display: block;
 
     width: fit-content;
 
-    margin-top: 30px;
+    margin-top: 28px;
 
-    padding: 5px 14px;
-
-    color: var(--cherry);
+    padding:
+        7px 12px;
 
     border-top:
-        2px solid var(--cherry);
+        3px solid var(--cherry);
 
     border-bottom:
         1px solid var(--border);
 
-    letter-spacing: 0.35em;
+    color:
+        var(--cherry);
 
-    font-size: 0.75rem;
+    letter-spacing:
+        0.35em;
 
 }
 
 
 .seth-page .profile-eyebrow {
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
     font-family:
         Georgia,
         "Times New Roman",
         serif;
 
-    letter-spacing: 0.28em;
+    letter-spacing:
+        0.22em;
 
 }
 
 
 .seth-page .profile-header h1 {
 
-    color: var(--text);
+    color:
+        var(--text);
 
     font-family:
         Georgia,
         "Times New Roman",
         serif;
-
-    font-weight: 700;
-
-    letter-spacing: -0.05em;
 
     text-shadow:
-        2px 2px 0 rgba(79, 13, 23, 0.12);
-
-}
-
-
-.seth-page .profile-role {
-
-    color: var(--cherry);
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-weight: 700;
+        3px 3px 0
+        rgba(177, 18, 38, 0.14);
 
 }
 
 
 /* =========================================
-   BACK LINK
-========================================= */
-
-.seth-page .back-link {
-
-    color: var(--cherry);
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-weight: 700;
-
-}
-
-
-.seth-page .back-link:hover {
-
-    color: var(--cherry-dark);
-
-}
-
-
-/* =========================================
-   SECTION STRUCTURE
+   SECTIONS
 ========================================= */
 
 .seth-page .profile-section {
@@ -306,24 +306,21 @@
 }
 
 
-/*
-    Small carved marker at each section.
-*/
-
 .seth-page .profile-section::before {
 
-    content: "𓏏";
+    content:
+        "𓏏";
 
     position: absolute;
 
     top: 34px;
-    left: -34px;
+    left: -30px;
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
-    font-size: 1rem;
-
-    opacity: 0.75;
+    opacity:
+        0.8;
 
 }
 
@@ -336,8 +333,6 @@
 
     position: relative;
 
-    padding-bottom: 20px;
-
 }
 
 
@@ -348,41 +343,67 @@
 
     display: block;
 
-    margin-top: 18px;
+    margin-top: 16px;
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
-    letter-spacing: 0.35em;
-
-    font-size: 0.75rem;
+    letter-spacing:
+        0.3em;
 
 }
 
 
 .seth-page .profile-section-heading h2 {
 
-    color: var(--text);
+    color:
+        var(--text);
 
     font-family:
         Georgia,
         "Times New Roman",
         serif;
-
-    letter-spacing: -0.025em;
 
 }
 
 
 .seth-page .eyebrow {
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+}
 
-    letter-spacing: 0.2em;
+
+/* =========================================
+   SANDSTONE CARDS
+========================================= */
+
+.seth-page .profile-about,
+.seth-page .profile-fact,
+.seth-page .profile-list-card,
+.seth-page .relationship-card {
+
+    background-color:
+        #d8bb86;
+
+    background-image:
+
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(70, 43, 23, 0.09) 0 1px,
+            transparent 2px
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 240, 201, 0.15) 0 1px,
+            transparent 2px
+        );
+
+    background-size:
+        29px 31px,
+        41px 37px;
 
 }
 
@@ -395,64 +416,74 @@
 
     position: relative;
 
-    padding: 42px;
+    padding: 38px;
 
     border:
-
         1px solid var(--border);
 
     border-left:
-
-        7px solid var(--cherry);
-
-    background:
-
-        rgba(224, 201, 158, 0.38);
+        8px solid var(--cherry);
 
     box-shadow:
-
-        8px 8px 0
-        rgba(79, 13, 23, 0.08);
+        9px 9px 0
+        rgba(72, 38, 18, 0.13);
 
 }
 
 
 /*
-    Seth animal glyph / temple mark.
+    Chipped-looking top-right corner.
 */
 
-.seth-page .profile-about::before {
+.seth-page .profile-about::after {
 
-    content:
-        "𓊃𓂧𓁣";
+    content: "";
 
     position: absolute;
 
-    top: 20px;
-    right: 25px;
+    top: -1px;
+    right: -1px;
 
-    color: var(--cherry);
+    width: 34px;
+    height: 34px;
 
-    font-family:
-        "Times New Roman",
-        serif;
+    background:
+        var(--ivory);
 
-    font-size: 1.5rem;
-
-    opacity: 0.45;
+    clip-path:
+        polygon(
+            35% 0,
+            100% 0,
+            100% 65%
+        );
 
 }
 
 
-.seth-page .profile-about-text p {
+.seth-page .profile-about::before {
 
-    color: var(--muted);
+    content:
+        "𓊃";
+
+    position: absolute;
+
+    top: 15px;
+    right: 43px;
+
+    color:
+        var(--cherry);
+
+    font-size:
+        1.7rem;
+
+    opacity:
+        0.65;
 
 }
 
 
 /* =========================================
-   FACTS
+   FACT CARDS
 ========================================= */
 
 .seth-page .profile-fact {
@@ -462,47 +493,60 @@
     border:
         1px solid var(--border);
 
-    border-radius: 2px;
+    border-radius:
+        3px;
 
-    background:
-        rgba(231, 211, 173, 0.55);
+    box-shadow:
+        4px 5px 0
+        rgba(72, 38, 18, 0.09);
+
+}
+
+
+.seth-page .profile-fact:nth-child(2) {
+
+    transform:
+        translateY(5px);
 
 }
 
 
 .seth-page .profile-fact::before {
 
-    content: "𓏏";
+    content:
+        "𓏏";
 
     position: absolute;
 
-    top: 9px;
+    top: 10px;
     right: 12px;
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
-    opacity: 0.5;
+    opacity:
+        0.55;
 
 }
 
 
 .seth-page .profile-fact-label {
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
     font-family:
         Georgia,
         "Times New Roman",
         serif;
 
-    letter-spacing: 0.12em;
-
 }
 
 
 .seth-page .profile-fact-value {
 
-    color: var(--text);
+    color:
+        var(--text);
 
 }
 
@@ -516,12 +560,14 @@
     border:
         1px solid var(--border);
 
-    border-radius: 2px;
+    border-radius:
+        3px;
 
     background:
-        rgba(232, 211, 171, 0.7);
+        #d8bb86;
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
     font-family:
         Georgia,
@@ -529,33 +575,40 @@
         serif;
 
     box-shadow:
-        3px 3px 0
-        rgba(79, 13, 23, 0.08);
+        4px 4px 0
+        rgba(72, 38, 18, 0.10);
 
 }
 
 
 .seth-page .profile-tag:nth-child(odd) {
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px)
+        rotate(-0.6deg);
 
 }
 
 
 .seth-page .profile-tag:nth-child(even) {
 
-    transform: translateY(2px);
+    transform:
+        translateY(2px)
+        rotate(0.6deg);
 
 }
 
 
 .seth-page .profile-tag:hover {
 
-    background: var(--cherry);
+    background:
+        var(--cherry);
 
-    border-color: var(--cherry-dark);
+    border-color:
+        var(--cherry-dark);
 
-    color: #ead7ac;
+    color:
+        #f1d9aa;
 
 }
 
@@ -568,40 +621,33 @@
 
     position: relative;
 
-    padding: 32px 36px;
+    padding:
+        30px 34px;
 
     border-left:
-        4px solid var(--cherry);
+        5px solid var(--cherry);
 
     background:
-        rgba(238, 220, 184, 0.35);
+        rgba(235, 215, 174, 0.38);
 
 }
 
-
-/*
-    Tiny pigment mark.
-*/
 
 .seth-page .profile-text::before {
 
-    content: "𓊃";
+    content:
+        "𓊃";
 
     position: absolute;
 
-    top: 10px;
+    top: 9px;
     left: 10px;
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
-    opacity: 0.3;
-
-}
-
-
-.seth-page .profile-text p {
-
-    color: var(--muted);
+    opacity:
+        0.3;
 
 }
 
@@ -617,14 +663,12 @@
     border:
         1px solid var(--border);
 
-    border-radius: 2px;
-
-    background:
-        rgba(230, 209, 169, 0.52);
+    border-radius:
+        3px;
 
     box-shadow:
-        6px 6px 0
-        rgba(79, 13, 23, 0.07);
+        7px 7px 0
+        rgba(72, 38, 18, 0.10);
 
 }
 
@@ -636,19 +680,22 @@
 
     position: absolute;
 
-    bottom: 12px;
     right: 15px;
+    bottom: 13px;
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
-    opacity: 0.3;
+    opacity:
+        0.45;
 
 }
 
 
 .seth-page .profile-list-card h3 {
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
     font-family:
         Georgia,
@@ -658,22 +705,16 @@
 }
 
 
-.seth-page .profile-list-card li {
-
-    color: var(--muted);
-
-}
-
-
 .seth-page .profile-list-card li::marker {
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
 }
 
 
 /* =========================================
-   RELATIONSHIPS
+   RELATIONSHIP CARDS
 ========================================= */
 
 .seth-page .relationship-card {
@@ -683,10 +724,12 @@
     border:
         1px solid var(--border);
 
-    border-radius: 2px;
+    border-radius:
+        3px;
 
-    background:
-        rgba(237, 218, 179, 0.48);
+    box-shadow:
+        5px 5px 0
+        rgba(72, 38, 18, 0.08);
 
 }
 
@@ -698,31 +741,73 @@
 
     position: absolute;
 
-    top: 13px;
-    right: 16px;
+    top: 12px;
+    right: 15px;
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
-    opacity: 0.35;
-
-}
-
-
-.seth-page .relationship-card h3 {
-
-    color: var(--text);
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+    opacity:
+        0.4;
 
 }
 
 
-.seth-page .relationship-card p {
+/* =========================================
+   RANDOM CHIPPED CARDS
+========================================= */
 
-    color: var(--muted);
+/*
+    These intentionally make a few cards
+    look like irregular pieces of stone.
+*/
+
+.seth-page .profile-list-card:nth-child(2)::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+    right: -1px;
+
+    width: 30px;
+    height: 30px;
+
+    background:
+        var(--ivory);
+
+    clip-path:
+        polygon(
+            25% 0,
+            100% 0,
+            100% 75%
+        );
+
+}
+
+
+.seth-page .relationship-card:nth-child(2)::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -1px;
+    left: -1px;
+
+    width: 25px;
+    height: 25px;
+
+    background:
+        var(--ivory);
+
+    clip-path:
+        polygon(
+            0 25%,
+            75% 100%,
+            0 100%
+        );
 
 }
 
@@ -741,7 +826,8 @@
 
 .seth-page .footer-left {
 
-    color: var(--cherry);
+    color:
+        var(--cherry);
 
     font-family:
         Georgia,
@@ -757,9 +843,11 @@
 
 .seth-page ::selection {
 
-    background: var(--cherry);
+    background:
+        var(--cherry);
 
-    color: #ead7ac;
+    color:
+        #f1d9aa;
 
 }
 
@@ -781,23 +869,15 @@
 
 @media (max-width: 520px) {
 
-    .seth-page .profile-about {
-
-        padding: 25px;
-
-    }
-
     .seth-page .profile-header {
 
         padding-top: 70px;
 
     }
 
-    .seth-page::after {
+    .seth-page .profile-about {
 
-        font-size: 0.75rem;
-
-        letter-spacing: 0.18em;
+        padding: 25px;
 
     }
 
