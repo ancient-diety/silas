@@ -478,3 +478,61 @@
         font-size: 0.8rem;
     }
 }
+
+/* =========================================================
+   JAKE'S NOTEBOOK SPACING + HANDWRITTEN FEEL
+   ========================================================= */
+
+.jake-page {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+/* Give Jake's content more breathing room */
+.jake-page .profile-section {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.jake-page .profile-header {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.jake-page .profile-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Keep smaller elements comfortable too */
+.jake-page .profile-facts,
+.jake-page .profile-tags,
+.jake-page .profile-columns,
+.jake-page .relationship-grid {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+/* Softer handwritten-looking headings */
+.jake-page .profile-header h1,
+.jake-page .profile-section-heading h2 {
+    letter-spacing: 0.01em;
+}
+
+/* Mobile needs less padding */
+@media (max-width: 700px) {
+
+    .jake-page .profile-section {
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
+    }
+
+    .jake-page .profile-header {
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
+    }
+
+    .jake-page .profile-content {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
