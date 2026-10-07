@@ -1,0 +1,480 @@
+/* =========================================================
+   JAKE
+   Soft greens · Cats · Doodles · Indie · Notebook
+   ========================================================= */
+
+.jake-page {
+    --ivory: #f3f5e9;
+    --ivory-dark: #e4e9d8;
+
+    --cherry: #628c68;
+    --cherry-dark: #456b4d;
+    --cherry-light: #82a987;
+
+    --text: #26342a;
+    --muted: #718073;
+
+    --border: #cbd6c4;
+    --white: #fbfcf5;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(130, 169, 135, 0.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(98, 140, 104, 0.12),
+            transparent 32%
+        ),
+        #f3f5e9;
+
+    color: var(--text);
+}
+
+
+/* =========================================================
+   PAPER / DOODLE ATMOSPHERE
+   ========================================================= */
+
+.jake-page::before {
+    content: "♡  ~  ✦  ᵔᴥᵔ  ~  ♡  ✎";
+
+    position: fixed;
+    top: 18%;
+    right: -20px;
+
+    color: rgba(69, 107, 77, 0.10);
+    font-size: 2.2rem;
+    letter-spacing: 14px;
+
+    transform: rotate(8deg);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.jake-page::after {
+    content: "✎";
+
+    position: fixed;
+    bottom: 12%;
+    left: 4%;
+
+    color: rgba(98, 140, 104, 0.14);
+    font-size: 5rem;
+
+    transform: rotate(-18deg);
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.jake-page .navbar {
+    background:
+        linear-gradient(
+            90deg,
+            #edf1e4,
+            #f7f8ef,
+            #e9eee1
+        );
+
+    border-bottom: 1px solid #ccd7c7;
+    box-shadow: 0 5px 18px rgba(50, 75, 56, 0.07);
+
+    position: relative;
+    z-index: 2;
+}
+
+.jake-page .nav-logo {
+    color: #456b4d;
+}
+
+.jake-page .nav-links a {
+    color: #6d7c70;
+}
+
+.jake-page .nav-links a:hover,
+.jake-page .nav-links a.active {
+    color: #456b4d;
+}
+
+
+/* =========================================================
+   PROFILE HEADER
+   ========================================================= */
+
+.jake-page .profile-header {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e7ecdc,
+            #f4f6ec 55%,
+            #dce7d8
+        );
+
+    border-bottom: 1px solid #c7d3c2;
+}
+
+/* little handwritten corner doodle */
+
+.jake-page .profile-header::before {
+    content: "♡ ᵔᴥᵔ ♡";
+
+    position: absolute;
+    right: 7%;
+    top: 28%;
+
+    color: rgba(69, 107, 77, 0.22);
+    font-size: 2rem;
+    letter-spacing: 8px;
+
+    transform: rotate(-7deg);
+}
+
+/* tiny notebook scribble */
+
+.jake-page .profile-header::after {
+    content: "────────  ✎";
+
+    position: absolute;
+    left: 5%;
+    bottom: 12%;
+
+    color: rgba(98, 140, 104, 0.22);
+    letter-spacing: 5px;
+
+    transform: rotate(1deg);
+}
+
+.jake-page .profile-eyebrow {
+    color: #628c68;
+    letter-spacing: 0.18em;
+}
+
+.jake-page .profile-header h1 {
+    color: #304a35;
+
+    text-shadow:
+        2px 2px 0 rgba(130, 169, 135, 0.35);
+
+    letter-spacing: 0.01em;
+}
+
+.jake-page .profile-role {
+    color: #718073;
+}
+
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
+
+.jake-page .back-link {
+    color: #628c68;
+}
+
+.jake-page .back-link:hover {
+    color: #456b4d;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.jake-page .profile-section {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(251, 252, 245, 0.96),
+            rgba(239, 244, 233, 0.96)
+        );
+
+    border: 1px solid #cbd6c4;
+    border-radius: 22px;
+
+    box-shadow:
+        0 7px 20px rgba(58, 82, 62, 0.07);
+
+    transform: rotate(-0.15deg);
+}
+
+/* tiny variations, like pages in a notebook */
+
+.jake-page .profile-section:nth-child(2) {
+    transform: rotate(0.2deg);
+}
+
+.jake-page .profile-section:nth-child(3) {
+    transform: rotate(-0.25deg);
+}
+
+.jake-page .profile-section:nth-child(4) {
+    transform: rotate(0.15deg);
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+.jake-page .eyebrow {
+    color: #628c68;
+}
+
+.jake-page .profile-section-heading h2 {
+    color: #304a35;
+}
+
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+.jake-page .profile-about {
+    border-left: 3px solid #82a987;
+
+    position: relative;
+}
+
+.jake-page .profile-about::after {
+    content: "ᵔᴥᵔ";
+
+    position: absolute;
+    right: 7%;
+    top: 13%;
+
+    color: rgba(69, 107, 77, 0.20);
+    font-size: 1.5rem;
+
+    transform: rotate(-4deg);
+}
+
+.jake-page .profile-about-text {
+    color: #405044;
+}
+
+
+/* =========================================================
+   FACTS
+   ========================================================= */
+
+.jake-page .profile-fact {
+    background: #f7f9f1;
+
+    border: 1px solid #d0dac9;
+    border-radius: 16px;
+
+    box-shadow:
+        3px 4px 0 rgba(98, 140, 104, 0.08);
+}
+
+.jake-page .profile-fact:nth-child(even) {
+    transform: rotate(0.8deg);
+}
+
+.jake-page .profile-fact-label {
+    color: #718073;
+}
+
+.jake-page .profile-fact-value {
+    color: #304a35;
+}
+
+
+/* =========================================================
+   TAGS
+   ========================================================= */
+
+.jake-page .profile-tag {
+    background: #e8efe3;
+
+    border: 1px solid #b9ccb9;
+    border-radius: 999px;
+
+    color: #456b4d;
+
+    box-shadow: none;
+
+    transform: rotate(-0.5deg);
+}
+
+.jake-page .profile-tag:nth-child(even) {
+    transform: rotate(0.8deg);
+}
+
+.jake-page .profile-tag:nth-child(3n) {
+    transform: rotate(-1.2deg);
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+.jake-page .profile-text {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7f9f1,
+            #edf3e8
+        );
+
+    border-left: 2px solid #82a987;
+
+    color: #405044;
+
+    box-shadow:
+        4px 5px 0 rgba(98, 140, 104, 0.07);
+}
+
+.jake-page .profile-text::before {
+    content: "✎";
+
+    position: absolute;
+    right: 18px;
+    top: 12px;
+
+    color: rgba(69, 107, 77, 0.20);
+    font-size: 1.4rem;
+
+    transform: rotate(-12deg);
+}
+
+
+/* =========================================================
+   LIKES / DISLIKES
+   ========================================================= */
+
+.jake-page .profile-list-card {
+    background:
+        linear-gradient(
+            145deg,
+            #f8faf3,
+            #edf3e8
+        );
+
+    border: 1px solid #cbd6c4;
+    border-radius: 18px;
+
+    box-shadow:
+        4px 5px 0 rgba(58, 82, 62, 0.06);
+}
+
+.jake-page .profile-list-card:first-child {
+    transform: rotate(-0.6deg);
+}
+
+.jake-page .profile-list-card:last-child {
+    transform: rotate(0.7deg);
+}
+
+.jake-page .profile-list-card h3 {
+    color: #456b4d;
+}
+
+.jake-page .profile-list-card li::marker {
+    color: #82a987;
+}
+
+
+/* =========================================================
+   RELATIONSHIPS
+   ========================================================= */
+
+.jake-page .relationship-card {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8faf3,
+            #eaf1e5
+        );
+
+    border: 1px solid #c8d5c5;
+    border-radius: 16px;
+
+    box-shadow:
+        3px 4px 0 rgba(69, 107, 77, 0.07);
+}
+
+.jake-page .relationship-card:nth-child(odd) {
+    transform: rotate(-0.7deg);
+}
+
+.jake-page .relationship-card:nth-child(even) {
+    transform: rotate(0.9deg);
+}
+
+.jake-page .relationship-card h3 {
+    color: #456b4d;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.jake-page footer {
+    background:
+        linear-gradient(
+            90deg,
+            #e3eadc,
+            #f0f4e9,
+            #e3eadc
+        );
+
+    border-top: 1px solid #cbd6c4;
+}
+
+.jake-page .footer-left {
+    color: #456b4d;
+}
+
+.jake-page .footer-right {
+    color: #718073;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+.jake-page ::selection {
+    background: #82a987;
+    color: #f8faf3;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .jake-page .profile-section:nth-child(n) {
+        transform: none;
+    }
+
+    .jake-page .profile-header::before {
+        font-size: 1.5rem;
+        right: 4%;
+    }
+
+    .jake-page .profile-header::after {
+        font-size: 0.8rem;
+    }
+}
