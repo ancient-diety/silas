@@ -882,3 +882,488 @@
     }
 
 }
+
+/* =========================================
+   TEMPLE DAMAGE
+   Weathering, cracks & broken stone
+========================================= */
+
+
+/* -----------------------------------------
+   HEADER DAMAGE
+----------------------------------------- */
+
+.seth-page .profile-header {
+
+    isolation: isolate;
+
+}
+
+
+.seth-page .profile-header::before {
+
+    position: relative;
+
+    text-shadow:
+        9px 4px 0 rgba(177, 18, 38, 0.10);
+
+}
+
+
+/*
+    Small damaged section underneath
+    the header inscription.
+*/
+
+.seth-page .profile-header::after {
+
+    position: relative;
+
+    clip-path:
+        polygon(
+            0 0,
+            19% 0,
+            21% 40%,
+            44% 40%,
+            46% 0,
+            69% 0,
+            71% 75%,
+            100% 75%,
+            100% 100%,
+            0 100%
+        );
+
+}
+
+
+/* -----------------------------------------
+   CRACKS
+----------------------------------------- */
+
+/*
+    Very subtle cracks around section edges.
+*/
+
+.seth-page .profile-section:nth-child(2)::after,
+.seth-page .profile-section:nth-child(4)::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 8%;
+
+    width: 70px;
+    height: 95px;
+
+    border-left:
+        1px solid rgba(72, 38, 18, 0.28);
+
+    border-bottom:
+        1px solid rgba(72, 38, 18, 0.20);
+
+    clip-path:
+        polygon(
+            70% 0,
+            76% 17%,
+            55% 29%,
+            63% 48%,
+            31% 64%,
+            38% 82%,
+            0 100%,
+            14% 71%,
+            43% 54%,
+            35% 34%,
+            61% 21%
+        );
+
+    opacity: 0.65;
+
+    pointer-events: none;
+
+}
+
+
+/* -----------------------------------------
+   STONE EDGE WEAR
+----------------------------------------- */
+
+.seth-page .profile-about,
+.seth-page .profile-list-card,
+.seth-page .relationship-card {
+
+    overflow: hidden;
+
+}
+
+
+/*
+    Tiny missing chunk from selected cards.
+*/
+
+.seth-page .profile-about {
+
+    clip-path:
+        polygon(
+            0 0,
+            97% 0,
+            100% 4%,
+            100% 100%,
+            3% 100%,
+            0 96%
+        );
+
+}
+
+
+.seth-page .profile-list-card:nth-child(1) {
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            100% 94%,
+            96% 100%,
+            0 100%
+        );
+
+}
+
+
+.seth-page .relationship-card:nth-child(1) {
+
+    clip-path:
+        polygon(
+            0 0,
+            96% 0,
+            100% 7%,
+            100% 100%,
+            0 100%
+        );
+
+}
+
+
+/* -----------------------------------------
+   DEEPER CHIP MARKS
+----------------------------------------- */
+
+.seth-page .profile-fact:nth-child(1)::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: -1px;
+    bottom: -1px;
+
+    width: 22px;
+    height: 22px;
+
+    background:
+        var(--ivory);
+
+    clip-path:
+        polygon(
+            20% 100%,
+            100% 100%,
+            100% 20%,
+            72% 43%,
+            51% 36%,
+            37% 69%
+        );
+
+}
+
+
+.seth-page .profile-fact:nth-child(2)::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: -1px;
+    top: -1px;
+
+    width: 18px;
+    height: 24px;
+
+    background:
+        var(--ivory);
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            68% 31%,
+            80% 60%,
+            42% 100%,
+            0 100%
+        );
+
+}
+
+
+/* -----------------------------------------
+   CRIMSON PIGMENT WEAR
+----------------------------------------- */
+
+.seth-page .profile-section-heading {
+
+    position: relative;
+
+}
+
+
+.seth-page .profile-section-heading::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 3px;
+
+    width: 115px;
+    height: 2px;
+
+    background:
+        var(--cherry);
+
+    opacity: 0.28;
+
+    transform:
+        rotate(-1deg);
+
+}
+
+
+/*
+    Slightly uneven pigment on tags.
+*/
+
+.seth-page .profile-tag {
+
+    position: relative;
+
+}
+
+
+.seth-page .profile-tag::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 8%;
+    right: 18%;
+
+    bottom: 3px;
+
+    height: 1px;
+
+    background:
+        var(--cherry-light);
+
+    opacity: 0.25;
+
+}
+
+
+/* -----------------------------------------
+   BROKEN HIEROGLYPHIC DIVIDERS
+----------------------------------------- */
+
+.seth-page .profile-section-heading::after {
+
+    display: block;
+
+    width: 135px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    content:
+        "𓏏 𓏏     𓏏 𓏏";
+
+}
+
+
+/* -----------------------------------------
+   STONE MISALIGNMENT
+----------------------------------------- */
+
+/*
+    Not everything in the temple was rebuilt
+    perfectly. A few pieces sit slightly wrong.
+*/
+
+.seth-page .profile-fact:nth-child(2) {
+
+    transform:
+        translateY(6px)
+        rotate(0.35deg);
+
+}
+
+
+.seth-page .relationship-card:nth-child(2) {
+
+    transform:
+        translateY(-3px)
+        rotate(-0.3deg);
+
+}
+
+
+.seth-page .profile-list-card:nth-child(2) {
+
+    transform:
+        translateY(4px)
+        rotate(0.25deg);
+
+}
+
+
+/* -----------------------------------------
+   LARGE CRACK IN EMPTY SPACE
+----------------------------------------- */
+
+.seth-page .profile-content {
+
+    position: relative;
+
+}
+
+
+.seth-page .profile-content::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 19%;
+    right: 1%;
+
+    width: 45px;
+    height: 150px;
+
+    border-left:
+        1px solid rgba(72, 38, 18, 0.22);
+
+    opacity: 0.65;
+
+    clip-path:
+        polygon(
+            48% 0,
+            61% 14%,
+            41% 25%,
+            70% 39%,
+            51% 51%,
+            62% 68%,
+            31% 81%,
+            0 100%,
+            21% 77%,
+            34% 61%,
+            22% 47%,
+            48% 32%,
+            29% 17%
+        );
+
+    pointer-events: none;
+
+}
+
+
+/* -----------------------------------------
+   WEATHERED CRIMSON MARK
+----------------------------------------- */
+
+.seth-page .profile-header h1::after {
+
+    content: "";
+
+    display: block;
+
+    width: 95px;
+    height: 5px;
+
+    margin-top: 15px;
+
+    background:
+        var(--cherry);
+
+    opacity: 0.75;
+
+    clip-path:
+        polygon(
+            0 20%,
+            31% 0,
+            58% 25%,
+            100% 10%,
+            87% 75%,
+            47% 57%,
+            19% 100%
+        );
+
+}
+
+
+/* -----------------------------------------
+   FOOTER STONE WEAR
+----------------------------------------- */
+
+.seth-page footer {
+
+    position: relative;
+
+}
+
+
+.seth-page footer::before {
+
+    content:
+        "𓊃";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: -13px;
+
+    padding: 0 12px;
+
+    background:
+        var(--ivory);
+
+    color:
+        var(--cherry);
+
+    transform:
+        translateX(-50%);
+
+}
+
+
+/* -----------------------------------------
+   KEEP THE DESTRUCTION QUIET ON MOBILE
+----------------------------------------- */
+
+@media (max-width: 850px) {
+
+    .seth-page .profile-content::after {
+
+        display: none;
+
+    }
+
+    .seth-page .profile-section:nth-child(2)::after,
+    .seth-page .profile-section:nth-child(4)::after {
+
+        opacity: 0.35;
+
+    }
+
+}
