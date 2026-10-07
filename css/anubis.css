@@ -1,0 +1,878 @@
+/* =========================================
+   ANUBIS
+   THE GUIDE THROUGH THE DUAT
+========================================= */
+
+.anubis-page {
+
+    --ivory: #292723;
+    --ivory-dark: #1d1c19;
+
+    --cherry: #b7b3a8;
+    --cherry-dark: #858176;
+    --cherry-light: #d8d4c8;
+
+    --text: #e2ddd1;
+    --muted: #aaa396;
+
+    --border: #5d584e;
+    --white: #eee9dd;
+
+    background-color: var(--ivory);
+
+    /*
+        Dark stone with very subtle mineral texture.
+    */
+
+    background-image:
+
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 244, 214, 0.035) 0 1px,
+            transparent 2px
+        ),
+
+        radial-gradient(
+            circle at 75% 65%,
+            rgba(0, 0, 0, 0.16) 0 1px,
+            transparent 3px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.018) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            rgba(0, 0, 0, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        37px 41px,
+        53px 49px,
+        29px 29px,
+        31px 31px;
+
+}
+
+
+/* =========================================
+   DUAT ATMOSPHERE
+========================================= */
+
+.anubis-page::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 20;
+
+    background:
+
+        radial-gradient(
+            ellipse at 50% 15%,
+            rgba(220, 213, 194, 0.08),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            ellipse at 15% 85%,
+            rgba(178, 167, 140, 0.055),
+            transparent 32%
+        );
+
+    opacity: 0.9;
+
+}
+
+
+/* =========================================
+   DISTANT INSCRIPTION
+========================================= */
+
+.anubis-page::after {
+
+    content:
+        "𓇋𓈖𓊪𓅱";
+
+    position: fixed;
+
+    right: 3%;
+    bottom: 7%;
+
+    color:
+        rgba(216, 212, 200, 0.075);
+
+    font-size:
+        clamp(3rem, 8vw, 8rem);
+
+    letter-spacing:
+        0.18em;
+
+    pointer-events: none;
+
+    transform:
+        rotate(-90deg);
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.anubis-page .navbar {
+
+    position: relative;
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+
+.anubis-page .nav-logo {
+
+    color: var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    letter-spacing:
+        0.05em;
+
+}
+
+
+.anubis-page .nav-links a:hover,
+.anubis-page .nav-links a.active {
+
+    color: var(--cherry-light);
+
+}
+
+
+/*
+    Silver funerary marker.
+*/
+
+.anubis-page .navbar::after {
+
+    content:
+        "𓂀";
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: -12px;
+
+    padding:
+        0 12px;
+
+    background:
+        var(--ivory);
+
+    color:
+        var(--cherry);
+
+    font-size:
+        0.9rem;
+
+}
+
+
+/* =========================================
+   PROFILE HEADER
+========================================= */
+
+.anubis-page .profile-header {
+
+    position: relative;
+
+    padding-top: 100px;
+
+}
+
+
+/*
+    Name inscription.
+*/
+
+.anubis-page .profile-header::before {
+
+    content:
+        "𓇋𓈖𓊪𓅱";
+
+    display: block;
+
+    margin-bottom: 28px;
+
+    color:
+        var(--cherry);
+
+    font-size:
+        2rem;
+
+    letter-spacing:
+        0.18em;
+
+}
+
+
+.anubis-page .profile-eyebrow {
+
+    color:
+        var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    letter-spacing:
+        0.24em;
+
+}
+
+
+.anubis-page .profile-header h1 {
+
+    color:
+        var(--text);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        -0.04em;
+
+}
+
+
+/*
+    Thin silver funerary line.
+*/
+
+.anubis-page .profile-header::after {
+
+    content:
+        "𓏏 𓏏 𓂀 𓏏 𓏏";
+
+    display: block;
+
+    width:
+        fit-content;
+
+    margin-top:
+        30px;
+
+    padding:
+        7px 14px;
+
+    border-top:
+        1px solid var(--cherry);
+
+    border-bottom:
+        1px solid var(--border);
+
+    color:
+        var(--cherry);
+
+    letter-spacing:
+        0.3em;
+
+}
+
+
+/* =========================================
+   ROLE
+========================================= */
+
+.anubis-page .profile-role {
+
+    color:
+        var(--cherry-light);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+/* =========================================
+   BACK LINK
+========================================= */
+
+.anubis-page .back-link {
+
+    color:
+        var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight:
+        700;
+
+}
+
+
+.anubis-page .back-link:hover {
+
+    color:
+        var(--cherry-light);
+
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.anubis-page .profile-section {
+
+    position:
+        relative;
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+
+/*
+    Perfectly placed funerary marker.
+*/
+
+.anubis-page .profile-section::before {
+
+    content:
+        "𓏏";
+
+    position:
+        absolute;
+
+    top:
+        34px;
+
+    left:
+        -30px;
+
+    color:
+        var(--cherry);
+
+    opacity:
+        0.7;
+
+}
+
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
+.anubis-page .profile-section-heading h2 {
+
+    color:
+        var(--text);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+.anubis-page .eyebrow {
+
+    color:
+        var(--cherry);
+
+}
+
+
+.anubis-page .profile-section-heading::after {
+
+    content:
+        "𓏏 ───── 𓂀 ───── 𓏏";
+
+    display:
+        block;
+
+    margin-top:
+        18px;
+
+    color:
+        var(--cherry);
+
+    font-size:
+        0.75rem;
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.anubis-page .profile-about {
+
+    position:
+        relative;
+
+    padding:
+        40px;
+
+    border:
+        1px solid var(--border);
+
+    border-left:
+        3px solid var(--cherry);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(58, 55, 49, 0.75),
+            rgba(31, 30, 27, 0.88)
+        );
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.25);
+
+}
+
+
+/*
+    Anubis inscription in the corner.
+*/
+
+.anubis-page .profile-about::before {
+
+    content:
+        "𓇋𓈖𓊪𓅱";
+
+    position:
+        absolute;
+
+    top:
+        18px;
+
+    right:
+        22px;
+
+    color:
+        var(--cherry);
+
+    font-size:
+        1.1rem;
+
+    opacity:
+        0.6;
+
+}
+
+
+.anubis-page .profile-about-text p {
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================
+   FACTS
+========================================= */
+
+.anubis-page .profile-fact {
+
+    position:
+        relative;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        2px;
+
+    background:
+        rgba(49, 47, 42, 0.75);
+
+    box-shadow:
+        0 6px 18px
+        rgba(0, 0, 0, 0.18);
+
+}
+
+
+.anubis-page .profile-fact::before {
+
+    content:
+        "𓏏";
+
+    position:
+        absolute;
+
+    top:
+        11px;
+
+    right:
+        13px;
+
+    color:
+        var(--cherry);
+
+    opacity:
+        0.55;
+
+}
+
+
+.anubis-page .profile-fact-label {
+
+    color:
+        var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+.anubis-page .profile-fact-value {
+
+    color:
+        var(--text);
+
+}
+
+
+/* =========================================
+   TAGS
+========================================= */
+
+.anubis-page .profile-tag {
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        2px;
+
+    background:
+        #34312b;
+
+    color:
+        var(--cherry-light);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    box-shadow:
+        0 4px 10px
+        rgba(0, 0, 0, 0.2);
+
+}
+
+
+.anubis-page .profile-tag:hover {
+
+    background:
+        var(--cherry);
+
+    border-color:
+        var(--cherry-light);
+
+    color:
+        #201d18;
+
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.anubis-page .profile-text {
+
+    position:
+        relative;
+
+    padding:
+        32px 36px;
+
+    border-left:
+        2px solid var(--cherry);
+
+    background:
+        rgba(43, 41, 37, 0.65);
+
+}
+
+
+.anubis-page .profile-text::before {
+
+    content:
+        "𓂀";
+
+    position:
+        absolute;
+
+    top:
+        12px;
+
+    left:
+        12px;
+
+    color:
+        var(--cherry);
+
+    opacity:
+        0.3;
+
+}
+
+
+/* =========================================
+   LIST CARDS
+========================================= */
+
+.anubis-page .profile-list-card {
+
+    position:
+        relative;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        2px;
+
+    background:
+        #302e29;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.22);
+
+}
+
+
+.anubis-page .profile-list-card h3 {
+
+    color:
+        var(--cherry-light);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+.anubis-page .profile-list-card li {
+
+    color:
+        var(--muted);
+
+}
+
+
+.anubis-page .profile-list-card li::marker {
+
+    color:
+        var(--cherry);
+
+}
+
+
+/*
+    Preserved inscription at the bottom.
+*/
+
+.anubis-page .profile-list-card::after {
+
+    content:
+        "𓏏 𓏏";
+
+    position:
+        absolute;
+
+    right:
+        16px;
+
+    bottom:
+        13px;
+
+    color:
+        var(--cherry);
+
+    opacity:
+        0.35;
+
+}
+
+
+/* =========================================
+   RELATIONSHIPS
+========================================= */
+
+.anubis-page .relationship-card {
+
+    position:
+        relative;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        2px;
+
+    background:
+        #34312b;
+
+    box-shadow:
+        0 7px 18px
+        rgba(0, 0, 0, 0.2);
+
+}
+
+
+.anubis-page .relationship-card::before {
+
+    content:
+        "𓂀";
+
+    position:
+        absolute;
+
+    top:
+        13px;
+
+    right:
+        16px;
+
+    color:
+        var(--cherry);
+
+    opacity:
+        0.55;
+
+}
+
+
+.anubis-page .relationship-card h3 {
+
+    color:
+        var(--text);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.anubis-page footer {
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+
+.anubis-page .footer-left {
+
+    color:
+        var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+/* =========================================
+   SELECTION
+========================================= */
+
+.anubis-page ::selection {
+
+    background:
+        var(--cherry);
+
+    color:
+        #1d1b18;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 850px) {
+
+    .anubis-page .profile-section::before {
+
+        left:
+            0;
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .anubis-page .profile-header {
+
+        padding-top:
+            70px;
+
+    }
+
+    .anubis-page .profile-about {
+
+        padding:
+            25px;
+
+    }
+
+}
