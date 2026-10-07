@@ -552,142 +552,405 @@
 }
 
 /* =========================================================
-   IVAN'S CENTERED COMPOSITION
+   IVAN'S ATMOSPHERE + SPACING
+   Midnight road · worn metal · red tail lights
    ========================================================= */
 
-.ivan-page .profile-header {
-    text-align: center;
-}
+.ivan-page {
+    background:
+        /* broad red night glow */
+        radial-gradient(
+            ellipse at 8% 18%,
+            rgba(116, 28, 43, 0.20),
+            transparent 38%
+        ),
 
-.ivan-page .profile-header .back-link {
-    display: inline-block;
-}
+        radial-gradient(
+            ellipse at 92% 42%,
+            rgba(116, 28, 43, 0.15),
+            transparent 42%
+        ),
 
-.ivan-page .profile-content {
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
+        radial-gradient(
+            ellipse at 45% 100%,
+            rgba(72, 16, 28, 0.18),
+            transparent 45%
+        ),
 
-.ivan-page .profile-section {
-    text-align: center;
-}
+        /* long red light across the entire road */
+        linear-gradient(
+            112deg,
+            transparent 0%,
+            rgba(116, 28, 43, 0.08) 25%,
+            rgba(168, 50, 69, 0.13) 48%,
+            rgba(116, 28, 43, 0.06) 70%,
+            transparent 100%
+        ),
 
-/* Center section headings */
+        /* asphalt */
+        repeating-linear-gradient(
+            0deg,
+            #0c090b 0px,
+            #0c090b 7px,
+            #100c0e 8px
+        );
 
-.ivan-page .profile-section-heading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.ivan-page .profile-section-heading::after {
-    width: 110px;
-}
-
-/* Center the About section */
-
-.ivan-page .profile-about {
-    border-left: none;
-    border-top: 2px solid var(--cherry);
-    padding-left: 0;
-    padding-top: 1.5rem;
-
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.ivan-page .profile-about-text {
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Facts stay centered */
-
-.ivan-page .profile-facts {
-    justify-content: center;
-}
-
-.ivan-page .profile-fact {
-    text-align: center;
-}
-
-/* Tags sit neatly around the center */
-
-.ivan-page .profile-tags {
-    justify-content: center;
-}
-
-/* Personality */
-
-.ivan-page .profile-text {
-    border-left: none;
-    border-top: 1px solid var(--cherry-dark);
-
-    max-width: 720px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 1.25rem;
-
-    text-align: center;
-}
-
-/* Likes and dislikes */
-
-.ivan-page .profile-columns {
-    text-align: center;
-}
-
-.ivan-page .profile-list-card {
-    text-align: center;
-}
-
-.ivan-page .profile-list-card ul {
-    text-align: left;
-    display: inline-block;
-}
-
-/* Relationships */
-
-.ivan-page .relationship-grid {
-    justify-content: center;
-}
-
-.ivan-page .relationship-card {
-    text-align: center;
+    background-attachment: fixed;
 }
 
 
 /* =========================================================
-   KEEP THE NIGHT-DRIVE ATMOSPHERE
+   ASPHALT / METAL GRAIN
    ========================================================= */
 
-.ivan-page .profile-section::before {
-    left: 50%;
-    right: auto;
+.ivan-page::before {
+    content: "";
 
-    transform: translateX(-50%);
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    z-index: 0;
+
+    opacity: 0.18;
+
+    background:
+        repeating-linear-gradient(
+            97deg,
+            transparent 0px,
+            transparent 3px,
+            rgba(255, 255, 255, 0.018) 4px
+        ),
+        repeating-linear-gradient(
+            4deg,
+            transparent 0px,
+            transparent 8px,
+            rgba(116, 28, 43, 0.025) 9px
+        );
+
+    mix-blend-mode: screen;
 }
 
 
-/* Mobile */
+/* =========================================================
+   CONTENT SPACING
+   ========================================================= */
+
+/*
+   Ivan's text isn't centered.
+   It simply gets more breathing room from the edges.
+*/
+
+.ivan-page .profile-section {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.ivan-page .profile-header {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.ivan-page .profile-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+
+/* =========================================================
+   ABOUT PANEL
+   ========================================================= */
+
+.ivan-page .profile-about {
+    padding-left: 2rem;
+    border-left: 3px solid var(--cherry);
+}
+
+
+/* =========================================================
+   INDUSTRIAL SECTION EDGES
+   ========================================================= */
+
+.ivan-page .profile-section {
+    border-radius: 7px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(36, 28, 31, 0.95),
+            rgba(14, 11, 13, 0.98)
+        );
+
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.35),
+        inset 0 1px rgba(255, 255, 255, 0.025);
+
+    clip-path: polygon(
+        0 0,
+        99.3% 0,
+        100% 4%,
+        100% 100%,
+        0.7% 100%,
+        0 96%
+    );
+}
+
+
+/* =========================================================
+   GUITAR STRING DIVIDER
+   ========================================================= */
+
+.ivan-page .profile-section-heading {
+    position: relative;
+}
+
+.ivan-page .profile-section-heading::after {
+    content: "";
+
+    display: block;
+
+    width: 160px;
+    height: 4px;
+
+    margin-top: 14px;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 1px,
+            rgba(168, 50, 69, 0.55) 2px,
+            transparent 3px
+        );
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   RED LIGHT STREAKS
+   ========================================================= */
+
+.ivan-page .profile-section:nth-child(2)::after,
+.ivan-page .profile-section:nth-child(4)::after,
+.ivan-page .profile-section:nth-child(6)::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 1px;
+
+    right: -35px;
+    bottom: 30px;
+
+    background: var(--cherry-light);
+
+    opacity: 0.35;
+
+    transform: rotate(-8deg);
+
+    box-shadow:
+        0 0 12px rgba(168, 50, 69, 0.5),
+        0 0 30px rgba(116, 28, 43, 0.3);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FACT CARDS
+   ========================================================= */
+
+.ivan-page .profile-fact {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(42, 31, 34, 0.7),
+            rgba(10, 8, 9, 0.8)
+        );
+
+    box-shadow:
+        inset 3px 0 var(--cherry-dark);
+}
+
+
+/* =========================================================
+   TAGS
+   ========================================================= */
+
+.ivan-page .profile-tag {
+    position: relative;
+
+    overflow: hidden;
+}
+
+.ivan-page .profile-tag::before {
+    content: "";
+
+    position: absolute;
+
+    left: -20%;
+    bottom: 0;
+
+    width: 60%;
+    height: 1px;
+
+    background: var(--cherry-light);
+
+    opacity: 0.55;
+
+    transform: rotate(-4deg);
+}
+
+
+/* =========================================================
+   PERSONALITY PANEL
+   ========================================================= */
+
+.ivan-page .profile-text {
+    padding-left: 2rem;
+    padding-right: 1.5rem;
+
+    border-left: 2px solid var(--cherry-dark);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(116, 28, 43, 0.09),
+            transparent 35%
+        );
+}
+
+
+/* =========================================================
+   LIST CARDS
+   ========================================================= */
+
+.ivan-page .profile-list-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37, 28, 31, 0.94),
+            rgba(12, 9, 11, 0.98)
+        );
+
+    box-shadow:
+        inset 0 2px rgba(168, 50, 69, 0.12);
+}
+
+
+/* =========================================================
+   RELATIONSHIP CARDS
+   ========================================================= */
+
+.ivan-page .relationship-card {
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(38, 28, 31, 0.95),
+            rgba(12, 9, 11, 0.98)
+        );
+}
+
+.ivan-page .relationship-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 1px;
+
+    left: -20px;
+    bottom: 15px;
+
+    background: var(--cherry);
+
+    opacity: 0.35;
+
+    transform: rotate(-7deg);
+}
+
+
+/* =========================================================
+   HEADER: MORE DISTINCTIVE
+   ========================================================= */
+
+.ivan-page .profile-header {
+    background:
+        radial-gradient(
+            ellipse at 15% 70%,
+            rgba(116, 28, 43, 0.24),
+            transparent 35%
+        ),
+        linear-gradient(
+            105deg,
+            rgba(116, 28, 43, 0.12),
+            transparent 48%,
+            rgba(116, 28, 43, 0.08)
+        );
+}
+
+
+/* Red light crossing the header */
+
+.ivan-page .profile-header::after {
+    width: 360px;
+    right: -40px;
+
+    opacity: 0.55;
+
+    transform:
+        skewX(-35deg)
+        rotate(-2deg);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.ivan-page footer {
+    background:
+        linear-gradient(
+            110deg,
+            #080607,
+            #160e11,
+            #080607
+        );
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 700px) {
 
-    .ivan-page .profile-content {
-        padding-left: 1rem;
-        padding-right: 1rem;
+    .ivan-page .profile-section {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 
-    .ivan-page .profile-about-text,
+    .ivan-page .profile-header {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .ivan-page .profile-content {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .ivan-page .profile-about {
+        padding-left: 1.25rem;
+    }
+
     .ivan-page .profile-text {
-        max-width: none;
+        padding-left: 1.25rem;
+        padding-right: 1rem;
     }
 
 }
