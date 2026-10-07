@@ -1,0 +1,684 @@
+/* =========================================
+   SETH
+   Temple of the Red Land
+========================================= */
+
+.seth-page {
+
+    --ivory: #d8bd91;
+    --ivory-dark: #b79a6b;
+
+    --cherry: #7f1728;
+    --cherry-dark: #4d0d18;
+    --cherry-light: #a9343e;
+
+    --text: #241a15;
+    --muted: #5e4a39;
+
+    --border: #9d8058;
+    --white: #ead8b5;
+
+    background:
+        linear-gradient(
+            rgba(72, 45, 24, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(72, 45, 24, 0.025) 1px,
+            transparent 1px
+        ),
+        var(--ivory);
+
+    background-size: 28px 28px;
+
+}
+
+
+/* =========================================
+   TEMPLE ATMOSPHERE
+========================================= */
+
+.seth-page::before {
+
+    content: "𓊃𓂧𓁣";
+
+    position: fixed;
+
+    top: 18%;
+    right: 3%;
+
+    font-size: clamp(5rem, 13vw, 12rem);
+
+    color: rgba(127, 23, 40, 0.055);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    transform: rotate(-4deg);
+
+}
+
+
+.seth-page::after {
+
+    content: "𓂀 𓋹 𓊃𓂧𓁣 𓆣 𓏏 𓉐";
+
+    position: fixed;
+
+    bottom: 4%;
+    left: 3%;
+
+    font-size: 1.2rem;
+
+    letter-spacing: 0.5em;
+
+    color: rgba(77, 13, 24, 0.12);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.seth-page .navbar {
+
+    border-bottom:
+        2px solid var(--border);
+
+    position: relative;
+
+}
+
+
+.seth-page .navbar::after {
+
+    content: "𓊃";
+
+    position: absolute;
+
+    right: 0;
+    bottom: -13px;
+
+    padding: 0 10px;
+
+    background: var(--ivory);
+
+    color: var(--cherry);
+
+    font-size: 1rem;
+
+}
+
+
+.seth-page .nav-logo {
+
+    color: var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    letter-spacing: 0.04em;
+
+}
+
+
+.seth-page .nav-links a:hover,
+.seth-page .nav-links a.active {
+
+    color: var(--cherry);
+
+}
+
+
+/* =========================================
+   PROFILE HEADER
+========================================= */
+
+.seth-page .profile-header {
+
+    position: relative;
+
+    padding-top: 80px;
+
+}
+
+
+.seth-page .profile-header::before {
+
+    content: "𓊃𓂧𓁣";
+
+    display: block;
+
+    margin-bottom: 24px;
+
+    color: var(--cherry);
+
+    font-size: 2rem;
+
+    letter-spacing: 0.25em;
+
+}
+
+
+.seth-page .profile-header::after {
+
+    content: "";
+
+    display: block;
+
+    width: 150px;
+    height: 5px;
+
+    margin-top: 30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cherry),
+            var(--cherry-dark),
+            transparent
+        );
+
+}
+
+
+.seth-page .profile-eyebrow {
+
+    color: var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    letter-spacing: 0.22em;
+
+}
+
+
+.seth-page .profile-header h1 {
+
+    color: var(--text);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight: 700;
+
+    letter-spacing: -0.04em;
+
+    text-shadow:
+        2px 2px 0 rgba(127, 23, 40, 0.12);
+
+}
+
+
+.seth-page .profile-role {
+
+    color: var(--cherry);
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   BACK LINK
+========================================= */
+
+.seth-page .back-link {
+
+    color: var(--cherry);
+
+    font-weight: 700;
+
+}
+
+
+.seth-page .back-link:hover {
+
+    color: var(--cherry-dark);
+
+}
+
+
+/* =========================================
+   PROFILE SECTIONS
+========================================= */
+
+.seth-page .profile-section {
+
+    position: relative;
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+
+.seth-page .profile-section::before {
+
+    content: "𓏏";
+
+    position: absolute;
+
+    top: 30px;
+    left: -28px;
+
+    color: var(--cherry);
+
+    opacity: 0.65;
+
+    font-size: 0.9rem;
+
+}
+
+
+.seth-page .profile-section-heading {
+
+    position: relative;
+
+}
+
+
+.seth-page .profile-section-heading::after {
+
+    content: "";
+
+    display: block;
+
+    width: 70px;
+    height: 3px;
+
+    margin-top: 18px;
+
+    background: var(--cherry);
+
+}
+
+
+/* =========================================
+   HEADINGS
+========================================= */
+
+.seth-page .profile-section-heading h2 {
+
+    color: var(--text);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+.seth-page .eyebrow {
+
+    color: var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+/* =========================================
+   ABOUT BLOCK
+========================================= */
+
+.seth-page .profile-about {
+
+    position: relative;
+
+    padding: 34px;
+
+    border:
+        1px solid var(--border);
+
+    border-left:
+        8px solid var(--cherry);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 248, 230, 0.55),
+            rgba(183, 154, 107, 0.18)
+        );
+
+    box-shadow:
+        8px 8px 0 rgba(77, 13, 24, 0.08);
+
+}
+
+
+.seth-page .profile-about::before {
+
+    content: "𓊃";
+
+    position: absolute;
+
+    top: 16px;
+    right: 22px;
+
+    color: var(--cherry);
+
+    font-size: 2rem;
+
+    opacity: 0.45;
+
+}
+
+
+.seth-page .profile-about-text p {
+
+    color: var(--muted);
+
+}
+
+
+/* =========================================
+   FACTS
+========================================= */
+
+.seth-page .profile-fact {
+
+    position: relative;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(234, 216, 181, 0.7);
+
+}
+
+
+.seth-page .profile-fact::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: var(--cherry);
+
+}
+
+
+.seth-page .profile-fact-label {
+
+    color: var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+.seth-page .profile-fact-value {
+
+    color: var(--text);
+
+}
+
+
+/* =========================================
+   TAGS
+========================================= */
+
+.seth-page .profile-tag {
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 3px;
+
+    background:
+        rgba(234, 216, 181, 0.8);
+
+    color: var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    box-shadow:
+        3px 3px 0 rgba(77, 13, 24, 0.08);
+
+}
+
+
+.seth-page .profile-tag:nth-child(even) {
+
+    transform: translateY(3px);
+
+}
+
+
+.seth-page .profile-tag:hover {
+
+    border-color: var(--cherry);
+
+    background: var(--cherry);
+
+    color: var(--white);
+
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.seth-page .profile-text {
+
+    padding: 28px 32px;
+
+    border-left:
+        4px solid var(--cherry);
+
+    background:
+        rgba(255, 248, 230, 0.42);
+
+}
+
+
+.seth-page .profile-text p {
+
+    color: var(--muted);
+
+}
+
+
+/* =========================================
+   LIST CARDS
+========================================= */
+
+.seth-page .profile-list-card {
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 4px;
+
+    background:
+        rgba(234, 216, 181, 0.65);
+
+    box-shadow:
+        6px 6px 0 rgba(77, 13, 24, 0.07);
+
+}
+
+
+.seth-page .profile-list-card h3 {
+
+    color: var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+.seth-page .profile-list-card li {
+
+    color: var(--muted);
+
+}
+
+
+.seth-page .profile-list-card li::marker {
+
+    color: var(--cherry);
+
+}
+
+
+/* =========================================
+   RELATIONSHIPS
+========================================= */
+
+.seth-page .relationship-card {
+
+    position: relative;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 4px;
+
+    background:
+        rgba(255, 248, 230, 0.55);
+
+}
+
+
+.seth-page .relationship-card::before {
+
+    content: "𓂀";
+
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    color: var(--cherry);
+
+    opacity: 0.35;
+
+}
+
+
+.seth-page .relationship-card h3 {
+
+    color: var(--text);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+.seth-page .relationship-card p {
+
+    color: var(--muted);
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.seth-page footer {
+
+    border-top:
+        2px solid var(--border);
+
+}
+
+
+.seth-page .footer-left {
+
+    color: var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+/* =========================================
+   SELECTION
+========================================= */
+
+.seth-page ::selection {
+
+    background: var(--cherry);
+
+    color: #f7e8c9;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 850px) {
+
+    .seth-page .profile-section::before {
+
+        left: 0;
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .seth-page::after {
+
+        font-size: 0.8rem;
+
+        letter-spacing: 0.25em;
+
+    }
+
+
+    .seth-page .profile-about {
+
+        padding: 24px;
+
+    }
+
+}
