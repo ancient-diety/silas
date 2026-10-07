@@ -1,0 +1,552 @@
+/* =========================================================
+   IVAN
+   Midnight Alt-Rock · Motorcycles · Guitar · Night
+   ========================================================= */
+
+.ivan-page {
+    --ivory: #151214;
+    --ivory-dark: #0b090a;
+
+    --cherry: #741c2b;
+    --cherry-dark: #46111a;
+    --cherry-light: #a83245;
+
+    --text: #e5dddd;
+    --muted: #9d9092;
+
+    --border: #3b3032;
+    --white: #f5eeee;
+
+    background:
+        radial-gradient(
+            circle at 78% 12%,
+            rgba(116, 28, 43, 0.18),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 12% 72%,
+            rgba(90, 20, 34, 0.11),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #100d0f 0%,
+            #171214 48%,
+            #0b090a 100%
+        );
+
+    color: var(--text);
+    position: relative;
+}
+
+
+/* =========================================================
+   NIGHT ATMOSPHERE
+   ========================================================= */
+
+.ivan-page::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    z-index: 0;
+
+    opacity: 0.12;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 4px,
+            rgba(255, 255, 255, 0.025) 5px
+        );
+
+    mix-blend-mode: screen;
+}
+
+.ivan-page::after {
+    content: "IVAN // NIGHT DRIVE // 18";
+
+    position: fixed;
+
+    right: -70px;
+    bottom: 18%;
+
+    transform: rotate(-90deg);
+
+    color: var(--cherry);
+    opacity: 0.08;
+
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.ivan-page .navbar {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(10, 8, 9, 0.98),
+            rgba(20, 15, 17, 0.96)
+        );
+
+    border-bottom: 1px solid var(--border);
+
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.ivan-page .nav-logo {
+    color: var(--white);
+}
+
+.ivan-page .nav-logo::after {
+    content: " ●";
+    color: var(--cherry-light);
+    font-size: 0.55em;
+}
+
+.ivan-page .nav-links a {
+    color: var(--muted);
+}
+
+.ivan-page .nav-links a:hover,
+.ivan-page .nav-links a.active {
+    color: var(--cherry-light);
+}
+
+
+/* =========================================================
+   PROFILE HEADER
+   ========================================================= */
+
+.ivan-page .profile-header {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(116, 28, 43, 0.12),
+            transparent 55%
+        );
+
+    border-bottom: 1px solid var(--border);
+
+    overflow: hidden;
+}
+
+
+/* Guitar-string lines */
+
+.ivan-page .profile-header::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 24px;
+
+    height: 4px;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 1px,
+            rgba(168, 50, 69, 0.28) 2px,
+            transparent 3px
+        );
+
+    opacity: 0.7;
+}
+
+
+/* Red tail-light streak */
+
+.ivan-page .profile-header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 240px;
+    height: 2px;
+
+    right: 8%;
+    bottom: 40px;
+
+    background: var(--cherry-light);
+
+    opacity: 0.45;
+
+    box-shadow:
+        0 0 18px rgba(168, 50, 69, 0.55),
+        0 0 45px rgba(116, 28, 43, 0.35);
+
+    transform: skewX(-35deg);
+}
+
+.ivan-page .profile-eyebrow {
+    color: var(--cherry-light);
+    letter-spacing: 0.25em;
+}
+
+.ivan-page .profile-header h1 {
+    color: var(--white);
+
+    text-shadow:
+        2px 2px 0 rgba(116, 28, 43, 0.75),
+        0 0 25px rgba(116, 28, 43, 0.2);
+}
+
+.ivan-page .profile-role {
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
+
+.ivan-page .back-link {
+    color: var(--cherry-light);
+}
+
+.ivan-page .back-link:hover {
+    color: var(--white);
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.ivan-page .profile-section {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 24, 26, 0.92),
+            rgba(16, 13, 15, 0.96)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
+}
+
+
+/* Small red industrial marker */
+
+.ivan-page .profile-section::before {
+    content: "///";
+
+    position: absolute;
+
+    top: 18px;
+    right: 22px;
+
+    color: var(--cherry);
+    opacity: 0.55;
+
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.ivan-page .profile-section-heading {
+    position: relative;
+}
+
+.ivan-page .profile-section-heading::after {
+    content: "";
+
+    display: block;
+
+    width: 90px;
+    height: 1px;
+
+    margin-top: 14px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cherry-light),
+            transparent
+        );
+
+    opacity: 0.65;
+}
+
+.ivan-page .eyebrow {
+    color: var(--cherry-light);
+    letter-spacing: 0.22em;
+}
+
+.ivan-page .profile-section-heading h2 {
+    color: var(--white);
+}
+
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+.ivan-page .profile-about {
+    border-left: 3px solid var(--cherry);
+    padding-left: 1.5rem;
+}
+
+.ivan-page .profile-about-text {
+    color: var(--text);
+}
+
+.ivan-page .profile-about-text p {
+    color: var(--text);
+}
+
+
+/* =========================================================
+   FACTS
+   ========================================================= */
+
+.ivan-page .profile-fact {
+    background: rgba(8, 7, 8, 0.55);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.ivan-page .profile-fact::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 32px;
+    height: 2px;
+
+    background: var(--cherry-light);
+
+    opacity: 0.7;
+}
+
+.ivan-page .profile-fact-label {
+    color: var(--cherry-light);
+}
+
+.ivan-page .profile-fact-value {
+    color: var(--white);
+}
+
+
+/* =========================================================
+   ROLE TAGS
+   ========================================================= */
+
+.ivan-page .profile-tag {
+    background:
+        linear-gradient(
+            135deg,
+            #24191d,
+            #120e10
+        );
+
+    border: 1px solid var(--border);
+
+    color: var(--text);
+
+    border-radius: 5px;
+
+    box-shadow:
+        inset 0 -2px 0 rgba(116, 28, 43, 0.35);
+}
+
+.ivan-page .profile-tag:hover {
+    border-color: var(--cherry);
+    color: var(--white);
+}
+
+
+/* =========================================================
+   PERSONALITY
+   ========================================================= */
+
+.ivan-page .profile-text {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(116, 28, 43, 0.08),
+            rgba(0, 0, 0, 0.18)
+        );
+
+    border-left: 2px solid var(--cherry-dark);
+
+    padding-left: 1.5rem;
+
+    color: var(--text);
+}
+
+
+/* =========================================================
+   LIKES / DISLIKES
+   ========================================================= */
+
+.ivan-page .profile-list-card {
+    background:
+        linear-gradient(
+            145deg,
+            #1d1719,
+            #100d0f
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    position: relative;
+}
+
+.ivan-page .profile-list-card h3 {
+    color: var(--cherry-light);
+}
+
+.ivan-page .profile-list-card li::marker {
+    color: var(--cherry-light);
+}
+
+
+/* =========================================================
+   RELATIONSHIPS
+   ========================================================= */
+
+.ivan-page .relationship-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(31, 24, 27, 0.96),
+            rgba(13, 10, 11, 0.98)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    position: relative;
+}
+
+.ivan-page .relationship-card::before {
+    content: "●";
+
+    position: absolute;
+
+    top: 14px;
+    right: 16px;
+
+    color: var(--cherry);
+
+    font-size: 0.55rem;
+
+    opacity: 0.8;
+}
+
+.ivan-page .relationship-card h3 {
+    color: var(--white);
+}
+
+.ivan-page .relationship-card p {
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.ivan-page footer {
+    background: #090708;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted);
+
+    position: relative;
+}
+
+.ivan-page footer::before {
+    content: "────────────────────────";
+
+    position: absolute;
+
+    top: -11px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: var(--cherry);
+    opacity: 0.45;
+
+    font-size: 0.65rem;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+.ivan-page ::selection {
+    background: var(--cherry);
+    color: var(--white);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .ivan-page::after {
+        display: none;
+    }
+
+    .ivan-page .profile-header::after {
+        right: -40px;
+    }
+
+    .ivan-page .profile-section {
+        border-radius: 8px;
+    }
+
+}
