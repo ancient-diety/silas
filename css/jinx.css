@@ -1,0 +1,516 @@
+/* =========================================================
+   JINX
+   Grunge · Party Girl · Late Nights · Fishnet
+   ========================================================= */
+
+.jinx-page {
+    --ivory: #0d0a10;
+    --ivory-dark: #070609;
+
+    --cherry: #d92cff;
+    --cherry-dark: #7b168c;
+    --cherry-light: #ff4fcb;
+
+    --text: #eee5f1;
+    --muted: #a99aaa;
+
+    --border: #39263d;
+    --white: #f7edf8;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(217, 44, 255, 0.12),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(255, 79, 203, 0.10),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #0b090d 0%,
+            #120b16 45%,
+            #08070a 100%
+        );
+
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   FISHNET ATMOSPHERE
+   ========================================================= */
+
+.jinx-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent 0,
+            transparent 11px,
+            rgba(255, 255, 255, 0.035) 12px,
+            transparent 13px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0,
+            transparent 11px,
+            rgba(255, 255, 255, 0.035) 12px,
+            transparent 13px
+        );
+
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+/* =========================================================
+   RANDOM PURPLE / PINK LIGHT
+   ========================================================= */
+
+.jinx-page::after {
+    content: "✦   ✶   ♡   ✦   ✷";
+    position: fixed;
+
+    top: 18%;
+    right: -40px;
+
+    color: rgba(255, 79, 203, 0.12);
+    font-size: 3rem;
+    letter-spacing: 18px;
+
+    transform: rotate(13deg);
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.jinx-page .navbar {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 6, 10, 0.98),
+            rgba(24, 10, 28, 0.96),
+            rgba(8, 6, 10, 0.98)
+        );
+
+    border-bottom: 1px solid #48214d;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+
+    position: relative;
+    z-index: 2;
+}
+
+.jinx-page .nav-logo {
+    color: var(--cherry-light);
+    text-shadow:
+        2px 2px 0 #54105f,
+        -1px -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.jinx-page .nav-links a {
+    color: #b9a6bb;
+}
+
+.jinx-page .nav-links a:hover,
+.jinx-page .nav-links a.active {
+    color: #ff4fcb;
+}
+
+
+/* =========================================================
+   PROFILE HEADER
+   ========================================================= */
+
+.jinx-page .profile-header {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #100b12,
+            #1c0c20 50%,
+            #0b090d
+        );
+
+    border-bottom: 1px solid #432348;
+}
+
+.jinx-page .profile-header::before {
+    content: "JINX // AFTER DARK // 03:17 AM";
+
+    position: absolute;
+    right: -15px;
+    bottom: 18px;
+
+    color: rgba(255, 79, 203, 0.10);
+    font-size: clamp(2rem, 7vw, 6rem);
+    font-weight: 900;
+    white-space: nowrap;
+
+    transform: rotate(-7deg);
+}
+
+.jinx-page .profile-header::after {
+    content: "♡  ✦  ✶  ♡";
+
+    position: absolute;
+    left: 4%;
+    bottom: 10%;
+
+    color: rgba(217, 44, 255, 0.22);
+    font-size: 1.4rem;
+    letter-spacing: 12px;
+
+    transform: rotate(4deg);
+}
+
+.jinx-page .profile-eyebrow {
+    color: #ff4fcb;
+    letter-spacing: 0.22em;
+}
+
+.jinx-page .profile-header h1 {
+    color: #f6eaf7;
+
+    text-shadow:
+        3px 2px 0 #7b168c,
+        -2px -2px 0 rgba(255, 79, 203, 0.35);
+
+    transform: rotate(-1deg);
+}
+
+.jinx-page .profile-role {
+    color: #c87bd0;
+}
+
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
+
+.jinx-page .back-link {
+    color: #c98ad0;
+}
+
+.jinx-page .back-link:hover {
+    color: #ff4fcb;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.jinx-page .profile-section {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 13, 22, 0.94),
+            rgba(10, 8, 12, 0.97)
+        );
+
+    border: 1px solid #342338;
+
+    box-shadow:
+        8px 10px 0 rgba(76, 19, 83, 0.18),
+        -4px -3px 0 rgba(255, 79, 203, 0.025);
+
+    border-radius: 11px;
+
+    transform: rotate(-0.25deg);
+}
+
+
+/* Make some sections deliberately crooked */
+
+.jinx-page .profile-section:nth-child(2) {
+    transform: rotate(0.55deg);
+}
+
+.jinx-page .profile-section:nth-child(3) {
+    transform: rotate(-0.7deg);
+}
+
+.jinx-page .profile-section:nth-child(4) {
+    transform: rotate(0.35deg);
+}
+
+.jinx-page .profile-section:nth-child(5) {
+    transform: rotate(-0.45deg);
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+.jinx-page .eyebrow {
+    color: #d92cff;
+}
+
+.jinx-page .profile-section-heading h2 {
+    color: #f4e6f5;
+    text-shadow: 2px 2px 0 rgba(123, 22, 140, 0.7);
+}
+
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+.jinx-page .profile-about {
+    border-left: 4px solid #d92cff;
+
+    position: relative;
+}
+
+.jinx-page .profile-about::after {
+    content: "✦";
+
+    position: absolute;
+    right: 8%;
+    top: 12%;
+
+    color: #ff4fcb;
+    font-size: 2rem;
+
+    transform: rotate(18deg);
+}
+
+.jinx-page .profile-about-text {
+    color: #ddd0df;
+}
+
+
+/* =========================================================
+   FACTS
+   ========================================================= */
+
+.jinx-page .profile-fact {
+    background:
+        linear-gradient(
+            135deg,
+            #171019,
+            #0d0a10
+        );
+
+    border: 1px solid #47264b;
+    border-radius: 7px;
+
+    box-shadow:
+        4px 4px 0 rgba(217, 44, 255, 0.10);
+}
+
+.jinx-page .profile-fact:nth-child(even) {
+    transform: rotate(1.4deg);
+}
+
+.jinx-page .profile-fact-label {
+    color: #a763b0;
+}
+
+.jinx-page .profile-fact-value {
+    color: #f3e6f5;
+}
+
+
+/* =========================================================
+   TAGS
+   ========================================================= */
+
+.jinx-page .profile-tag {
+    background: #1b0d20;
+    border: 1px solid #7b168c;
+
+    color: #ff79d6;
+
+    border-radius: 4px;
+
+    box-shadow:
+        3px 3px 0 #4a0d54;
+
+    transform: rotate(-1deg);
+}
+
+.jinx-page .profile-tag:nth-child(even) {
+    transform: rotate(1.5deg);
+}
+
+.jinx-page .profile-tag:nth-child(3n) {
+    transform: rotate(-3deg);
+}
+
+
+/* =========================================================
+   PERSONALITY / TEXT
+   ========================================================= */
+
+.jinx-page .profile-text {
+    position: relative;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(31, 14, 35, 0.95),
+            rgba(11, 8, 13, 0.95)
+        );
+
+    border-left: 3px solid #ff4fcb;
+    border-right: 1px solid #432348;
+
+    color: #ded1df;
+
+    box-shadow:
+        6px 6px 0 rgba(123, 22, 140, 0.15);
+}
+
+.jinx-page .profile-text::before {
+    content: "✶";
+
+    position: absolute;
+    right: 18px;
+    top: 12px;
+
+    color: rgba(255, 79, 203, 0.35);
+}
+
+
+/* =========================================================
+   LIKES / DISLIKES
+   ========================================================= */
+
+.jinx-page .profile-list-card {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #130c17,
+            #09080b
+        );
+
+    border: 1px solid #402344;
+    border-radius: 9px;
+
+    box-shadow:
+        5px 5px 0 rgba(217, 44, 255, 0.10);
+}
+
+.jinx-page .profile-list-card:first-child {
+    transform: rotate(-1deg);
+}
+
+.jinx-page .profile-list-card:last-child {
+    transform: rotate(1.2deg);
+}
+
+.jinx-page .profile-list-card h3 {
+    color: #ff4fcb;
+}
+
+.jinx-page .profile-list-card li::marker {
+    color: #d92cff;
+}
+
+
+/* =========================================================
+   RELATIONSHIPS
+   ========================================================= */
+
+.jinx-page .relationship-card {
+    background:
+        linear-gradient(
+            145deg,
+            #180c1c,
+            #0c090e
+        );
+
+    border: 1px solid #45264a;
+    border-radius: 6px;
+
+    box-shadow:
+        4px 5px 0 rgba(255, 79, 203, 0.08);
+}
+
+.jinx-page .relationship-card:nth-child(odd) {
+    transform: rotate(-1.2deg);
+}
+
+.jinx-page .relationship-card:nth-child(even) {
+    transform: rotate(1.8deg);
+}
+
+.jinx-page .relationship-card h3 {
+    color: #e9b5e6;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.jinx-page footer {
+    background:
+        linear-gradient(
+            90deg,
+            #09070a,
+            #170b1b,
+            #09070a
+        );
+
+    border-top: 1px solid #422146;
+}
+
+.jinx-page .footer-left {
+    color: #ff4fcb;
+}
+
+.jinx-page .footer-right {
+    color: #927395;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+.jinx-page ::selection {
+    background: #d92cff;
+    color: #080609;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .jinx-page .profile-section:nth-child(n) {
+        transform: none;
+    }
+
+    .jinx-page .profile-header::before {
+        font-size: 2.2rem;
+        right: -30px;
+    }
+
+    .jinx-page::after {
+        opacity: 0.5;
+    }
+}
