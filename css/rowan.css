@@ -1,0 +1,486 @@
+/* =========================================
+   ROWAN PROFILE
+   Crimson · Charcoal · Grey · Sigilkore
+========================================= */
+
+
+/* =========================================
+   ROWAN VARIABLES
+========================================= */
+
+.rowan-page {
+
+    --ivory: #171719;
+    --ivory-dark: #242426;
+
+    --cherry: #b3122f;
+    --cherry-dark: #720b1e;
+    --cherry-light: #e02a4c;
+
+    --text: #eeeeee;
+    --muted: #a5a5aa;
+
+    --border: #3b3b40;
+    --white: #202023;
+
+    --rowan-black: #101012;
+    --rowan-charcoal: #1b1b1e;
+    --rowan-grey: #66666d;
+    --rowan-silver: #b8b8bd;
+    --rowan-crimson: #b3122f;
+    --rowan-bright: #ed3152;
+}
+
+
+/* =========================================
+   BASE
+========================================= */
+
+.rowan-page {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(179, 18, 47, 0.05) 0%,
+            transparent 25%,
+            transparent 75%,
+            rgba(255, 255, 255, 0.025) 100%
+        ),
+        var(--ivory);
+
+    color: var(--text);
+}
+
+
+/* =========================================
+   SUBTLE CHAOS BACKGROUND
+========================================= */
+
+.rowan-page main {
+    position: relative;
+}
+
+.rowan-page main::before {
+    content: "ROWAN // 19 // CHAOS //";
+    
+    position: absolute;
+    top: 35px;
+    right: -10px;
+
+    color: rgba(179, 18, 47, 0.08);
+
+    font-size: clamp(2rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+
+    transform: rotate(-7deg);
+
+    pointer-events: none;
+    user-select: none;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.rowan-page .navbar {
+    border-bottom-color: #343438;
+}
+
+.rowan-page .nav-logo {
+    color: var(--rowan-crimson);
+}
+
+.rowan-page .nav-links a:hover,
+.rowan-page .nav-links a.active {
+    color: var(--rowan-bright);
+}
+
+
+/* =========================================
+   PROFILE HEADER
+========================================= */
+
+.rowan-page .profile-header {
+    position: relative;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* little diagonal slash */
+
+.rowan-page .profile-header::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -3px;
+    left: 0;
+
+    width: 110px;
+    height: 5px;
+
+    background: var(--rowan-crimson);
+
+    transform: skewX(-35deg);
+}
+
+
+.rowan-page .back-link {
+    color: var(--rowan-silver);
+}
+
+.rowan-page .back-link:hover {
+    color: var(--rowan-bright);
+}
+
+
+.rowan-page .profile-eyebrow {
+    color: var(--rowan-bright);
+}
+
+
+.rowan-page .profile-header h1 {
+    color: #f2f2f2;
+
+    text-shadow:
+        3px 0 var(--rowan-crimson),
+        -2px 0 rgba(255, 255, 255, 0.08);
+}
+
+
+.rowan-page .profile-role {
+    color: var(--rowan-silver);
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.rowan-page .profile-section {
+    position: relative;
+
+    border-bottom-color: var(--border);
+}
+
+
+/* tiny decorative corner */
+
+.rowan-page .profile-section::before {
+    content: "///";
+
+    position: absolute;
+
+    top: 34px;
+    right: 0;
+
+    color: rgba(179, 18, 47, 0.55);
+
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+
+    transform: skewX(-15deg);
+}
+
+
+.rowan-page .eyebrow {
+    color: var(--rowan-bright);
+}
+
+
+/* =========================================
+   HEADINGS
+========================================= */
+
+.rowan-page h2 {
+    color: #eeeeee;
+}
+
+.rowan-page h3 {
+    color: #eeeeee;
+}
+
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.rowan-page .profile-about {
+    position: relative;
+}
+
+
+/* crimson side marker */
+
+.rowan-page .profile-about-text {
+    border-left: 3px solid var(--rowan-crimson);
+    padding-left: 26px;
+}
+
+
+.rowan-page .profile-about-text p {
+    color: #bcbcc1;
+}
+
+
+/* =========================================
+   FACTS
+========================================= */
+
+.rowan-page .profile-fact {
+    background: var(--rowan-charcoal);
+    border-color: #3d3d42;
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+.rowan-page .profile-fact::after {
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 3px;
+
+    right: -20px;
+    bottom: 12px;
+
+    background: var(--rowan-crimson);
+
+    transform: rotate(-25deg);
+}
+
+
+.rowan-page .profile-fact-label {
+    color: var(--rowan-grey);
+}
+
+
+.rowan-page .profile-fact-value {
+    color: #f0f0f0;
+}
+
+
+/* =========================================
+   TAGS
+========================================= */
+
+.rowan-page .profile-tag {
+    background: var(--rowan-charcoal);
+    color: #eeeeee;
+
+    border: 1px solid #4a4a4f;
+
+    border-radius: 5px;
+
+    box-shadow:
+        4px 4px 0 var(--rowan-crimson);
+
+    transform: skewX(-4deg);
+}
+
+
+.rowan-page .profile-tag:hover {
+    background: #29292d;
+    border-color: var(--rowan-bright);
+
+    transform:
+        skewX(-4deg)
+        translate(-2px, -2px);
+}
+
+
+/* =========================================
+   PERSONALITY TEXT
+========================================= */
+
+.rowan-page .profile-text {
+    position: relative;
+
+    padding: 32px;
+
+    background: var(--rowan-charcoal);
+
+    border: 1px solid #3d3d42;
+    border-left: 5px solid var(--rowan-crimson);
+
+    box-shadow:
+        10px 10px 0 rgba(179, 18, 47, 0.15);
+}
+
+
+.rowan-page .profile-text p {
+    color: #c7c7ca;
+}
+
+
+/* =========================================
+   LIKES / DISLIKES
+========================================= */
+
+.rowan-page .profile-list-card {
+    position: relative;
+
+    background: var(--rowan-charcoal);
+
+    border-color: #3d3d42;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+.rowan-page .profile-list-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--rowan-crimson) 0 35%,
+            var(--rowan-grey) 35% 65%,
+            transparent 65%
+        );
+}
+
+
+.rowan-page .profile-list-card h3 {
+    color: #eeeeee;
+}
+
+
+.rowan-page .profile-list-card li {
+    color: #bdbdc2;
+}
+
+
+.rowan-page .profile-list-card li::marker {
+    color: var(--rowan-crimson);
+}
+
+
+/* =========================================
+   RELATIONSHIPS
+========================================= */
+
+.rowan-page .relationship-card {
+    position: relative;
+
+    background: var(--rowan-charcoal);
+
+    border-color: #3d3d42;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+
+.rowan-page .relationship-card::after {
+    content: "×";
+
+    position: absolute;
+
+    top: 8px;
+    right: 14px;
+
+    color: rgba(179, 18, 47, 0.5);
+
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+
+.rowan-page .relationship-card h3 {
+    color: #f1f1f1;
+}
+
+
+.rowan-page .relationship-card p {
+    color: var(--rowan-silver);
+}
+
+
+/* =========================================
+   CONTROLLED GLITCH
+========================================= */
+
+.rowan-page .profile-header h1,
+.rowan-page .profile-section-heading h2 {
+    position: relative;
+}
+
+
+.rowan-page .profile-header h1::selection,
+.rowan-page .profile-section-heading h2::selection {
+    background: var(--rowan-crimson);
+    color: white;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.rowan-page footer {
+    border-top-color: #343438;
+}
+
+
+.rowan-page .footer-left {
+    color: var(--rowan-crimson);
+}
+
+
+.rowan-page .footer-right {
+    color: #77777d;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 850px) {
+
+    .rowan-page main::before {
+        right: -25px;
+        top: 25px;
+
+        font-size: 2rem;
+    }
+
+    .rowan-page .profile-about-text {
+        padding-left: 18px;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .rowan-page main::before {
+        opacity: 0.5;
+        font-size: 1.4rem;
+    }
+
+    .rowan-page .profile-text {
+        padding: 24px;
+        box-shadow:
+            6px 6px 0 rgba(179, 18, 47, 0.15);
+    }
+
+}
