@@ -1,84 +1,97 @@
 /* =========================================
    SETH
-   Temple of the Red Land
+   TEMPLE OF THE RED LAND
 ========================================= */
 
 .seth-page {
 
-    --ivory: #d8bd91;
-    --ivory-dark: #b79a6b;
+    --ivory: #cdb487;
+    --ivory-dark: #a98d61;
 
-    --cherry: #7f1728;
-    --cherry-dark: #4d0d18;
-    --cherry-light: #a9343e;
+    --cherry: #7b1725;
+    --cherry-dark: #4f0d17;
+    --cherry-light: #963444;
 
-    --text: #241a15;
-    --muted: #5e4a39;
+    --text: #241914;
+    --muted: #5d4937;
 
-    --border: #9d8058;
-    --white: #ead8b5;
+    --border: #927650;
+    --white: #dfc99d;
 
-    background:
-        linear-gradient(
-            rgba(72, 45, 24, 0.035) 1px,
-            transparent 1px
-        ),
+    background-color: var(--ivory);
+
+    background-image:
         linear-gradient(
             90deg,
-            rgba(72, 45, 24, 0.025) 1px,
+            rgba(75, 48, 28, 0.025) 1px,
             transparent 1px
         ),
-        var(--ivory);
+        linear-gradient(
+            rgba(75, 48, 28, 0.025) 1px,
+            transparent 1px
+        );
 
-    background-size: 28px 28px;
+    background-size: 37px 37px;
 
 }
 
 
 /* =========================================
-   TEMPLE ATMOSPHERE
+   AGED STONE OVERLAY
 ========================================= */
 
 .seth-page::before {
 
-    content: "𓊃𓂧𓁣";
+    content: "";
 
     position: fixed;
 
-    top: 18%;
-    right: 3%;
-
-    font-size: clamp(5rem, 13vw, 12rem);
-
-    color: rgba(127, 23, 40, 0.055);
+    inset: 0;
 
     pointer-events: none;
 
-    z-index: 0;
+    z-index: 50;
 
-    transform: rotate(-4deg);
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(67, 42, 23, 0.08),
+            transparent 35%
+        );
+
+    opacity: 0.65;
 
 }
 
 
+/* =========================================
+   DISTANT HIEROGLYPHS
+========================================= */
+
 .seth-page::after {
 
-    content: "𓂀 𓋹 𓊃𓂧𓁣 𓆣 𓏏 𓉐";
+    content:
+        "𓊃 𓂧 𓁣     𓋹 𓂀 𓆣     𓏏 𓉐 𓂻";
 
     position: fixed;
 
-    bottom: 4%;
-    left: 3%;
+    right: 2%;
+    bottom: 7%;
 
-    font-size: 1.2rem;
+    color: rgba(79, 13, 23, 0.11);
 
-    letter-spacing: 0.5em;
+    font-size: clamp(1rem, 2vw, 1.7rem);
 
-    color: rgba(77, 13, 24, 0.12);
+    letter-spacing: 0.35em;
 
     pointer-events: none;
 
-    z-index: 0;
+    transform: rotate(-2deg);
 
 }
 
@@ -89,30 +102,31 @@
 
 .seth-page .navbar {
 
+    position: relative;
+
     border-bottom:
         2px solid var(--border);
-
-    position: relative;
 
 }
 
 
 .seth-page .navbar::after {
 
-    content: "𓊃";
+    content: "𓊃𓂧𓁣";
 
     position: absolute;
 
     right: 0;
-    bottom: -13px;
 
-    padding: 0 10px;
+    bottom: -11px;
+
+    padding: 0 12px;
 
     background: var(--ivory);
 
     color: var(--cherry);
 
-    font-size: 1rem;
+    font-size: 0.9rem;
 
 }
 
@@ -126,7 +140,7 @@
         "Times New Roman",
         serif;
 
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
 
 }
 
@@ -147,46 +161,61 @@
 
     position: relative;
 
-    padding-top: 80px;
+    padding-top: 100px;
+
+    padding-bottom: 40px;
 
 }
 
 
+/*
+    A temple-style horizontal divider.
+*/
+
 .seth-page .profile-header::before {
 
-    content: "𓊃𓂧𓁣";
+    content:
+        "𓏏 𓊃 𓂧 𓁣 𓏏";
 
     display: block;
 
-    margin-bottom: 24px;
+    margin-bottom: 35px;
 
     color: var(--cherry);
 
-    font-size: 2rem;
+    font-size: 1.15rem;
 
-    letter-spacing: 0.25em;
+    letter-spacing: 0.55em;
+
+    opacity: 0.9;
 
 }
 
 
 .seth-page .profile-header::after {
 
-    content: "";
+    content:
+        "𓏏 𓏏 𓏏 𓏏 𓏏 𓏏 𓏏";
 
     display: block;
 
-    width: 150px;
-    height: 5px;
+    width: fit-content;
 
     margin-top: 30px;
 
-    background:
-        linear-gradient(
-            90deg,
-            var(--cherry),
-            var(--cherry-dark),
-            transparent
-        );
+    padding: 5px 14px;
+
+    color: var(--cherry);
+
+    border-top:
+        2px solid var(--cherry);
+
+    border-bottom:
+        1px solid var(--border);
+
+    letter-spacing: 0.35em;
+
+    font-size: 0.75rem;
 
 }
 
@@ -200,7 +229,7 @@
         "Times New Roman",
         serif;
 
-    letter-spacing: 0.22em;
+    letter-spacing: 0.28em;
 
 }
 
@@ -216,10 +245,10 @@
 
     font-weight: 700;
 
-    letter-spacing: -0.04em;
+    letter-spacing: -0.05em;
 
     text-shadow:
-        2px 2px 0 rgba(127, 23, 40, 0.12);
+        2px 2px 0 rgba(79, 13, 23, 0.12);
 
 }
 
@@ -227,6 +256,11 @@
 .seth-page .profile-role {
 
     color: var(--cherry);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-weight: 700;
 
@@ -241,6 +275,11 @@
 
     color: var(--cherry);
 
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
     font-weight: 700;
 
 }
@@ -254,7 +293,7 @@
 
 
 /* =========================================
-   PROFILE SECTIONS
+   SECTION STRUCTURE
 ========================================= */
 
 .seth-page .profile-section {
@@ -267,50 +306,58 @@
 }
 
 
+/*
+    Small carved marker at each section.
+*/
+
 .seth-page .profile-section::before {
 
     content: "𓏏";
 
     position: absolute;
 
-    top: 30px;
-    left: -28px;
+    top: 34px;
+    left: -34px;
 
     color: var(--cherry);
 
-    opacity: 0.65;
+    font-size: 1rem;
 
-    font-size: 0.9rem;
+    opacity: 0.75;
 
 }
 
 
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
 .seth-page .profile-section-heading {
 
     position: relative;
+
+    padding-bottom: 20px;
 
 }
 
 
 .seth-page .profile-section-heading::after {
 
-    content: "";
+    content:
+        "𓏏 𓏏 𓏏";
 
     display: block;
 
-    width: 70px;
-    height: 3px;
-
     margin-top: 18px;
 
-    background: var(--cherry);
+    color: var(--cherry);
+
+    letter-spacing: 0.35em;
+
+    font-size: 0.75rem;
 
 }
 
-
-/* =========================================
-   HEADINGS
-========================================= */
 
 .seth-page .profile-section-heading h2 {
 
@@ -320,6 +367,8 @@
         Georgia,
         "Times New Roman",
         serif;
+
+    letter-spacing: -0.025em;
 
 }
 
@@ -333,50 +382,62 @@
         "Times New Roman",
         serif;
 
+    letter-spacing: 0.2em;
+
 }
 
 
 /* =========================================
-   ABOUT BLOCK
+   ABOUT
 ========================================= */
 
 .seth-page .profile-about {
 
     position: relative;
 
-    padding: 34px;
+    padding: 42px;
 
     border:
+
         1px solid var(--border);
 
     border-left:
-        8px solid var(--cherry);
+
+        7px solid var(--cherry);
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(255, 248, 230, 0.55),
-            rgba(183, 154, 107, 0.18)
-        );
+
+        rgba(224, 201, 158, 0.38);
 
     box-shadow:
-        8px 8px 0 rgba(77, 13, 24, 0.08);
+
+        8px 8px 0
+        rgba(79, 13, 23, 0.08);
 
 }
 
 
+/*
+    Seth animal glyph / temple mark.
+*/
+
 .seth-page .profile-about::before {
 
-    content: "𓊃";
+    content:
+        "𓊃𓂧𓁣";
 
     position: absolute;
 
-    top: 16px;
-    right: 22px;
+    top: 20px;
+    right: 25px;
 
     color: var(--cherry);
 
-    font-size: 2rem;
+    font-family:
+        "Times New Roman",
+        serif;
+
+    font-size: 1.5rem;
 
     opacity: 0.45;
 
@@ -401,25 +462,26 @@
     border:
         1px solid var(--border);
 
+    border-radius: 2px;
+
     background:
-        rgba(234, 216, 181, 0.7);
+        rgba(231, 211, 173, 0.55);
 
 }
 
 
 .seth-page .profile-fact::before {
 
-    content: "";
+    content: "𓏏";
 
     position: absolute;
 
-    top: 0;
-    left: 0;
+    top: 9px;
+    right: 12px;
 
-    width: 100%;
-    height: 4px;
+    color: var(--cherry);
 
-    background: var(--cherry);
+    opacity: 0.5;
 
 }
 
@@ -432,6 +494,8 @@
         Georgia,
         "Times New Roman",
         serif;
+
+    letter-spacing: 0.12em;
 
 }
 
@@ -452,10 +516,10 @@
     border:
         1px solid var(--border);
 
-    border-radius: 3px;
+    border-radius: 2px;
 
     background:
-        rgba(234, 216, 181, 0.8);
+        rgba(232, 211, 171, 0.7);
 
     color: var(--cherry);
 
@@ -465,42 +529,72 @@
         serif;
 
     box-shadow:
-        3px 3px 0 rgba(77, 13, 24, 0.08);
+        3px 3px 0
+        rgba(79, 13, 23, 0.08);
+
+}
+
+
+.seth-page .profile-tag:nth-child(odd) {
+
+    transform: translateY(-2px);
 
 }
 
 
 .seth-page .profile-tag:nth-child(even) {
 
-    transform: translateY(3px);
+    transform: translateY(2px);
 
 }
 
 
 .seth-page .profile-tag:hover {
 
-    border-color: var(--cherry);
-
     background: var(--cherry);
 
-    color: var(--white);
+    border-color: var(--cherry-dark);
+
+    color: #ead7ac;
 
 }
 
 
 /* =========================================
-   TEXT
+   TEXT BLOCKS
 ========================================= */
 
 .seth-page .profile-text {
 
-    padding: 28px 32px;
+    position: relative;
+
+    padding: 32px 36px;
 
     border-left:
         4px solid var(--cherry);
 
     background:
-        rgba(255, 248, 230, 0.42);
+        rgba(238, 220, 184, 0.35);
+
+}
+
+
+/*
+    Tiny pigment mark.
+*/
+
+.seth-page .profile-text::before {
+
+    content: "𓊃";
+
+    position: absolute;
+
+    top: 10px;
+    left: 10px;
+
+    color: var(--cherry);
+
+    opacity: 0.3;
 
 }
 
@@ -518,16 +612,36 @@
 
 .seth-page .profile-list-card {
 
+    position: relative;
+
     border:
         1px solid var(--border);
 
-    border-radius: 4px;
+    border-radius: 2px;
 
     background:
-        rgba(234, 216, 181, 0.65);
+        rgba(230, 209, 169, 0.52);
 
     box-shadow:
-        6px 6px 0 rgba(77, 13, 24, 0.07);
+        6px 6px 0
+        rgba(79, 13, 23, 0.07);
+
+}
+
+
+.seth-page .profile-list-card::after {
+
+    content:
+        "𓏏";
+
+    position: absolute;
+
+    bottom: 12px;
+    right: 15px;
+
+    color: var(--cherry);
+
+    opacity: 0.3;
 
 }
 
@@ -569,22 +683,23 @@
     border:
         1px solid var(--border);
 
-    border-radius: 4px;
+    border-radius: 2px;
 
     background:
-        rgba(255, 248, 230, 0.55);
+        rgba(237, 218, 179, 0.48);
 
 }
 
 
 .seth-page .relationship-card::before {
 
-    content: "𓂀";
+    content:
+        "𓂀";
 
     position: absolute;
 
-    top: 12px;
-    right: 15px;
+    top: 13px;
+    right: 16px;
 
     color: var(--cherry);
 
@@ -644,7 +759,7 @@
 
     background: var(--cherry);
 
-    color: #f7e8c9;
+    color: #ead7ac;
 
 }
 
@@ -666,18 +781,23 @@
 
 @media (max-width: 520px) {
 
-    .seth-page::after {
+    .seth-page .profile-about {
 
-        font-size: 0.8rem;
-
-        letter-spacing: 0.25em;
+        padding: 25px;
 
     }
 
+    .seth-page .profile-header {
 
-    .seth-page .profile-about {
+        padding-top: 70px;
 
-        padding: 24px;
+    }
+
+    .seth-page::after {
+
+        font-size: 0.75rem;
+
+        letter-spacing: 0.18em;
 
     }
 
