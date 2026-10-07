@@ -550,3 +550,144 @@
     }
 
 }
+
+/* =========================================================
+   IVAN'S CENTERED COMPOSITION
+   ========================================================= */
+
+.ivan-page .profile-header {
+    text-align: center;
+}
+
+.ivan-page .profile-header .back-link {
+    display: inline-block;
+}
+
+.ivan-page .profile-content {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ivan-page .profile-section {
+    text-align: center;
+}
+
+/* Center section headings */
+
+.ivan-page .profile-section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ivan-page .profile-section-heading::after {
+    width: 110px;
+}
+
+/* Center the About section */
+
+.ivan-page .profile-about {
+    border-left: none;
+    border-top: 2px solid var(--cherry);
+    padding-left: 0;
+    padding-top: 1.5rem;
+
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ivan-page .profile-about-text {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Facts stay centered */
+
+.ivan-page .profile-facts {
+    justify-content: center;
+}
+
+.ivan-page .profile-fact {
+    text-align: center;
+}
+
+/* Tags sit neatly around the center */
+
+.ivan-page .profile-tags {
+    justify-content: center;
+}
+
+/* Personality */
+
+.ivan-page .profile-text {
+    border-left: none;
+    border-top: 1px solid var(--cherry-dark);
+
+    max-width: 720px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.25rem;
+
+    text-align: center;
+}
+
+/* Likes and dislikes */
+
+.ivan-page .profile-columns {
+    text-align: center;
+}
+
+.ivan-page .profile-list-card {
+    text-align: center;
+}
+
+.ivan-page .profile-list-card ul {
+    text-align: left;
+    display: inline-block;
+}
+
+/* Relationships */
+
+.ivan-page .relationship-grid {
+    justify-content: center;
+}
+
+.ivan-page .relationship-card {
+    text-align: center;
+}
+
+
+/* =========================================================
+   KEEP THE NIGHT-DRIVE ATMOSPHERE
+   ========================================================= */
+
+.ivan-page .profile-section::before {
+    left: 50%;
+    right: auto;
+
+    transform: translateX(-50%);
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .ivan-page .profile-content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .ivan-page .profile-about-text,
+    .ivan-page .profile-text {
+        max-width: none;
+    }
+
+}
