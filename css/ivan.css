@@ -4,44 +4,51 @@
    ========================================================= */
 
 .ivan-page {
-    --ivory: #151214;
-    --ivory-dark: #0b090a;
+    --ivory: #121012;
+    --ivory-dark: #090809;
 
-    --cherry: #741c2b;
-    --cherry-dark: #46111a;
-    --cherry-light: #a83245;
+    --cherry: #681b2a;
+    --cherry-dark: #3e1019;
+    --cherry-light: #9b3043;
 
-    --text: #e5dddd;
-    --muted: #9d9092;
+    --text: #e4dddd;
+    --muted: #988d90;
 
-    --border: #3b3032;
-    --white: #f5eeee;
+    --border: rgba(126, 83, 90, 0.28);
+    --white: #f3eeee;
+
+    min-height: 100vh;
+    position: relative;
 
     background:
         radial-gradient(
-            circle at 78% 12%,
-            rgba(116, 28, 43, 0.18),
-            transparent 28%
+            ellipse at 15% 15%,
+            rgba(104, 27, 42, 0.22),
+            transparent 42%
         ),
         radial-gradient(
-            circle at 12% 72%,
-            rgba(90, 20, 34, 0.11),
-            transparent 30%
+            ellipse at 85% 35%,
+            rgba(104, 27, 42, 0.16),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 40% 85%,
+            rgba(76, 18, 30, 0.18),
+            transparent 48%
         ),
         linear-gradient(
-            145deg,
-            #100d0f 0%,
-            #171214 48%,
-            #0b090a 100%
+            135deg,
+            #0d0b0d 0%,
+            #171114 45%,
+            #0d0a0c 100%
         );
 
     color: var(--text);
-    position: relative;
 }
 
 
 /* =========================================================
-   NIGHT ATMOSPHERE
+   ATMOSPHERIC GRAIN
    ========================================================= */
 
 .ivan-page::before {
@@ -59,31 +66,44 @@
         repeating-linear-gradient(
             0deg,
             transparent 0,
-            transparent 4px,
-            rgba(255, 255, 255, 0.025) 5px
+            transparent 5px,
+            rgba(255, 255, 255, 0.018) 6px
         );
 
     mix-blend-mode: screen;
 }
 
+
+/* =========================================================
+   DISTANT RED LIGHT
+   ========================================================= */
+
 .ivan-page::after {
-    content: "IVAN // NIGHT DRIVE // 18";
+    content: "";
 
     position: fixed;
 
-    right: -70px;
-    bottom: 18%;
+    width: 55%;
+    height: 1px;
 
-    transform: rotate(-90deg);
+    right: -10%;
+    top: 48%;
 
-    color: var(--cherry);
-    opacity: 0.08;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(155, 48, 67, 0.3),
+            transparent
+        );
 
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.35em;
+    box-shadow:
+        0 0 24px rgba(104, 27, 42, 0.25);
+
+    transform: rotate(-7deg);
 
     pointer-events: none;
+    z-index: 0;
 }
 
 
@@ -92,17 +112,22 @@
    ========================================================= */
 
 .ivan-page .navbar {
+    position: relative;
+    z-index: 2;
+
     background:
         linear-gradient(
             180deg,
-            rgba(10, 8, 9, 0.98),
-            rgba(20, 15, 17, 0.96)
+            rgba(11, 9, 10, 0.94),
+            rgba(18, 13, 15, 0.82)
         );
 
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(126, 83, 90, 0.22);
 
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.35);
+        0 8px 30px rgba(0, 0, 0, 0.22);
+
+    backdrop-filter: blur(10px);
 }
 
 .ivan-page .nav-logo {
@@ -111,8 +136,13 @@
 
 .ivan-page .nav-logo::after {
     content: " ●";
+
     color: var(--cherry-light);
-    font-size: 0.55em;
+
+    font-size: 0.5em;
+
+    text-shadow:
+        0 0 8px rgba(155, 48, 67, 0.7);
 }
 
 .ivan-page .nav-links a {
@@ -126,26 +156,31 @@
 
 
 /* =========================================================
-   PROFILE HEADER
+   HEADER
    ========================================================= */
 
 .ivan-page .profile-header {
     position: relative;
+    z-index: 1;
 
     background:
         linear-gradient(
-            135deg,
-            rgba(116, 28, 43, 0.12),
-            transparent 55%
+            120deg,
+            rgba(104, 27, 42, 0.12),
+            transparent 45%,
+            rgba(104, 27, 42, 0.07)
         );
 
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(126, 83, 90, 0.22);
 
     overflow: hidden;
+
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 
-/* Guitar-string lines */
+/* Guitar strings */
 
 .ivan-page .profile-header::before {
     content: "";
@@ -154,58 +189,64 @@
 
     left: 0;
     right: 0;
-    bottom: 24px;
+    bottom: 25px;
 
-    height: 4px;
+    height: 5px;
 
     background:
         repeating-linear-gradient(
             0deg,
             transparent 0,
             transparent 1px,
-            rgba(168, 50, 69, 0.28) 2px,
+            rgba(155, 48, 67, 0.22) 2px,
             transparent 3px
         );
 
-    opacity: 0.7;
+    opacity: 0.75;
 }
 
 
-/* Red tail-light streak */
+/* Tail light */
 
 .ivan-page .profile-header::after {
     content: "";
 
     position: absolute;
 
-    width: 240px;
+    width: 300px;
     height: 2px;
 
-    right: 8%;
+    right: -30px;
     bottom: 40px;
 
-    background: var(--cherry-light);
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cherry-light),
+            transparent
+        );
 
-    opacity: 0.45;
+    opacity: 0.4;
+
+    transform: rotate(-4deg);
 
     box-shadow:
-        0 0 18px rgba(168, 50, 69, 0.55),
-        0 0 45px rgba(116, 28, 43, 0.35);
-
-    transform: skewX(-35deg);
+        0 0 18px rgba(155, 48, 67, 0.45);
 }
 
 .ivan-page .profile-eyebrow {
     color: var(--cherry-light);
-    letter-spacing: 0.25em;
+
+    letter-spacing: 0.24em;
 }
 
 .ivan-page .profile-header h1 {
     color: var(--white);
 
     text-shadow:
-        2px 2px 0 rgba(116, 28, 43, 0.75),
-        0 0 25px rgba(116, 28, 43, 0.2);
+        2px 2px 0 rgba(104, 27, 42, 0.6),
+        0 0 28px rgba(104, 27, 42, 0.18);
 }
 
 .ivan-page .profile-role {
@@ -227,7 +268,20 @@
 
 
 /* =========================================================
-   SECTIONS
+   MAIN CONTENT
+   ========================================================= */
+
+.ivan-page .profile-content {
+    position: relative;
+    z-index: 1;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+
+/* =========================================================
+   PROFILE SECTIONS
    ========================================================= */
 
 .ivan-page .profile-section {
@@ -235,37 +289,68 @@
 
     background:
         linear-gradient(
-            145deg,
-            rgba(30, 24, 26, 0.92),
-            rgba(16, 13, 15, 0.96)
+            135deg,
+            rgba(31, 23, 26, 0.72),
+            rgba(13, 11, 13, 0.62)
         );
 
-    border: 1px solid var(--border);
+    border: 1px solid rgba(126, 83, 90, 0.22);
 
-    border-radius: 10px;
+    border-radius: 16px;
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.25);
+        0 12px 35px rgba(0, 0, 0, 0.18),
+        inset 0 1px rgba(255, 255, 255, 0.025);
+
+    backdrop-filter: blur(8px);
 
     overflow: hidden;
+
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 
-/* Small red industrial marker */
+/* Soft red edge */
 
 .ivan-page .profile-section::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 70px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cherry-light),
+            transparent
+        );
+
+    opacity: 0.55;
+}
+
+
+/* Small industrial marking */
+
+.ivan-page .profile-section::after {
     content: "///";
 
     position: absolute;
 
-    top: 18px;
-    right: 22px;
+    top: 20px;
+    right: 25px;
 
     color: var(--cherry);
-    opacity: 0.55;
 
     font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
+
+    opacity: 0.55;
 
     pointer-events: none;
 }
@@ -284,7 +369,7 @@
 
     display: block;
 
-    width: 90px;
+    width: 100px;
     height: 1px;
 
     margin-top: 14px;
@@ -296,12 +381,13 @@
             transparent
         );
 
-    opacity: 0.65;
+    opacity: 0.6;
 }
 
 .ivan-page .eyebrow {
     color: var(--cherry-light);
-    letter-spacing: 0.22em;
+
+    letter-spacing: 0.21em;
 }
 
 .ivan-page .profile-section-heading h2 {
@@ -314,15 +400,12 @@
    ========================================================= */
 
 .ivan-page .profile-about {
-    border-left: 3px solid var(--cherry);
-    padding-left: 1.5rem;
+    padding-left: 1.75rem;
+
+    border-left: 2px solid rgba(104, 27, 42, 0.7);
 }
 
 .ivan-page .profile-about-text {
-    color: var(--text);
-}
-
-.ivan-page .profile-about-text p {
     color: var(--text);
 }
 
@@ -332,14 +415,17 @@
    ========================================================= */
 
 .ivan-page .profile-fact {
-    background: rgba(8, 7, 8, 0.55);
+    background:
+        rgba(9, 8, 9, 0.35);
 
-    border: 1px solid var(--border);
+    border: 1px solid rgba(126, 83, 90, 0.2);
 
-    border-radius: 8px;
+    border-radius: 10px;
 
     position: relative;
-    overflow: hidden;
+
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.02);
 }
 
 .ivan-page .profile-fact::after {
@@ -350,12 +436,12 @@
     left: 0;
     bottom: 0;
 
-    width: 32px;
+    width: 28px;
     height: 2px;
 
     background: var(--cherry-light);
 
-    opacity: 0.7;
+    opacity: 0.55;
 }
 
 .ivan-page .profile-fact-label {
@@ -372,26 +458,27 @@
    ========================================================= */
 
 .ivan-page .profile-tag {
-    background:
-        linear-gradient(
-            135deg,
-            #24191d,
-            #120e10
-        );
+    position: relative;
 
-    border: 1px solid var(--border);
+    background:
+        rgba(38, 27, 30, 0.65);
+
+    border: 1px solid rgba(126, 83, 90, 0.28);
 
     color: var(--text);
 
-    border-radius: 5px;
+    border-radius: 7px;
 
     box-shadow:
-        inset 0 -2px 0 rgba(116, 28, 43, 0.35);
+        inset 0 -1px rgba(104, 27, 42, 0.5);
 }
 
 .ivan-page .profile-tag:hover {
     border-color: var(--cherry);
     color: var(--white);
+
+    box-shadow:
+        0 0 14px rgba(104, 27, 42, 0.18);
 }
 
 
@@ -402,16 +489,16 @@
 .ivan-page .profile-text {
     position: relative;
 
+    padding-left: 1.75rem;
+
+    border-left: 2px solid rgba(104, 27, 42, 0.6);
+
     background:
         linear-gradient(
-            135deg,
-            rgba(116, 28, 43, 0.08),
-            rgba(0, 0, 0, 0.18)
+            90deg,
+            rgba(104, 27, 42, 0.08),
+            transparent 45%
         );
-
-    border-left: 2px solid var(--cherry-dark);
-
-    padding-left: 1.5rem;
 
     color: var(--text);
 }
@@ -423,17 +510,14 @@
 
 .ivan-page .profile-list-card {
     background:
-        linear-gradient(
-            145deg,
-            #1d1719,
-            #100d0f
-        );
+        rgba(28, 21, 23, 0.62);
 
-    border: 1px solid var(--border);
+    border: 1px solid rgba(126, 83, 90, 0.22);
 
-    border-radius: 9px;
+    border-radius: 12px;
 
-    position: relative;
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.025);
 }
 
 .ivan-page .profile-list-card h3 {
@@ -450,18 +534,16 @@
    ========================================================= */
 
 .ivan-page .relationship-card {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(31, 24, 27, 0.96),
-            rgba(13, 10, 11, 0.98)
-        );
-
-    border: 1px solid var(--border);
-
-    border-radius: 9px;
-
     position: relative;
+
+    background:
+        rgba(29, 22, 24, 0.64);
+
+    border: 1px solid rgba(126, 83, 90, 0.22);
+
+    border-radius: 12px;
+
+    overflow: hidden;
 }
 
 .ivan-page .relationship-card::before {
@@ -469,14 +551,17 @@
 
     position: absolute;
 
-    top: 14px;
-    right: 16px;
+    top: 15px;
+    right: 17px;
 
-    color: var(--cherry);
+    color: var(--cherry-light);
 
-    font-size: 0.55rem;
+    font-size: 0.5rem;
 
-    opacity: 0.8;
+    opacity: 0.7;
+
+    text-shadow:
+        0 0 8px rgba(155, 48, 67, 0.5);
 }
 
 .ivan-page .relationship-card h3 {
@@ -493,31 +578,20 @@
    ========================================================= */
 
 .ivan-page footer {
-    background: #090708;
+    position: relative;
+    z-index: 1;
 
-    border-top: 1px solid var(--border);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(12, 9, 10, 0.95),
+            rgba(25, 14, 17, 0.95),
+            rgba(9, 7, 8, 0.95)
+        );
+
+    border-top: 1px solid rgba(126, 83, 90, 0.22);
 
     color: var(--muted);
-
-    position: relative;
-}
-
-.ivan-page footer::before {
-    content: "────────────────────────";
-
-    position: absolute;
-
-    top: -11px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    color: var(--cherry);
-    opacity: 0.45;
-
-    font-size: 0.65rem;
-
-    white-space: nowrap;
 }
 
 
@@ -537,403 +611,6 @@
 
 @media (max-width: 700px) {
 
-    .ivan-page::after {
-        display: none;
-    }
-
-    .ivan-page .profile-header::after {
-        right: -40px;
-    }
-
-    .ivan-page .profile-section {
-        border-radius: 8px;
-    }
-
-}
-
-/* =========================================================
-   IVAN'S ATMOSPHERE + SPACING
-   Midnight road · worn metal · red tail lights
-   ========================================================= */
-
-.ivan-page {
-    background:
-        /* broad red night glow */
-        radial-gradient(
-            ellipse at 8% 18%,
-            rgba(116, 28, 43, 0.20),
-            transparent 38%
-        ),
-
-        radial-gradient(
-            ellipse at 92% 42%,
-            rgba(116, 28, 43, 0.15),
-            transparent 42%
-        ),
-
-        radial-gradient(
-            ellipse at 45% 100%,
-            rgba(72, 16, 28, 0.18),
-            transparent 45%
-        ),
-
-        /* long red light across the entire road */
-        linear-gradient(
-            112deg,
-            transparent 0%,
-            rgba(116, 28, 43, 0.08) 25%,
-            rgba(168, 50, 69, 0.13) 48%,
-            rgba(116, 28, 43, 0.06) 70%,
-            transparent 100%
-        ),
-
-        /* asphalt */
-        repeating-linear-gradient(
-            0deg,
-            #0c090b 0px,
-            #0c090b 7px,
-            #100c0e 8px
-        );
-
-    background-attachment: fixed;
-}
-
-
-/* =========================================================
-   ASPHALT / METAL GRAIN
-   ========================================================= */
-
-.ivan-page::before {
-    content: "";
-
-    position: fixed;
-    inset: 0;
-
-    pointer-events: none;
-    z-index: 0;
-
-    opacity: 0.18;
-
-    background:
-        repeating-linear-gradient(
-            97deg,
-            transparent 0px,
-            transparent 3px,
-            rgba(255, 255, 255, 0.018) 4px
-        ),
-        repeating-linear-gradient(
-            4deg,
-            transparent 0px,
-            transparent 8px,
-            rgba(116, 28, 43, 0.025) 9px
-        );
-
-    mix-blend-mode: screen;
-}
-
-
-/* =========================================================
-   CONTENT SPACING
-   ========================================================= */
-
-/*
-   Ivan's text isn't centered.
-   It simply gets more breathing room from the edges.
-*/
-
-.ivan-page .profile-section {
-    padding-left: 3rem;
-    padding-right: 3rem;
-}
-
-.ivan-page .profile-header {
-    padding-left: 3rem;
-    padding-right: 3rem;
-}
-
-.ivan-page .profile-content {
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
-
-/* =========================================================
-   ABOUT PANEL
-   ========================================================= */
-
-.ivan-page .profile-about {
-    padding-left: 2rem;
-    border-left: 3px solid var(--cherry);
-}
-
-
-/* =========================================================
-   INDUSTRIAL SECTION EDGES
-   ========================================================= */
-
-.ivan-page .profile-section {
-    border-radius: 7px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(36, 28, 31, 0.95),
-            rgba(14, 11, 13, 0.98)
-        );
-
-    box-shadow:
-        0 12px 32px rgba(0, 0, 0, 0.35),
-        inset 0 1px rgba(255, 255, 255, 0.025);
-
-    clip-path: polygon(
-        0 0,
-        99.3% 0,
-        100% 4%,
-        100% 100%,
-        0.7% 100%,
-        0 96%
-    );
-}
-
-
-/* =========================================================
-   GUITAR STRING DIVIDER
-   ========================================================= */
-
-.ivan-page .profile-section-heading {
-    position: relative;
-}
-
-.ivan-page .profile-section-heading::after {
-    content: "";
-
-    display: block;
-
-    width: 160px;
-    height: 4px;
-
-    margin-top: 14px;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            transparent 0,
-            transparent 1px,
-            rgba(168, 50, 69, 0.55) 2px,
-            transparent 3px
-        );
-
-    opacity: 0.8;
-}
-
-
-/* =========================================================
-   RED LIGHT STREAKS
-   ========================================================= */
-
-.ivan-page .profile-section:nth-child(2)::after,
-.ivan-page .profile-section:nth-child(4)::after,
-.ivan-page .profile-section:nth-child(6)::after {
-    content: "";
-
-    position: absolute;
-
-    width: 180px;
-    height: 1px;
-
-    right: -35px;
-    bottom: 30px;
-
-    background: var(--cherry-light);
-
-    opacity: 0.35;
-
-    transform: rotate(-8deg);
-
-    box-shadow:
-        0 0 12px rgba(168, 50, 69, 0.5),
-        0 0 30px rgba(116, 28, 43, 0.3);
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   FACT CARDS
-   ========================================================= */
-
-.ivan-page .profile-fact {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(42, 31, 34, 0.7),
-            rgba(10, 8, 9, 0.8)
-        );
-
-    box-shadow:
-        inset 3px 0 var(--cherry-dark);
-}
-
-
-/* =========================================================
-   TAGS
-   ========================================================= */
-
-.ivan-page .profile-tag {
-    position: relative;
-
-    overflow: hidden;
-}
-
-.ivan-page .profile-tag::before {
-    content: "";
-
-    position: absolute;
-
-    left: -20%;
-    bottom: 0;
-
-    width: 60%;
-    height: 1px;
-
-    background: var(--cherry-light);
-
-    opacity: 0.55;
-
-    transform: rotate(-4deg);
-}
-
-
-/* =========================================================
-   PERSONALITY PANEL
-   ========================================================= */
-
-.ivan-page .profile-text {
-    padding-left: 2rem;
-    padding-right: 1.5rem;
-
-    border-left: 2px solid var(--cherry-dark);
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(116, 28, 43, 0.09),
-            transparent 35%
-        );
-}
-
-
-/* =========================================================
-   LIST CARDS
-   ========================================================= */
-
-.ivan-page .profile-list-card {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(37, 28, 31, 0.94),
-            rgba(12, 9, 11, 0.98)
-        );
-
-    box-shadow:
-        inset 0 2px rgba(168, 50, 69, 0.12);
-}
-
-
-/* =========================================================
-   RELATIONSHIP CARDS
-   ========================================================= */
-
-.ivan-page .relationship-card {
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(38, 28, 31, 0.95),
-            rgba(12, 9, 11, 0.98)
-        );
-}
-
-.ivan-page .relationship-card::after {
-    content: "";
-
-    position: absolute;
-
-    width: 100px;
-    height: 1px;
-
-    left: -20px;
-    bottom: 15px;
-
-    background: var(--cherry);
-
-    opacity: 0.35;
-
-    transform: rotate(-7deg);
-}
-
-
-/* =========================================================
-   HEADER: MORE DISTINCTIVE
-   ========================================================= */
-
-.ivan-page .profile-header {
-    background:
-        radial-gradient(
-            ellipse at 15% 70%,
-            rgba(116, 28, 43, 0.24),
-            transparent 35%
-        ),
-        linear-gradient(
-            105deg,
-            rgba(116, 28, 43, 0.12),
-            transparent 48%,
-            rgba(116, 28, 43, 0.08)
-        );
-}
-
-
-/* Red light crossing the header */
-
-.ivan-page .profile-header::after {
-    width: 360px;
-    right: -40px;
-
-    opacity: 0.55;
-
-    transform:
-        skewX(-35deg)
-        rotate(-2deg);
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.ivan-page footer {
-    background:
-        linear-gradient(
-            110deg,
-            #080607,
-            #160e11,
-            #080607
-        );
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-    .ivan-page .profile-section {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
-
     .ivan-page .profile-header {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
@@ -944,13 +621,19 @@
         padding-right: 0.5rem;
     }
 
+    .ivan-page .profile-section {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+
+        border-radius: 13px;
+    }
+
     .ivan-page .profile-about {
-        padding-left: 1.25rem;
+        padding-left: 1.2rem;
     }
 
     .ivan-page .profile-text {
-        padding-left: 1.25rem;
-        padding-right: 1rem;
+        padding-left: 1.2rem;
     }
 
 }
