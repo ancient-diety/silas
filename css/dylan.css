@@ -36,29 +36,22 @@
 }
 
 
-/* Fine geometric linework: sigil-like, kept quiet behind the profile title. */
+/* Keep the imported sigil faint and behind the profile text. */
 .dylan-page .profile-header {
     position: relative;
     isolation: isolate;
 }
 
-.dylan-page .profile-header::after {
-    content: "";
+.dylan-page .dylan-sigil {
     position: absolute;
     z-index: -1;
     top: 118px;
     right: 9%;
     width: 132px;
-    height: 132px;
+    height: auto;
 
-    border: 1px solid rgba(76, 78, 88, 0.2);
-    border-radius: 50%;
-    background:
-        radial-gradient(circle, #f1f1f3 0 4px, rgba(76, 78, 88, 0.38) 4.5px 5px, transparent 5.5px),
-        linear-gradient(0deg, transparent 49.6%, rgba(76, 78, 88, 0.22) 49.8% 50.2%, transparent 50.4%),
-        linear-gradient(90deg, transparent 49.6%, rgba(76, 78, 88, 0.22) 49.8% 50.2%, transparent 50.4%),
-        linear-gradient(45deg, transparent 49.7%, rgba(76, 78, 88, 0.16) 49.9% 50.1%, transparent 50.3%),
-        linear-gradient(-45deg, transparent 49.7%, rgba(76, 78, 88, 0.16) 49.9% 50.1%, transparent 50.3%);
+    filter: grayscale(1) contrast(0.85);
+    opacity: 0.2;
     transform: rotate(12deg);
     pointer-events: none;
 }
@@ -199,11 +192,10 @@
 
 
 @media (max-width: 520px) {
-    .dylan-page .profile-header::after {
+    .dylan-page .dylan-sigil {
         top: 135px;
         right: 5%;
-        width: 72px;
-        height: 72px;
+        width: 76px;
     }
 
     .dylan-page .profile-about,
