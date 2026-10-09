@@ -235,6 +235,8 @@
             min-height: 360px;
             padding: 42px;
 
+            position: relative;
+
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -268,6 +270,26 @@
 
             border-radius: 50%;
             background: #f7d9c8;
+        }
+
+
+        /* Temporary sticker to confirm the homepage edit. */
+        .proof-sticker {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 76px;
+            height: 76px;
+
+            display: grid;
+            place-items: center;
+
+            border: 4px solid var(--white);
+            border-radius: 50%;
+            background: #f7d9c8;
+            box-shadow: 0 8px 18px rgba(43, 32, 33, 0.2);
+            font-size: 2.5rem;
+            transform: rotate(9deg);
         }
 
 
