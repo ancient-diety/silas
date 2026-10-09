@@ -1,0 +1,213 @@
+/* =========================================
+   DYLAN
+   QUIET MONOCHROME SIGILKORE
+========================================= */
+
+.dylan-page {
+    --ivory: #f1f1f3;
+    --ivory-dark: #e3e3e7;
+
+    --cherry: #4c4e58;
+    --cherry-dark: #34363f;
+    --cherry-light: #737580;
+
+    --text: #292a30;
+    --muted: #686a73;
+
+    --border: #c7c8ce;
+    --white: #fafafd;
+
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 88% 8%, rgba(95, 97, 108, 0.09), transparent 30%),
+        linear-gradient(145deg, #f1f1f3, #e9e9ed 52%, #f5f5f7);
+}
+
+
+.dylan-page .navbar {
+    border-bottom-color: var(--border);
+    background: rgba(250, 250, 253, 0.78);
+}
+
+.dylan-page .nav-logo,
+.dylan-page .nav-links a:hover,
+.dylan-page .nav-links a.active {
+    color: var(--cherry-dark);
+}
+
+
+/* Fine geometric linework: sigil-like, kept quiet behind the profile title. */
+.dylan-page .profile-header {
+    position: relative;
+    isolation: isolate;
+}
+
+.dylan-page .profile-header::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 118px;
+    right: 9%;
+    width: 132px;
+    height: 132px;
+
+    border: 1px solid rgba(76, 78, 88, 0.2);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, #f1f1f3 0 4px, rgba(76, 78, 88, 0.38) 4.5px 5px, transparent 5.5px),
+        linear-gradient(0deg, transparent 49.6%, rgba(76, 78, 88, 0.22) 49.8% 50.2%, transparent 50.4%),
+        linear-gradient(90deg, transparent 49.6%, rgba(76, 78, 88, 0.22) 49.8% 50.2%, transparent 50.4%),
+        linear-gradient(45deg, transparent 49.7%, rgba(76, 78, 88, 0.16) 49.9% 50.1%, transparent 50.3%),
+        linear-gradient(-45deg, transparent 49.7%, rgba(76, 78, 88, 0.16) 49.9% 50.1%, transparent 50.3%);
+    transform: rotate(12deg);
+    pointer-events: none;
+}
+
+.dylan-page .profile-eyebrow,
+.dylan-page .profile-fact-label {
+    color: var(--cherry-dark);
+    letter-spacing: 0.2em;
+}
+
+.dylan-page .profile-header h1 {
+    color: var(--text);
+    font-weight: 800;
+    letter-spacing: -0.055em;
+}
+
+.dylan-page .profile-role,
+.dylan-page .back-link {
+    color: var(--cherry-light);
+}
+
+.dylan-page .back-link:hover {
+    color: var(--cherry-dark);
+}
+
+
+/* Small diamond marks repeat the motif without crowding the text. */
+.dylan-page .profile-section {
+    position: relative;
+    border-bottom-color: var(--border);
+}
+
+.dylan-page .profile-section::before {
+    content: "";
+    position: absolute;
+    top: 34px;
+    left: -24px;
+    width: 7px;
+    height: 7px;
+
+    border: 1px solid var(--cherry-light);
+    transform: rotate(45deg);
+}
+
+.dylan-page .profile-section-heading h2,
+.dylan-page .profile-list-card h3,
+.dylan-page .relationship-card h3 {
+    color: var(--text);
+}
+
+.dylan-page .eyebrow {
+    color: var(--cherry-dark);
+}
+
+
+.dylan-page .profile-about {
+    padding: 36px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cherry-light);
+    background: linear-gradient(135deg, rgba(250, 250, 253, 0.96), rgba(232, 232, 237, 0.92));
+    box-shadow: 0 12px 28px rgba(37, 38, 44, 0.07);
+}
+
+.dylan-page .profile-about-text p,
+.dylan-page .profile-text p,
+.dylan-page .profile-list-card li,
+.dylan-page .relationship-card p {
+    color: var(--muted);
+}
+
+.dylan-page .profile-fact,
+.dylan-page .profile-list-card,
+.dylan-page .relationship-card {
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: var(--white);
+    box-shadow: 0 6px 16px rgba(37, 38, 44, 0.06);
+}
+
+.dylan-page .profile-fact-value {
+    color: var(--text);
+}
+
+.dylan-page .profile-tag {
+    border: 1px solid #bfc0c7;
+    border-radius: 4px;
+    background: #e6e6eb;
+    color: var(--cherry-dark);
+}
+
+.dylan-page .profile-tag:hover {
+    border-color: var(--cherry);
+    background: var(--cherry-dark);
+    color: var(--white);
+}
+
+.dylan-page .profile-text {
+    padding: 28px 32px;
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--cherry-light);
+    background: rgba(250, 250, 253, 0.8);
+}
+
+.dylan-page .profile-list-card h3 {
+    margin-bottom: 18px;
+}
+
+.dylan-page .profile-list-card li::marker {
+    color: var(--cherry-light);
+}
+
+.dylan-page footer {
+    border-top-color: var(--border);
+}
+
+.dylan-page .footer-left {
+    color: var(--cherry-dark);
+}
+
+.dylan-page ::selection {
+    background: #d0d1d7;
+    color: var(--text);
+}
+
+
+@media (max-width: 850px) {
+    .dylan-page .profile-section::before {
+        left: 0;
+    }
+}
+
+
+@media (max-width: 750px) {
+    .dylan-page .profile-about {
+        padding: 26px;
+    }
+}
+
+
+@media (max-width: 520px) {
+    .dylan-page .profile-header::after {
+        top: 135px;
+        right: 5%;
+        width: 72px;
+        height: 72px;
+    }
+
+    .dylan-page .profile-about,
+    .dylan-page .profile-text {
+        padding: 22px;
+    }
+}
