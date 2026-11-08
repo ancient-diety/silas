@@ -876,3 +876,10 @@
         transition: none;
     }
 }
+
+
+.sticky-reaction-help {
+    margin: -10px 0 28px;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
