@@ -142,6 +142,25 @@ function applyStickyReactionSelection(noteId) {
             button.hidden =
                 Number(button.dataset.count || 0) === 0 && !isSelected;
         });
+
+    document
+        .querySelectorAll(
+            '.sticky-note-reaction-option[data-note-id="' + String(noteId) + '"]'
+        )
+        .forEach((button) => {
+            button.setAttribute(
+                "aria-pressed",
+                button.dataset.emoji === selectedEmoji ? "true" : "false"
+            );
+        });
+
+    document
+        .querySelectorAll(
+            '.sticky-note-reaction-remove[data-note-id="' + String(noteId) + '"]'
+        )
+        .forEach((button) => {
+            button.hidden = !selectedEmoji;
+        });
 }
 
 function createStickyNoteReactionControls(note) {
@@ -163,6 +182,20 @@ function createStickyNoteReactionControls(note) {
     addButton.setAttribute("aria-label", "Add a reaction");
     addButton.setAttribute("aria-expanded", "false");
 
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "sticky-note-reaction-remove";
+    removeButton.dataset.noteId = String(note.id);
+    removeButton.textContent = "Remove";
+    removeButton.setAttribute("aria-label", "Remove my reaction");
+    removeButton.hidden = !savedStickyReactionSelections[String(note.id)];
+    removeButton.addEventListener("click", () => {
+        const selectedEmoji = savedStickyReactionSelections[String(note.id)];
+        if (selectedEmoji) {
+            toggleStickyNoteReaction(note.id, selectedEmoji, removeButton);
+        }
+    });
+
     const picker = document.createElement("div");
     picker.className = "sticky-note-reaction-picker";
     picker.hidden = true;
@@ -182,6 +215,12 @@ function createStickyNoteReactionControls(note) {
         choice.dataset.emoji = emoji;
         choice.textContent = emoji;
         choice.setAttribute("aria-label", "React with " + REACTION_LABELS[emoji]);
+        choice.setAttribute(
+            "aria-pressed",
+            savedStickyReactionSelections[String(note.id)] === emoji
+                ? "true"
+                : "false"
+        );
         choice.addEventListener("click", async () => {
             picker.hidden = true;
             addButton.setAttribute("aria-expanded", "false");
@@ -218,7 +257,7 @@ function createStickyNoteReactionControls(note) {
         addButton.setAttribute("aria-expanded", String(!picker.hidden));
     });
 
-    group.append(addButton, picker, reactionList);
+    group.append(addButton, picker, reactionList, removeButton);
     wrapper.appendChild(group);
     applyStickyReactionSelection(note.id);
     return wrapper;
