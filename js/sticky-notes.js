@@ -156,14 +156,6 @@ function applyStickyReactionSelection(noteId) {
 
     document
         .querySelectorAll(
-            '.sticky-note-reaction-remove[data-note-id="' + String(noteId) + '"]'
-        )
-        .forEach((button) => {
-            button.hidden = !selectedEmoji;
-        });
-
-    document
-        .querySelectorAll(
             '.sticky-note-reaction-add[data-note-id="' + String(noteId) + '"]'
         )
         .forEach((button) => {
@@ -193,21 +185,6 @@ function createStickyNoteReactionControls(note) {
     addButton.textContent = "😊+";
     addButton.setAttribute("aria-label", "Add a reaction");
     addButton.setAttribute("aria-expanded", "false");
-
-    const removeButton = document.createElement("button");
-    removeButton.type = "button";
-    removeButton.className = "sticky-note-reaction-remove";
-    removeButton.dataset.noteId = String(note.id);
-    removeButton.textContent = "Remove";
-    removeButton.setAttribute("aria-label", "Remove my reaction");
-    removeButton.hidden = !savedStickyReactionSelections[String(note.id)];
-    removeButton.addEventListener("click", async () => {
-        const selectedEmoji = savedStickyReactionSelections[String(note.id)];
-        if (selectedEmoji) {
-            await toggleStickyNoteReaction(note.id, selectedEmoji, removeButton);
-            if (addButton.isConnected) addButton.focus();
-        }
-    });
 
     const picker = document.createElement("div");
     picker.className = "sticky-note-reaction-picker";
@@ -270,7 +247,7 @@ function createStickyNoteReactionControls(note) {
         addButton.setAttribute("aria-expanded", String(!picker.hidden));
     });
 
-    group.append(addButton, picker, reactionList, removeButton);
+    group.append(addButton, picker, reactionList);
     wrapper.appendChild(group);
     applyStickyReactionSelection(note.id);
     return wrapper;
@@ -371,8 +348,7 @@ async function toggleStickyNoteReaction(noteId, emoji, button) {
     const buttons = document.querySelectorAll(
         '.sticky-note-reaction-option[data-note-id="' + noteIdString + '"], ' +
         '.sticky-note-reaction-chip[data-note-id="' + noteIdString + '"], ' +
-        '.sticky-note-reaction-remove[data-note-id="' + noteIdString + '"], ' +
-        '.sticky-note-reaction-add[data-note-id="' + noteIdString + '"]'
+'.sticky-note-reaction-add[data-note-id="' + noteIdString + '"]'
     );
 
     buttons.forEach((item) => {
