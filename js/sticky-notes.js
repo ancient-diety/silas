@@ -161,6 +161,17 @@ function applyStickyReactionSelection(noteId) {
         .forEach((button) => {
             button.hidden = !selectedEmoji;
         });
+
+    document
+        .querySelectorAll(
+            '.sticky-note-reaction-add[data-note-id="' + String(noteId) + '"]'
+        )
+        .forEach((button) => {
+            button.setAttribute(
+                "aria-label",
+                selectedEmoji ? "Change reaction" : "Add a reaction"
+            );
+        });
 }
 
 function createStickyNoteReactionControls(note) {
@@ -190,10 +201,11 @@ function createStickyNoteReactionControls(note) {
     removeButton.textContent = "Remove";
     removeButton.setAttribute("aria-label", "Remove my reaction");
     removeButton.hidden = !savedStickyReactionSelections[String(note.id)];
-    removeButton.addEventListener("click", () => {
+    removeButton.addEventListener("click", async () => {
         const selectedEmoji = savedStickyReactionSelections[String(note.id)];
         if (selectedEmoji) {
-            toggleStickyNoteReaction(note.id, selectedEmoji, removeButton);
+            await toggleStickyNoteReaction(note.id, selectedEmoji, removeButton);
+            if (addButton.isConnected) addButton.focus();
         }
     });
 
