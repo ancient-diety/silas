@@ -317,7 +317,8 @@ function subscribeToStickyNoteReactionUpdates(noteIds) {
 async function toggleStickyNoteReaction(noteId, emoji, button) {
     const noteIdString = String(noteId);
     const buttons = document.querySelectorAll(
-        '.sticky-note-reaction[data-note-id="' + noteIdString + '"]'
+        '.sticky-note-reaction-option[data-note-id="' + noteIdString + '"], ' +
+        '.sticky-note-reaction-chip[data-note-id="' + noteIdString + '"]'
     );
 
     buttons.forEach((item) => {
