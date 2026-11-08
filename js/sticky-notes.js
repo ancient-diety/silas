@@ -159,7 +159,7 @@ function createStickyNoteReactionControls(note) {
     const addButton = document.createElement("button");
     addButton.type = "button";
     addButton.className = "sticky-note-reaction-add";
-    addButton.textContent = "☻+";
+    addButton.textContent = "😊+";
     addButton.setAttribute("aria-label", "Add a reaction");
     addButton.setAttribute("aria-expanded", "false");
 
