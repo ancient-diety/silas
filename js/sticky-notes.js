@@ -134,17 +134,20 @@ function applyStickyReactionSelection(noteId) {
 
     document
         .querySelectorAll(
-            '.sticky-note-reaction[data-note-id="' + String(noteId) + '"]'
+            '.sticky-note-reaction-chip[data-note-id="' + String(noteId) + '"]'
         )
         .forEach((button) => {
-            button.setAttribute(
-                "aria-pressed",
-                button.dataset.emoji === selectedEmoji ? "true" : "false"
-            );
+            const isSelected = button.dataset.emoji === selectedEmoji;
+            button.setAttribute("aria-pressed", isSelected ? "true" : "false");
+            button.hidden =
+                Number(button.dataset.count || 0) === 0 && !isSelected;
         });
 }
 
 function createStickyNoteReactionControls(note) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "sticky-note-reaction-area";
+
     const group = document.createElement("div");
     group.className = "sticky-note-reactions";
     group.setAttribute("role", "group");
@@ -153,43 +156,72 @@ function createStickyNoteReactionControls(note) {
         "Reactions for " + (note.title || "untitled sticky note")
     );
 
+    const addButton = document.createElement("button");
+    addButton.type = "button";
+    addButton.className = "sticky-note-reaction-add";
+    addButton.textContent = "☻+";
+    addButton.setAttribute("aria-label", "Add a reaction");
+    addButton.setAttribute("aria-expanded", "false");
+
+    const picker = document.createElement("div");
+    picker.className = "sticky-note-reaction-picker";
+    picker.hidden = true;
+    picker.setAttribute("role", "group");
+    picker.setAttribute("aria-label", "Choose a reaction");
+
+    const reactionList = document.createElement("div");
+    reactionList.className = "sticky-note-reaction-list";
+    reactionList.setAttribute("role", "group");
+    reactionList.setAttribute("aria-label", "Current reactions");
+
     REACTION_EMOJI_OPTIONS.forEach((emoji) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "sticky-note-reaction";
-        button.dataset.noteId = String(note.id);
-        button.dataset.emoji = emoji;
-        button.setAttribute(
-            "aria-label",
-            "React with " + REACTION_LABELS[emoji] + ". 0 reactions."
-        );
-        button.setAttribute(
-            "aria-pressed",
-            savedStickyReactionSelections[String(note.id)] === emoji
-                ? "true"
-                : "false"
+        const choice = document.createElement("button");
+        choice.type = "button";
+        choice.className = "sticky-note-reaction-option";
+        choice.dataset.noteId = String(note.id);
+        choice.dataset.emoji = emoji;
+        choice.textContent = emoji;
+        choice.setAttribute("aria-label", "React with " + REACTION_LABELS[emoji]);
+        choice.addEventListener("click", async () => {
+            picker.hidden = true;
+            addButton.setAttribute("aria-expanded", "false");
+            await toggleStickyNoteReaction(note.id, emoji, choice);
+            if (choice.isConnected) addButton.focus();
+        });
+        picker.appendChild(choice);
+
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "sticky-note-reaction-chip";
+        chip.dataset.noteId = String(note.id);
+        chip.dataset.emoji = emoji;
+        chip.dataset.count = "0";
+        chip.hidden = true;
+        chip.setAttribute("aria-pressed", "false");
+        chip.setAttribute("aria-label", REACTION_LABELS[emoji] + ", 0 reactions");
+        chip.addEventListener("click", () =>
+            toggleStickyNoteReaction(note.id, emoji, chip)
         );
 
         const emojiLabel = document.createElement("span");
-        emojiLabel.className = "sticky-note-reaction-emoji";
         emojiLabel.setAttribute("aria-hidden", "true");
         emojiLabel.textContent = emoji;
-
         const count = document.createElement("span");
         count.className = "sticky-note-reaction-count";
         count.setAttribute("aria-hidden", "true");
-        count.hidden = true;
-
-        button.appendChild(emojiLabel);
-        button.appendChild(count);
-        button.addEventListener("click", () =>
-            toggleStickyNoteReaction(note.id, emoji, button)
-        );
-
-        group.appendChild(button);
+        chip.append(emojiLabel, count);
+        reactionList.appendChild(chip);
     });
 
-    return group;
+    addButton.addEventListener("click", () => {
+        picker.hidden = !picker.hidden;
+        addButton.setAttribute("aria-expanded", String(!picker.hidden));
+    });
+
+    group.append(addButton, picker, reactionList);
+    wrapper.appendChild(group);
+    applyStickyReactionSelection(note.id);
+    return wrapper;
 }
 
 async function loadStickyNoteReactionCounts(noteIds) {
@@ -218,7 +250,7 @@ async function loadStickyNoteReactionCounts(noteIds) {
         );
     });
 
-    document.querySelectorAll(".sticky-note-reaction").forEach((button) => {
+    document.querySelectorAll(".sticky-note-reaction-chip").forEach((button) => {
         const count =
             countByReaction.get(
                 button.dataset.noteId + "|" + button.dataset.emoji
@@ -226,14 +258,15 @@ async function loadStickyNoteReactionCounts(noteIds) {
         const countElement =
             button.querySelector(".sticky-note-reaction-count");
 
-        if (!countElement) return;
-
-        countElement.textContent = count > 0 ? String(count) : "";
-        countElement.hidden = count === 0;
+        button.dataset.count = String(count);
+        if (countElement) countElement.textContent = count > 0 ? String(count) : "";
+        button.hidden =
+            count === 0 &&
+            savedStickyReactionSelections[button.dataset.noteId] !== button.dataset.emoji;
         button.setAttribute(
             "aria-label",
-            "React with " + REACTION_LABELS[button.dataset.emoji] +
-                ". " + count + (count === 1 ? " reaction." : " reactions.")
+            REACTION_LABELS[button.dataset.emoji] + ", " + count +
+                (count === 1 ? " reaction." : " reactions.")
         );
     });
 
