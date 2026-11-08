@@ -994,8 +994,7 @@
 
 .sticky-note-reaction-add,
 .sticky-note-reaction-option,
-.sticky-note-reaction-chip,
-.sticky-note-reaction-remove {
+.sticky-note-reaction-chip {
     min-height: 34px;
     border: 1px solid rgba(143, 38, 56, 0.2);
     border-radius: 999px;
@@ -1064,23 +1063,9 @@
     box-shadow: 0 0 0 2px rgba(143, 38, 56, 0.1);
 }
 
-.sticky-note-reaction-remove {
-    order: 2;
-    min-height: 30px;
-    padding: 4px 10px;
-    color: var(--cherry-dark);
-    font-size: 0.75rem;
-    font-weight: 700;
-}
-
-.sticky-note-reaction-remove[hidden] {
-    display: none;
-}
-
 .sticky-note-reaction-add:hover:not(:disabled),
 .sticky-note-reaction-option:hover:not(:disabled),
-.sticky-note-reaction-chip:hover:not(:disabled),
-.sticky-note-reaction-remove:hover:not(:disabled) {
+.sticky-note-reaction-chip:hover:not(:disabled) {
     transform: translateY(-1px);
     border-color: var(--cherry);
     background: rgba(255, 240, 242, 0.95);
@@ -1089,16 +1074,14 @@
 
 .sticky-note-reaction-add:focus-visible,
 .sticky-note-reaction-option:focus-visible,
-.sticky-note-reaction-chip:focus-visible,
-.sticky-note-reaction-remove:focus-visible {
+.sticky-note-reaction-chip:focus-visible {
     outline: 3px solid rgba(184, 74, 92, 0.42);
     outline-offset: 2px;
 }
 
 .sticky-note-reaction-add:disabled,
 .sticky-note-reaction-option:disabled,
-.sticky-note-reaction-chip:disabled,
-.sticky-note-reaction-remove:disabled {
+.sticky-note-reaction-chip:disabled {
     cursor: wait;
     opacity: 0.65;
 }
@@ -1106,8 +1089,7 @@
 @media (prefers-reduced-motion: reduce) {
     .sticky-note-reaction-add,
     .sticky-note-reaction-option,
-    .sticky-note-reaction-chip,
-    .sticky-note-reaction-remove {
+    .sticky-note-reaction-chip {
         transition: none;
     }
 }
