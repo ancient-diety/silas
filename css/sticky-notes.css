@@ -788,3 +788,91 @@
     color: var(--cherry-dark);
     text-decoration: underline;
 }
+
+
+/* =========================================
+   STICKY NOTE REACTIONS
+========================================= */
+
+.sticky-reaction-status {
+    min-height: 1.3em;
+    margin: -25px 0 18px;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.sticky-reaction-status[data-state="error"] {
+    color: var(--cherry-dark);
+}
+
+.sticky-note-reactions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 20px 0 14px;
+}
+
+.sticky-note-reaction {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-width: 36px;
+    min-height: 34px;
+    padding: 5px 8px;
+
+    border: 1px solid rgba(43, 32, 33, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.52);
+    color: var(--text);
+
+    font: inherit;
+    font-size: 0.86rem;
+    line-height: 1;
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.sticky-note-reaction:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: var(--cherry-light);
+    box-shadow: 0 4px 10px rgba(60, 35, 30, 0.12);
+}
+
+.sticky-note-reaction:focus-visible {
+    outline: 3px solid var(--cherry-light);
+    outline-offset: 2px;
+}
+
+.sticky-note-reaction[aria-pressed="true"] {
+    border-color: var(--cherry);
+    background: rgba(143, 38, 56, 0.13);
+    box-shadow: 0 0 0 1px var(--cherry);
+}
+
+.sticky-note-reaction:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.sticky-note-reaction-count {
+    min-width: 0.7em;
+    font-size: 0.75rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.sticky-note-reaction-count[hidden] {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sticky-note-reaction {
+        transition: none;
+    }
+}
