@@ -178,6 +178,7 @@ function createStickyNoteReactionControls(note) {
     const addButton = document.createElement("button");
     addButton.type = "button";
     addButton.className = "sticky-note-reaction-add";
+    addButton.dataset.noteId = String(note.id);
     addButton.textContent = "😊+";
     addButton.setAttribute("aria-label", "Add a reaction");
     addButton.setAttribute("aria-expanded", "false");
@@ -357,7 +358,9 @@ async function toggleStickyNoteReaction(noteId, emoji, button) {
     const noteIdString = String(noteId);
     const buttons = document.querySelectorAll(
         '.sticky-note-reaction-option[data-note-id="' + noteIdString + '"], ' +
-        '.sticky-note-reaction-chip[data-note-id="' + noteIdString + '"]'
+        '.sticky-note-reaction-chip[data-note-id="' + noteIdString + '"], ' +
+        '.sticky-note-reaction-remove[data-note-id="' + noteIdString + '"], ' +
+        '.sticky-note-reaction-add[data-note-id="' + noteIdString + '"]'
     );
 
     buttons.forEach((item) => {
