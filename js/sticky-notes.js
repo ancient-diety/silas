@@ -193,7 +193,7 @@ function createStickyNoteReactionControls(note) {
 }
 
 async function loadStickyNoteReactionCounts(noteIds) {
-    if (!Array.isArray(noteIds) || noteIds.length === 0) return;
+    if (!Array.isArray(noteIds) || noteIds.length === 0) return false;
 
     const { data, error } = await reactionSupabaseClient
         .from("sticky_note_reaction_counts")
@@ -206,7 +206,7 @@ async function loadStickyNoteReactionCounts(noteIds) {
             "Reaction counts could not load. Please refresh to try again.",
             "error"
         );
-        return;
+        return false;
     }
 
     const countByReaction = new Map();
@@ -236,6 +236,8 @@ async function loadStickyNoteReactionCounts(noteIds) {
                 ". " + count + (count === 1 ? " reaction." : " reactions.")
         );
     });
+
+    return true;
 }
 
 function subscribeToStickyNoteReactionUpdates(noteIds) {
@@ -311,9 +313,13 @@ async function toggleStickyNoteReaction(noteId, emoji, button) {
 
         saveStickyReactionSelections();
         applyStickyReactionSelection(noteId);
-        await loadStickyNoteReactionCounts(
+
+        const countsLoaded = await loadStickyNoteReactionCounts(
             stickyReactionNoteIds.map(Number)
         );
+        if (countsLoaded) {
+            setStickyReactionStatus("Reaction saved.", "connected");
+        }
     } catch (error) {
         console.error("Error saving sticky note reaction:", error);
         setStickyReactionStatus(
